@@ -1,0 +1,38 @@
+Package: labyrinth
+Type: Package
+Title: Labyrinth: A Simulation of Knowledge Networks
+Version: 0.2.0
+Date: 2023-12-31
+Authors@R: c(
+    person("Yinchun","Su", role = c("aut", "cre"),
+      email = "46381867+randef1ned@users.noreply.github.com"),
+    person("Junwei", "Han", role = "ctb",
+      email = "hanjunwei1981@163.com"))
+Maintainer: Junwei Han <hanjunwei1981@163.com>
+Description: One paragraph description of what the package does
+       as one or more full sentences. I can use Config/testthat/parallel as 
+       true to boost the test efficiency. 
+License: GPL (>= 2)
+URL: https://github.com/randef1ned/diffusr
+BugReports: https://github.com/randef1ned/diffusr/issues
+Imports: 
+    checkmate,
+    igraph,
+    Matrix,
+    methods,
+    Rcpp (>= 1.0.11),
+    RcppEigen
+LinkingTo: Rcpp, RcppEigen
+SystemRequirements: C++17
+RoxygenNote: 7.3.0
+Encoding: UTF-8
+Suggests: 
+    data.table,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 4.0.0)
+LazyData: true
+VignetteBuilder: knitr

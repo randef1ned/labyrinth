@@ -1,0 +1,14 @@
+## With Rcpp 0.11.0 and later, we no longer need to set PKG_LIBS as there is
+## no user-facing library. The include path to headers is already set by R.
+#PKG_LIBS = 
+
+## With R 3.1.0 or later, you can uncomment the following line to tell R to 
+## enable compilation with C++11 (or even C++14) where available
+## R 4.0.0 made C++11 the default, R 4.1.0 switched to C++14, R 4.3.0 to C++17
+## _In general_ we should no longer need to set a standard as any recent R
+## installation will do the right thing. Should you need it, uncomment it and
+## set the appropriate value, possibly CXX17.
+CXX_STD = CXX17
+
+PKG_CPPFLAGS = -w -I../inst/include/ -I/opt/intel/oneapi/mkl/latest/include/ -I/usr/include/mkl -Wno-ignored-attributes -DMKL_ILP64 -m64 -DRCPP_USE_UNWIND_PROTECT -fopenmp -O3 -march=native -fno-math-errno -mfma
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) -DEIGEN_INITIALIZE_MATRICES_BY_ZERO -DEIGEN_NO_DEBUG -lmkl_intel_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl
