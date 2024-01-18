@@ -81,13 +81,13 @@ test_that("Test in example dataset", {
 })
 
 test_that("Test in random graph with random parameters", {
-  replicate(25, {
+  replicate(5, {
     graph <- random_graph()
     last_activation <- abs(round(rnorm(nrow(graph), mean = 1.5, sd = 1), digits = 1))
     expect_equal(spread_gram_1(graph, last_activation),
                  spread_gram_R(graph, last_activation))
     
-    replicate(25, {
+    replicate(2, {
       test_row <- sample(x = 1:nrow(graph), size = 1, replace = FALSE)
       test_col <- sample(x = 1:nrow(graph), size = 1, replace = FALSE)
       

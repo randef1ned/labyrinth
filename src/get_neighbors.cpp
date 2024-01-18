@@ -2,10 +2,9 @@
 
 // [[Rcpp::plugins("cpp17")]]
 template <typename T>
-ArrayXi get_neighbors_t(T &adj_matrix, const int &node_id, const int &neighbor_type) {
+ArrayXi get_neighbors_t(const T &adj_matrix, const int &node_id, const int &neighbor_type) {
     size_t n = adj_matrix.rows();
     VectorXd neighbors, forward_neighbors, backward_neighbors;
-    ArrayXi ret_neighbors;
     
     switch(neighbor_type) {
         case 1:    // forward
@@ -20,14 +19,34 @@ ArrayXi get_neighbors_t(T &adj_matrix, const int &node_id, const int &neighbor_t
             neighbors = forward_neighbors.cwiseMax(backward_neighbors);
             break;
     }
-
-    ret_neighbors = neighbors.cwiseEqual(0).cast<int>().cwiseEqual(0).cast<int>().array();
-
+    //ArrayXi ret_neighbors = (!neighbors.cwiseEqual(0).array()).cast<int>();
+    ArrayXi ret_neighbors = neighbors.cwiseEqual(0).cast<int>().cwiseEqual(0).cast<int>().array();
     // efficiently set diagnoal as 0
     ret_neighbors[node_id] = 0;
 
     return(ret_neighbors);
 }
+
+/*
+template <typename T>
+int get_specific_neighbors_t(const T &adj_matrix, const int &x, const int &y, const int &neighbor_type) {
+    if (x == y) {
+        return 0;
+    } else {
+        double neighbors = 0.0;
+        switch(neighbor_type) {
+            case 1:    // forward
+                neighbors = adj_matrix.coeff(x, y);
+                break;
+            case 2:    // backward
+                neighbors = adj_matrix.coeff(y, x);
+                break;
+            default:   // all
+                neighbors = std::max(adj_matrix.coeff(x, y), adj_matrix.coeff(y, x));
+        }
+        return(int(bool(neighbors)));
+    }
+}*/
 
 // TODO: mention overloading, help needed
 //' Get neighboring nodes in a graph (adjacency matrix)
@@ -72,7 +91,7 @@ ArrayXi get_neighbors_t(T &adj_matrix, const int &node_id, const int &neighbor_t
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-ArrayXi get_neighbors_s(MSpMat &adj_matrix, const int &node_id, const int neighbor_type) {
+ArrayXi get_neighbors_s(const MSpMat &adj_matrix, const int &node_id, const int neighbor_type) {
     return(get_neighbors_t(adj_matrix, node_id, neighbor_type));
 }
 
@@ -118,6 +137,6 @@ ArrayXi get_neighbors_s(MSpMat &adj_matrix, const int &node_id, const int neighb
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-ArrayXi get_neighbors_d(MMatrixXd &adj_matrix, const int &node_id, const int neighbor_type) {
+ArrayXi get_neighbors_d(const MMatrixXd &adj_matrix, const int &node_id, const int neighbor_type) {
     return(get_neighbors_t(adj_matrix, node_id, neighbor_type));
 }

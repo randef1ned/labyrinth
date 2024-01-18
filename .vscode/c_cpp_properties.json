@@ -6,6 +6,7 @@
                 "${workspaceFolder}/**",
                 "${env:HOME}/R/x86_64-redhat-linux-gnu-library/4.3/Rcpp/include",
                 "${env:HOME}/R/x86_64-redhat-linux-gnu-library/4.3/RcppEigen/include",
+                "${env:HOME}/R/x86_64-redhat-linux-gnu-library/4.3/RcppParallel/include",
                 "/usr/include/R",
                 "/opt/intel/oneapi/mkl/latest/include"
             ],

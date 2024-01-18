@@ -2,67 +2,75 @@
 
 // [[Rcpp::plugins("cpp17")]]
 template <typename T> double transfer_activation_t(T &graph, const int &y, const int &x, const ArrayXd &activation, const double loose) {
-    ArrayXi all_neighbors = get_neighbors_t(graph, x, 0);
-    double numerator = activation[y] * loose;
-    double denominator = 1.0;
+    // Equivalent with: ArrayXi all_neighbors = get_neighbors_t(graph, x, 0);
+    double backward_neighbors_y, forward_neighbors_y, neighbors_y = 0;
+    double numerator = 0.0, denominator = 1.0, ret = 0.0;
+    if (x != y) {
+        backward_neighbors_y = graph.coeff(y, x);
+        forward_neighbors_y = graph.coeff(x, y);
+        neighbors_y = std::max(backward_neighbors_y, forward_neighbors_y);
+        numerator = activation[y] * loose;
+    }
 
-    if (all_neighbors[y] == 0) {
+    if (neighbors_y == 0) {
         numerator = 0.0;
     } else if (numerator > 0) {
         // Find all neighbors of node x that are backward neighbors
-        ArrayXi all_backward_neighbors = get_neighbors_t(graph, x, 2);
+        ArrayXi all_backward_neighbors; // get_neighbors_t(graph, x, 2);
         // Then, we ought to know the position of node y
         // y -> x: 1;
         // x -> y: 0.
         // If y->x is true, it means that all the neighbors of x are not included in the backward neighbors
         // If x->y is true, it means that all the neighbors of x are included except node y
-        if (all_backward_neighbors[y]) {
-            all_backward_neighbors = all_backward_neighbors + (all_neighbors - all_backward_neighbors);
+        if (backward_neighbors_y) {
+            all_backward_neighbors = get_neighbors_t(graph, x, 0);
+            //all_backward_neighbors = all_backward_neighbors + (all_neighbors - all_backward_neighbors);
         } else {
+            //all_backward_neighbors[y] = 1;
+            all_backward_neighbors = get_neighbors_t(graph, x, 2);
             all_backward_neighbors[y] = 1;
         }
         denominator = (activation * all_backward_neighbors.cast<double>()).sum();
     }
-    double ret = numerator / denominator;
+    ret = numerator / denominator;
     return(ret);
+
 }
 
 // [[Rcpp::plugins("cpp17")]]
-template <typename T> VectorXd activation_rate_t(T &graph, const ArrayXd &strength, const ArrayXd stm, const double loose, bool remove_first) {
+template <typename T> VectorXd activation_rate_t(T &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose, bool remove_first) {
     size_t element = graph.rows();
     // Build new activation_rate matrix
-    SpMat activation_pattern(element, element);
-    activation_pattern.reserve(graph.nonZeros());
+    MatrixXd activation_pattern(element, element);
 
     // Iterate over all nodes
+    #pragma omp parallel for
     for (int y = 0; y < element; y++) {
         // Find all neighbors ID in the graph
         ArrayXi neighbors = get_neighbors_t(graph, y, 0);
-        for (int neighbor_id = 0; neighbor_id < neighbors.size(); neighbor_id++) {
-            // activation_pattern.coeffRef(y, neighbor_id) = neighbors[neighbor_id] * transfer_activation_t(graph, y, neighbor_id, strength, loose);
+        for (int neighbor_id = 0; neighbor_id < element; neighbor_id++) {
             if (neighbors[neighbor_id]) {
-                activation_pattern.coeffRef(y, neighbor_id) = neighbors[neighbor_id] * transfer_activation_t(graph, y, neighbor_id, strength, loose);
-            } else {
-                activation_pattern.coeffRef(y, neighbor_id) = 0.0;
+                activation_pattern.coeffRef(y, neighbor_id) = transfer_activation_t(graph, y, neighbor_id, strength, loose);
             }
         }
     }
-
+    
     // Build two matrices
     VectorXd coefficient_matrix = strength * stm * (-1.0);
     // MatrixXd coefficient_matrix = strength * stm * (-1.0);
+    #pragma omp parallel for
     for (int i = 0; i < element; i++) {
         activation_pattern.diagonal()[i] = -1.0;
     }
-    activation_pattern.makeCompressed();
-
+    
     if (remove_first) {
         size_t removed_element = element - 1;
         activation_pattern = activation_pattern.rightCols(removed_element).bottomRows(removed_element);
-        coefficient_matrix = coefficient_matrix.tail(removed_element);
+        VectorXd shrinked_coefficient_matrix = coefficient_matrix.bottomRows(removed_element);
+        coefficient_matrix.resize(0);
+        coefficient_matrix = shrinked_coefficient_matrix;
     }
-
-    BiCGSTAB<SpMat> solver;
+    BiCGSTAB<MatrixXd> solver;
     solver.compute(activation_pattern);
     VectorXd activated = solver.solve(coefficient_matrix);
     return(activated);
@@ -216,7 +224,7 @@ double transfer_activation_d(MMatrixXd &graph, const int &y, const int &x, const
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd stm, const double loose = 1.0, bool remove_first = false) {
+VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, bool remove_first = false) {
     return(activation_rate_t(graph, strength, stm, loose, remove_first));
 }
 
@@ -284,6 +292,6 @@ VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-VectorXd activation_rate_d(MMatrixXd &graph, const ArrayXd &strength, const ArrayXd stm, const double loose = 1.0, bool remove_first = false) {
+VectorXd activation_rate_d(MMatrixXd &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, bool remove_first = false) {
     return(activation_rate_t(graph, strength, stm, loose, remove_first));
 }

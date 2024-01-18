@@ -1,7 +1,7 @@
 Package: labyrinth
 Type: Package
 Title: Labyrinth: A Simulation of Knowledge Networks
-Version: 0.2.0
+Version: 0.2.1
 Date: 2023-12-31
 Authors@R: c(
     person("Yinchun","Su", role = c("aut", "cre"),
@@ -21,9 +21,10 @@ Imports:
     Matrix,
     methods,
     Rcpp (>= 1.0.11),
-    RcppEigen
-LinkingTo: Rcpp, RcppEigen
-SystemRequirements: C++17
+    RcppEigen,
+    RcppParallel
+LinkingTo: Rcpp, RcppEigen, RcppParallel
+SystemRequirements: C++17, GNU make
 RoxygenNote: 7.3.0
 Encoding: UTF-8
 Suggests: 

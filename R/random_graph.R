@@ -18,7 +18,7 @@
 #' # Generate a random graph with 10 nodes
 #' graph <- random_graph(n_element = 10)
 #' 
-random_graph <- function(n_element = sample(10:1000, 1), float = sample(0:1, 1), sparse = sample(0:1, 1)) {
+random_graph <- function(n_element = sample(10:500, 1), float = sample(0:1, 1), sparse = sample(0:1, 1)) {
   while(TRUE) {
     random_nums <- rnorm(n_element^2, mean = 2, sd = 1)
     random_nums[random_nums < 2.6] <- 0

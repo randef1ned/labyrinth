@@ -13,12 +13,12 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // get_neighbors_s
-ArrayXi get_neighbors_s(MSpMat& adj_matrix, const int& node_id, const int neighbor_type);
+ArrayXi get_neighbors_s(const MSpMat& adj_matrix, const int& node_id, const int neighbor_type);
 RcppExport SEXP _labyrinth_get_neighbors_s(SEXP adj_matrixSEXP, SEXP node_idSEXP, SEXP neighbor_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< MSpMat& >::type adj_matrix(adj_matrixSEXP);
+    Rcpp::traits::input_parameter< const MSpMat& >::type adj_matrix(adj_matrixSEXP);
     Rcpp::traits::input_parameter< const int& >::type node_id(node_idSEXP);
     Rcpp::traits::input_parameter< const int >::type neighbor_type(neighbor_typeSEXP);
     rcpp_result_gen = Rcpp::wrap(get_neighbors_s(adj_matrix, node_id, neighbor_type));
@@ -26,12 +26,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // get_neighbors_d
-ArrayXi get_neighbors_d(MMatrixXd& adj_matrix, const int& node_id, const int neighbor_type);
+ArrayXi get_neighbors_d(const MMatrixXd& adj_matrix, const int& node_id, const int neighbor_type);
 RcppExport SEXP _labyrinth_get_neighbors_d(SEXP adj_matrixSEXP, SEXP node_idSEXP, SEXP neighbor_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< MMatrixXd& >::type adj_matrix(adj_matrixSEXP);
+    Rcpp::traits::input_parameter< const MMatrixXd& >::type adj_matrix(adj_matrixSEXP);
     Rcpp::traits::input_parameter< const int& >::type node_id(node_idSEXP);
     Rcpp::traits::input_parameter< const int >::type neighbor_type(neighbor_typeSEXP);
     rcpp_result_gen = Rcpp::wrap(get_neighbors_d(adj_matrix, node_id, neighbor_type));
@@ -69,14 +69,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // activation_rate_s
-VectorXd activation_rate_s(MSpMat& graph, const ArrayXd& strength, const ArrayXd stm, const double loose, bool remove_first);
+VectorXd activation_rate_s(MSpMat& graph, const ArrayXd& strength, const ArrayXd& stm, const double loose, bool remove_first);
 RcppExport SEXP _labyrinth_activation_rate_s(SEXP graphSEXP, SEXP strengthSEXP, SEXP stmSEXP, SEXP looseSEXP, SEXP remove_firstSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< MSpMat& >::type graph(graphSEXP);
     Rcpp::traits::input_parameter< const ArrayXd& >::type strength(strengthSEXP);
-    Rcpp::traits::input_parameter< const ArrayXd >::type stm(stmSEXP);
+    Rcpp::traits::input_parameter< const ArrayXd& >::type stm(stmSEXP);
     Rcpp::traits::input_parameter< const double >::type loose(looseSEXP);
     Rcpp::traits::input_parameter< bool >::type remove_first(remove_firstSEXP);
     rcpp_result_gen = Rcpp::wrap(activation_rate_s(graph, strength, stm, loose, remove_first));
@@ -84,14 +84,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // activation_rate_d
-VectorXd activation_rate_d(MMatrixXd& graph, const ArrayXd& strength, const ArrayXd stm, const double loose, bool remove_first);
+VectorXd activation_rate_d(MMatrixXd& graph, const ArrayXd& strength, const ArrayXd& stm, const double loose, bool remove_first);
 RcppExport SEXP _labyrinth_activation_rate_d(SEXP graphSEXP, SEXP strengthSEXP, SEXP stmSEXP, SEXP looseSEXP, SEXP remove_firstSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< MMatrixXd& >::type graph(graphSEXP);
     Rcpp::traits::input_parameter< const ArrayXd& >::type strength(strengthSEXP);
-    Rcpp::traits::input_parameter< const ArrayXd >::type stm(stmSEXP);
+    Rcpp::traits::input_parameter< const ArrayXd& >::type stm(stmSEXP);
     Rcpp::traits::input_parameter< const double >::type loose(looseSEXP);
     Rcpp::traits::input_parameter< bool >::type remove_first(remove_firstSEXP);
     rcpp_result_gen = Rcpp::wrap(activation_rate_d(graph, strength, stm, loose, remove_first));

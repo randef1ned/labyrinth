@@ -21,12 +21,14 @@
 
 // we only include RcppEigen.h which pulls Rcpp.h in for us
 #include <RcppEigen.h>
+#include <RcppParallel.h>
 
 // via the depends attribute we tell Rcpp to create hooks for
 // RcppEigen so that the build process will know what to do
 //
 // [[Rcpp::depends(RcppEigen)]]
 // [[Rcpp::plugins(openmp)]]
+// [[Rcpp::depends(RcppParallel)]]
 
 // other headers are loaded when C++ functions in src/ are being compiled.
 // using namespace RcppSparse;
@@ -44,8 +46,8 @@ typedef Eigen::MappedSparseMatrix<double> MSpMat;
 typedef Eigen::Map<MatrixXd> MMatrixXd;
 typedef Eigen::SparseMatrix<double> SpMat;
 
-ArrayXi get_neighbors_s(MSpMat &adj_matrix, const int &node_id, const int neighbor_type = 0);
-ArrayXi get_neighbors_d(MatrixXd &adj_matrix, const int &node_id, const int neighbor_type = 0);
-template <typename T> ArrayXi get_neighbors_t(T &adj_matrix, const int &node_id, const int &neighbor_type);
+ArrayXi get_neighbors_s(const MSpMat &adj_matrix, const int &node_id, const int neighbor_type = 0);
+ArrayXi get_neighbors_d (const MatrixXd &adj_matrix, const int &node_id, const int neighbor_type = 0);
+template <typename T> ArrayXi get_neighbors_t(const T &adj_matrix, const int &node_id, const int &neighbor_type);
 vector<double> spread_activation_t(MSpMat &graph, VectorXd &last_activation, double loose);
 

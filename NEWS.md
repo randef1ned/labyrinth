@@ -35,3 +35,8 @@
 * Dropped robust z score
 * Applied Eigen and MKL
 
+# labyrinth 0.2.1
+
+* Performance improvement
+* Bug fix
+
