@@ -27,11 +27,6 @@ get_neighbors_R <- function(adj_matrix, node_id, neighbor_type = c('both', 'forw
   return(nodes)
 }
 
-expect_equal(sort(get_neighbors(graph, 173, neighbor_type = 'backward',
-                                return_type = 'id')),
-             sort(get_neighbors_R(graph, 173, neighbor_type = 'backward',
-                                  return_type = 'id')))
-
 test_that("Test get_neighbors in original Anderson's paper", {
   graph <- Matrix::Matrix(nrow = 7, ncol = 7, data = c(
     0, 0, 0, 0, 0, 0, 0,
@@ -41,7 +36,7 @@ test_that("Test get_neighbors in original Anderson's paper", {
     0, 1, 1, 0, 0, 0, 0,
     0, 0, 1, 0, 0, 0, 0,
     0, 0, 0, 1, 1, 1, 0), sparse = TRUE)
-  graph <- as(graph, 'dgCMatrix')
+  graph <- as(graph, 'generalMatrix')
   colnames(graph) <- rownames(graph) <- as.character(seq_len(nrow(graph)) - 1)
   initial_info <- data.frame(node = colnames(graph),
                              strength = c(2, 4, 3, 2, 2, 1, 5),
@@ -56,7 +51,6 @@ test_that("Test get_neighbors in original Anderson's paper", {
 test_that("Test get_neighbors in large matrix", {
   replicate(25, {
     graph <- random_graph()
-    save(graph, file = 'graph.Rdata')
     
     for (g in c('both', 'forward', 'backward')) {
       for (r in c('binary', 'name', 'id')) {

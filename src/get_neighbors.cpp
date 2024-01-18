@@ -114,7 +114,7 @@ ArrayXi get_neighbors_s(MSpMat &adj_matrix, const int &node_id, const int neighb
 //' 
 //' library(labyrinth)
 //' # Get neighbors
-//' get_neighbors_s(mat, 2, 0)
+//' get_neighbors_d(mat, 2, 0)
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
