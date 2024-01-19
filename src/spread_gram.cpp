@@ -29,12 +29,24 @@ ArrayXd sigmoid_t(const ArrayXd &ax, const double &ay, const int u = 1) {
     return(sigma);
 }
 
-template <typename T> vector<double> spread_gram_t(const T &graph, ArrayXd &last_activation, double loose, bool display_progress) {
+template <typename T> vector<double> spread_gram_t(const T &graph, ArrayXd &last_activation, double loose, int threads, bool display_progress) {
     size_t n = graph.rows();
     vector<double> next_activation(n);
+    
+    int max_threads = 1;
+#ifdef _OPENMP
+    max_threads = omp_get_max_threads();
+    if (threads > 0 && threads <= max_threads) {
+        omp_set_num_threads(threads);
+    } else {
+        threads = max_threads;
+    }
+# else
+    threads = 1;
+#endif
 
     Progress p(n, display_progress);
-    #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic, 1)
     for (size_t y = 0; y < n; y++) {
         // Find all neighbors ID in the graph
         ArrayXi neighbors = get_neighbors_t(graph, y, 0);
@@ -99,9 +111,9 @@ template <typename T> vector<double> spread_gram_t(const T &graph, ArrayXd &last
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-vector<double> spread_gram_s(const MSpMat &graph, ArrayXd &last_activation, double loose = 1.0, bool display_progress = false) {
+vector<double> spread_gram_s(const MSpMat &graph, ArrayXd &last_activation, double loose = 1.0, int threads = 0, bool display_progress = false) {
     // TODO: mention overloading, help needed
-    return(spread_gram_t(graph, last_activation, loose, display_progress));
+    return(spread_gram_t(graph, last_activation, loose, threads, display_progress));
 }
 
 //' Simulate spreading activation in a network (Only once)
@@ -140,17 +152,29 @@ vector<double> spread_gram_s(const MSpMat &graph, ArrayXd &last_activation, doub
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-vector<double> spread_gram_d(const MMatrixXd &graph, ArrayXd &last_activation, double loose = 1.0, bool display_progress = false) {
-    return(spread_gram_t(graph, last_activation, loose, display_progress));
+vector<double> spread_gram_d(const MMatrixXd &graph, ArrayXd &last_activation, double loose = 1.0, int threads = 0, bool display_progress = false) {
+    return(spread_gram_t(graph, last_activation, loose, threads, display_progress));
 }
 
-template <typename T> double gradient_t(const T &graph, ArrayXd &activation, bool display_progress) {
+template <typename T> double gradient_t(const T &graph, ArrayXd &activation, int threads, bool display_progress) {
     size_t n = graph.rows();
-    ArrayXd gradient(n);
+    VectorXd gradient(n);
     // vector<double> gradient(n);
 
+    int max_threads = 1;
+#ifdef _OPENMP
+    max_threads = omp_get_max_threads();
+    if (threads > 0 && threads <= max_threads) {
+        omp_set_num_threads(threads);
+    } else {
+        threads = max_threads;
+    }
+# else
+    threads = 1;
+#endif
+
     Progress p(n, display_progress);
-    #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic, 1)
     // find neighbors line by line
     for (size_t node = 0; node < n; node++) {
         ArrayXi neighbors = get_neighbors_t(graph, node, 0);
@@ -169,9 +193,10 @@ template <typename T> double gradient_t(const T &graph, ArrayXd &activation, boo
 
             // consider if the node cannot be activated
             // vector<double> default_sigma = {0.5};
-            ArrayXd default_sigma = ArrayXd::Ones(1) / 2.0;
-            ArrayXd sigma = (neighbors_arr != 0).any() ? sigmoid_t(ax, ay, 1) : default_sigma;
-            gradient[node] = (ax * (neighbors_arr - sigma) * is_zeros).sum();
+            ArrayXd default_sigma = ArrayXi::Ones(1).cast<double>() / 2.0;
+            ArrayXd sigma = (neighbors_arr != 0.0).any() ? sigmoid_t(ax, ay, 1) : default_sigma;
+            ArrayXd s = ax * (neighbors_arr - sigma) * is_zeros;
+            gradient[node] = s.sum();
         }
     }
     double mean_gradient = gradient.mean();
@@ -217,9 +242,9 @@ template <typename T> double gradient_t(const T &graph, ArrayXd &activation, boo
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-double gradient_s(const MSpMat &graph, ArrayXd &activation, bool display_progress = false) {
+double gradient_s(const MSpMat &graph, ArrayXd &activation, int threads = 0, bool display_progress = false) {
     // TODO: mention overloading, help needed
-    return(gradient_t(graph, activation, display_progress));
+    return(gradient_t(graph, activation, threads, display_progress));
 }
 
 //' Compute gradient of Spreadgram - C++ version
@@ -260,6 +285,6 @@ double gradient_s(const MSpMat &graph, ArrayXd &activation, bool display_progres
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-double gradient_d(const MMatrixXd &graph, ArrayXd &activation, bool display_progress = false) {
-    return(gradient_t(graph, activation, display_progress));
+double gradient_d(const MMatrixXd &graph, ArrayXd &activation, int threads = 0, bool display_progress = false) {
+    return(gradient_t(graph, activation, threads, display_progress));
 }

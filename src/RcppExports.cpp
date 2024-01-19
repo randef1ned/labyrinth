@@ -116,56 +116,60 @@ BEGIN_RCPP
 END_RCPP
 }
 // spread_gram_s
-vector<double> spread_gram_s(const MSpMat& graph, ArrayXd& last_activation, double loose, bool display_progress);
-RcppExport SEXP _labyrinth_spread_gram_s(SEXP graphSEXP, SEXP last_activationSEXP, SEXP looseSEXP, SEXP display_progressSEXP) {
+vector<double> spread_gram_s(const MSpMat& graph, ArrayXd& last_activation, double loose, int threads, bool display_progress);
+RcppExport SEXP _labyrinth_spread_gram_s(SEXP graphSEXP, SEXP last_activationSEXP, SEXP looseSEXP, SEXP threadsSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const MSpMat& >::type graph(graphSEXP);
     Rcpp::traits::input_parameter< ArrayXd& >::type last_activation(last_activationSEXP);
     Rcpp::traits::input_parameter< double >::type loose(looseSEXP);
+    Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
-    rcpp_result_gen = Rcpp::wrap(spread_gram_s(graph, last_activation, loose, display_progress));
+    rcpp_result_gen = Rcpp::wrap(spread_gram_s(graph, last_activation, loose, threads, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
 // spread_gram_d
-vector<double> spread_gram_d(const MMatrixXd& graph, ArrayXd& last_activation, double loose, bool display_progress);
-RcppExport SEXP _labyrinth_spread_gram_d(SEXP graphSEXP, SEXP last_activationSEXP, SEXP looseSEXP, SEXP display_progressSEXP) {
+vector<double> spread_gram_d(const MMatrixXd& graph, ArrayXd& last_activation, double loose, int threads, bool display_progress);
+RcppExport SEXP _labyrinth_spread_gram_d(SEXP graphSEXP, SEXP last_activationSEXP, SEXP looseSEXP, SEXP threadsSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const MMatrixXd& >::type graph(graphSEXP);
     Rcpp::traits::input_parameter< ArrayXd& >::type last_activation(last_activationSEXP);
     Rcpp::traits::input_parameter< double >::type loose(looseSEXP);
+    Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
-    rcpp_result_gen = Rcpp::wrap(spread_gram_d(graph, last_activation, loose, display_progress));
+    rcpp_result_gen = Rcpp::wrap(spread_gram_d(graph, last_activation, loose, threads, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
 // gradient_s
-double gradient_s(const MSpMat& graph, ArrayXd& activation, bool display_progress);
-RcppExport SEXP _labyrinth_gradient_s(SEXP graphSEXP, SEXP activationSEXP, SEXP display_progressSEXP) {
+double gradient_s(const MSpMat& graph, ArrayXd& activation, int threads, bool display_progress);
+RcppExport SEXP _labyrinth_gradient_s(SEXP graphSEXP, SEXP activationSEXP, SEXP threadsSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const MSpMat& >::type graph(graphSEXP);
     Rcpp::traits::input_parameter< ArrayXd& >::type activation(activationSEXP);
+    Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
-    rcpp_result_gen = Rcpp::wrap(gradient_s(graph, activation, display_progress));
+    rcpp_result_gen = Rcpp::wrap(gradient_s(graph, activation, threads, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
 // gradient_d
-double gradient_d(const MMatrixXd& graph, ArrayXd& activation, bool display_progress);
-RcppExport SEXP _labyrinth_gradient_d(SEXP graphSEXP, SEXP activationSEXP, SEXP display_progressSEXP) {
+double gradient_d(const MMatrixXd& graph, ArrayXd& activation, int threads, bool display_progress);
+RcppExport SEXP _labyrinth_gradient_d(SEXP graphSEXP, SEXP activationSEXP, SEXP threadsSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const MMatrixXd& >::type graph(graphSEXP);
     Rcpp::traits::input_parameter< ArrayXd& >::type activation(activationSEXP);
+    Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
-    rcpp_result_gen = Rcpp::wrap(gradient_d(graph, activation, display_progress));
+    rcpp_result_gen = Rcpp::wrap(gradient_d(graph, activation, threads, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -178,10 +182,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_labyrinth_activation_rate_s", (DL_FUNC) &_labyrinth_activation_rate_s, 7},
     {"_labyrinth_activation_rate_d", (DL_FUNC) &_labyrinth_activation_rate_d, 7},
     {"_labyrinth_sigmoid_t", (DL_FUNC) &_labyrinth_sigmoid_t, 3},
-    {"_labyrinth_spread_gram_s", (DL_FUNC) &_labyrinth_spread_gram_s, 4},
-    {"_labyrinth_spread_gram_d", (DL_FUNC) &_labyrinth_spread_gram_d, 4},
-    {"_labyrinth_gradient_s", (DL_FUNC) &_labyrinth_gradient_s, 3},
-    {"_labyrinth_gradient_d", (DL_FUNC) &_labyrinth_gradient_d, 3},
+    {"_labyrinth_spread_gram_s", (DL_FUNC) &_labyrinth_spread_gram_s, 5},
+    {"_labyrinth_spread_gram_d", (DL_FUNC) &_labyrinth_spread_gram_d, 5},
+    {"_labyrinth_gradient_s", (DL_FUNC) &_labyrinth_gradient_s, 4},
+    {"_labyrinth_gradient_d", (DL_FUNC) &_labyrinth_gradient_d, 4},
     {NULL, NULL, 0}
 };
 

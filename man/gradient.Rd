@@ -4,7 +4,7 @@
 \alias{gradient}
 \title{Compute gradient of Spreadgram}
 \usage{
-gradient(graph, activation, verbose = TRUE)
+gradient(graph, activation, threads = 0, verbose = TRUE)
 }
 \arguments{
 \item{graph}{A square \code{\link[base]{matrix}} (or 
@@ -19,6 +19,9 @@ there are no self-edges in the graph.}
 for each node in the graph. The length of the vector should be equal to the 
 number of nodes in the graph. This vector should contain the activation 
 rate for each node.}
+
+\item{threads}{A scalar numeric indicating the parallel threads. Default is 0
+(auto-detected).}
 
 \item{verbose}{Show verbose message}
 }

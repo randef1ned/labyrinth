@@ -7,7 +7,7 @@
 assert_dgCMatrix(adj_matrix)
 }
 \arguments{
-\item{adj_mat}{The sparse matrix to check}
+\item{adj_matrix}{The sparse matrix to check}
 }
 \description{
 Check if the sparse matrix valid

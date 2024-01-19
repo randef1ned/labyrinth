@@ -8,6 +8,8 @@
 #' 
 #' @noRd
 #' 
+#' @importFrom stats rnorm runif
+#' @importFrom methods as
 #' @examples
 #' # Generate a random graph
 #' graph <- random_graph()

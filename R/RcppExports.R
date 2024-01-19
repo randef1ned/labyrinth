@@ -29,19 +29,19 @@ sigmoid_t <- function(ax, ay, u = 1L) {
     .Call(`_labyrinth_sigmoid_t`, ax, ay, u)
 }
 
-spread_gram_s <- function(graph, last_activation, loose = 1.0, display_progress = FALSE) {
-    .Call(`_labyrinth_spread_gram_s`, graph, last_activation, loose, display_progress)
+spread_gram_s <- function(graph, last_activation, loose = 1.0, threads = 0L, display_progress = FALSE) {
+    .Call(`_labyrinth_spread_gram_s`, graph, last_activation, loose, threads, display_progress)
 }
 
-spread_gram_d <- function(graph, last_activation, loose = 1.0, display_progress = FALSE) {
-    .Call(`_labyrinth_spread_gram_d`, graph, last_activation, loose, display_progress)
+spread_gram_d <- function(graph, last_activation, loose = 1.0, threads = 0L, display_progress = FALSE) {
+    .Call(`_labyrinth_spread_gram_d`, graph, last_activation, loose, threads, display_progress)
 }
 
-gradient_s <- function(graph, activation, display_progress = FALSE) {
-    .Call(`_labyrinth_gradient_s`, graph, activation, display_progress)
+gradient_s <- function(graph, activation, threads = 0L, display_progress = FALSE) {
+    .Call(`_labyrinth_gradient_s`, graph, activation, threads, display_progress)
 }
 
-gradient_d <- function(graph, activation, display_progress = FALSE) {
-    .Call(`_labyrinth_gradient_d`, graph, activation, display_progress)
+gradient_d <- function(graph, activation, threads = 0L, display_progress = FALSE) {
+    .Call(`_labyrinth_gradient_d`, graph, activation, threads, display_progress)
 }
 

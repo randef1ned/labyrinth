@@ -10,6 +10,7 @@ spread_gram(
   loose = 1,
   max_iter = 1e+05,
   threshold = 1,
+  threads = 0,
   verbose = TRUE
 )
 }
@@ -31,6 +32,9 @@ weight) in the calculation process.}
 \item{max_iter}{Max iteration times.}
 
 \item{threshold}{End threshold}
+
+\item{threads}{A scalar numeric indicating the parallel threads. Default is 0
+(auto-detected).}
 
 \item{verbose}{Show verbose message}
 }

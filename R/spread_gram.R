@@ -25,6 +25,9 @@
 #' 
 #' @param threshold End threshold
 #' 
+#' @param threads A scalar numeric indicating the parallel threads. Default is 0
+#'   (auto-detected).
+#' 
 #' @param verbose Show verbose message
 #' 
 #' @return A numeric vector that contains new activation
@@ -45,7 +48,7 @@
 #' 
 #' results <- spread_gram(graph, last_activation)
 #' 
-spread_gram <- function(graph, last_activation, loose = 1.0, max_iter = 1e5, threshold = 1, verbose = TRUE) {
+spread_gram <- function(graph, last_activation, loose = 1.0, max_iter = 1e5, threshold = 1, threads = 0, verbose = TRUE) {
   assert_numeric(last_activation, any.missing = FALSE, null.ok = FALSE, finite = TRUE, min.len = 4, len = nrow(graph))
   assert_number(loose, na.ok = FALSE, lower = 0, upper = 1, finite = TRUE, null.ok = FALSE)
   
@@ -60,14 +63,14 @@ spread_gram <- function(graph, last_activation, loose = 1.0, max_iter = 1e5, thr
     # Compute 
     if (is.dgCMatrix(graph)) {
       assert_dgCMatrix(graph)
-      act <- spread_gram_s(graph, act, display_progress = verbose)
+      act <- spread_gram_s(graph, act, threads, display_progress = verbose)
     } else {
       assert_matrix(graph, nrows = ncol(graph), ncols = nrow(graph), min.rows = 3)
-      act <- spread_gram_d(graph, act, display_progress = verbose)
+      act <- spread_gram_d(graph, act, threads, display_progress = verbose)
     }
     
-    # Compute loss
-    loss <- gradient(graph, act, verbose = verbose)
+    # Compute losss
+    loss <- gradient(graph, act, threads, verbose = verbose)
     last_gradient <- c(last_gradient[-1], loss)
     if (iter %% freq == 0) {
       message('Iterated #', iter, ' times. Current loss: ', loss)
@@ -115,10 +118,14 @@ spread_gram <- function(graph, last_activation, loose = 1.0, max_iter = 1e5, thr
 #' 
 #' @useDynLib labyrinth
 #' 
+#' @export
+#' 
 #' @importFrom checkmate assert_numeric assert_matrix assert_number
 #' @importFrom Rcpp sourceCpp
 #' 
 #' @examples
+#' library(labyrinth)
+#' 
 #' # The graph G
 #' data("graph", package = "labyrinth")
 #' 
@@ -201,6 +208,9 @@ sigmoid <- function(ax, ay, u = 1) {
 #'   number of nodes in the graph. This vector should contain the activation 
 #'   rate for each node.
 #' 
+#' @param threads A scalar numeric indicating the parallel threads. Default is 0
+#'   (auto-detected).
+#' 
 #' @param verbose Show verbose message
 #' 
 #' @return A scalar representing the gradient of the computed activation rates.
@@ -222,14 +232,14 @@ sigmoid <- function(ax, ay, u = 1) {
 #' 
 #' gradient(graph, last_activation)
 #' 
-gradient <- function(graph, activation, verbose = TRUE) {
+gradient <- function(graph, activation, threads = 0, verbose = TRUE) {
   assert_numeric(activation, any.missing = FALSE, null.ok = FALSE, finite = TRUE, min.len = 4, len = nrow(graph))
   
   if (is.dgCMatrix(graph)) {
     assert_dgCMatrix(graph)
-    grad <- gradient_s(graph, activation, display_progress = verbose)
+    grad <- gradient_s(graph, activation, threads, display_progress = verbose)
   } else {assert_matrix(graph, mode = 'numeric', nrows = ncol(graph), ncols = nrow(graph), min.rows = 3, any.missing = FALSE, all.missing = FALSE, null.ok = FALSE)
-    grad <- gradient_d(graph, activation, display_progress = verbose)
+    grad <- gradient_d(graph, activation, threads, display_progress = verbose)
   }
   return(grad)
 }

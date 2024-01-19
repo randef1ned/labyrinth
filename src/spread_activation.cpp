@@ -60,7 +60,7 @@ template <typename T> VectorXd activation_rate_t(T &graph, const ArrayXd &streng
 
     // Iterate over all nodes
     Progress p(element, display_progress);
-    #pragma omp parallel for
+    #pragma omp parallel for schedule(dynamic, 1)
     for (int y = 0; y < element; y++) {
         // Find all neighbors ID in the graph
         ArrayXi neighbors = get_neighbors_t(graph, y, 0);

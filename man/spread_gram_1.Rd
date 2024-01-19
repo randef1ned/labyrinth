@@ -32,6 +32,8 @@ The ACT spreading activation formula is represented in Equation 1:
   \eqn{t} represents the iteration number
 }
 \examples{
+library(labyrinth)
+
 # The graph G
 data("graph", package = "labyrinth")
 

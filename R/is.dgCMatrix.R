@@ -14,7 +14,7 @@ is.dgCMatrix <- function(mat) {
 
 #' Check if the sparse matrix valid
 #'
-#' @param adj_mat The sparse matrix to check
+#' @param adj_matrix The sparse matrix to check
 #'
 #' @export
 #'
