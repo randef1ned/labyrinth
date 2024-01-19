@@ -4,7 +4,15 @@
 \alias{activation_rate}
 \title{Calculate the next-time ACT activation rate}
 \usage{
-activation_rate(graph, strength, stm, loose = 1, remove_first = FALSE)
+activation_rate(
+  graph,
+  strength,
+  stm,
+  loose = 1,
+  threads = 0,
+  remove_first = FALSE,
+  display_progress = TRUE
+)
 }
 \arguments{
 \item{graph}{A square \code{\link[base]{matrix}} (or 
@@ -25,8 +33,14 @@ in the short-term memory}
 \item{loose}{A scalar numeric between 0 and 1 that determines the loose (or 
 weight) in the calculation process.}
 
+\item{threads}{A scalar numeric indicating the parallel threads. Default is 0
+(auto-detected).}
+
 \item{remove_first}{A logical value indicating whether or not to exclude the 
 first node from the calculation}
+
+\item{display_progress}{A logical value indicating whether or not to show the
+progress.}
 }
 \value{
 A vector containing the activation rate for each node in the graph

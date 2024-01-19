@@ -82,7 +82,8 @@ test_that("Test in example dataset", {
   }
   
   expect_equal(activation_rate(graph, strength, in_stm, 
-                               loose = 0.8, remove_first = TRUE),
+                               loose = 0.8, remove_first = TRUE, 
+                               display_progress = FALSE),
                c(7.4851, 5.0125, 4.7417, 6.7467, 2.2105, 5.4616), 
                tolerance = 0.01)
   expect_equal(activation_rate_R(graph, strength, in_stm, 
@@ -91,7 +92,8 @@ test_that("Test in example dataset", {
                tolerance = 0.01)
   
   expect_equal(activation_rate(graph, strength, in_stm,
-                               loose = 0.8, remove_first = FALSE),
+                               loose = 0.8, remove_first = FALSE, 
+                               display_progress = FALSE),
                activation_rate_R(graph, strength, in_stm, 
                                  loose = 0.8, remove_first = FALSE))
 })
@@ -103,7 +105,7 @@ test_that("Test in example dataset", {
   stm <- c(rep(1, 3), rep(0, 4))
   
   sapply(1:10 / 10, function(loose) {
-    expect_equal(activation_rate(graph, strength, stm, loose),
+    expect_equal(activation_rate(graph, strength, stm, loose, display_progress = FALSE),
                  activation_rate_R(graph, strength, stm, loose))
   })
   
@@ -122,7 +124,7 @@ test_that("Test in example dataset", {
     stm_num <- round(runif(1, min = 1, max = n - 1))
     stm <- sample(c(rep(1, stm_num), rep(0, n - stm_num)), n, replace = FALSE)
     loose <- runif(1, min = 1e-10, max = 1)
-    expect_equal(activation_rate(graph, strength, stm, loose),
+    expect_equal(activation_rate(graph, strength, stm, loose, display_progress = FALSE),
                  activation_rate_R(graph, strength, stm, loose))
     
     y <- sample(1:n, 1, replace = FALSE)

@@ -22,6 +22,8 @@
 // we only include RcppEigen.h which pulls Rcpp.h in for us
 #include <RcppEigen.h>
 #include <RcppParallel.h>
+#include <progress.hpp>
+#include <progress_bar.hpp>
 
 // via the depends attribute we tell Rcpp to create hooks for
 // RcppEigen so that the build process will know what to do
@@ -29,6 +31,7 @@
 // [[Rcpp::depends(RcppEigen)]]
 // [[Rcpp::plugins(openmp)]]
 // [[Rcpp::depends(RcppParallel)]]
+// [[Rcpp::depends(RcppProgress)]]
 
 // other headers are loaded when C++ functions in src/ are being compiled.
 // using namespace RcppSparse;

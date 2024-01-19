@@ -29,8 +29,14 @@
 #' @param loose A scalar numeric between 0 and 1 that determines the loose (or 
 #'   weight) in the calculation process. 
 #' 
+#' @param threads A scalar numeric indicating the parallel threads. Default is 0
+#'   (auto-detected).
+#' 
 #' @param remove_first A logical value indicating whether or not to exclude the 
 #'   first node from the calculation
+#'
+#' @param display_progress A logical value indicating whether or not to show the
+#'   progress.
 #'
 #' @return A vector containing the activation rate for each node in the graph
 #' 
@@ -63,18 +69,23 @@
 #' activation_rate(graph, initial_info$strength, initial_info$in_stm, 
 #'   loose = 0.8, remove_first = TRUE)
 #' 
-activation_rate <- function(graph, strength, stm, loose = 1.0, remove_first = FALSE) {
+activation_rate <- function(graph, strength, stm, loose = 1.0, threads = 0,
+                            remove_first = FALSE, display_progress = TRUE) {
   assert_numeric(strength, any.missing = FALSE, null.ok = FALSE, finite = TRUE, min.len = 4, len = nrow(graph))
   assert_numeric(stm, any.missing = FALSE, null.ok = FALSE, finite = TRUE, min.len = 4, len = nrow(graph))
   assert_number(loose, na.ok = FALSE, lower = 0, upper = 1, finite = TRUE, null.ok = FALSE)
+  assert_number(threads, na.ok = FALSE, lower = 0, finite = TRUE, null.ok = FALSE)
   assert_logical(remove_first, len = 1, any.missing = FALSE, null.ok = FALSE)
+  assert_logical(display_progress, len = 1, any.missing = FALSE, null.ok = FALSE)
   
   if (is.dgCMatrix(graph)) {
     assert_dgCMatrix(graph)
-    act <- activation_rate_s(graph, strength, stm, loose, remove_first)
+    act <- activation_rate_s(graph, strength, stm, loose, threads,
+                             remove_first, display_progress)
   } else {
     assert_matrix(graph, nrows = ncol(graph), ncols = nrow(graph), min.rows = 3)
-    act <- activation_rate_d(graph, strength, stm, loose, remove_first)
+    act <- activation_rate_d(graph, strength, stm, loose, threads,
+                             remove_first, display_progress)
   }
   return(act)
 }

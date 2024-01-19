@@ -38,26 +38,49 @@ template <typename T> double transfer_activation_t(T &graph, const int &y, const
 }
 
 // [[Rcpp::plugins("cpp17")]]
-template <typename T> VectorXd activation_rate_t(T &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose, bool remove_first) {
+template <typename T> VectorXd activation_rate_t(T &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose, int threads, bool remove_first, bool display_progress) {
     size_t element = graph.rows();
     // Build new activation_rate matrix
     MatrixXd activation_pattern(element, element);
+    
+    int max_threads = 1;
+#ifdef _OPENMP
+    max_threads = omp_get_max_threads();
+    if (threads > 0 && threads <= max_threads) {
+        omp_set_num_threads(threads);
+    } else {
+        threads = max_threads;
+    }
+# else
+    threads = 1;
+#endif
+    if (display_progress) {
+        Rprintf("Number of threads: %i, max threads: %i. \n", threads, max_threads);
+    }
 
     // Iterate over all nodes
+    Progress p(element, display_progress);
     #pragma omp parallel for
     for (int y = 0; y < element; y++) {
         // Find all neighbors ID in the graph
         ArrayXi neighbors = get_neighbors_t(graph, y, 0);
-        for (int neighbor_id = 0; neighbor_id < element; neighbor_id++) {
-            if (neighbors[neighbor_id]) {
-                activation_pattern.coeffRef(y, neighbor_id) = transfer_activation_t(graph, y, neighbor_id, strength, loose);
+        
+        if (!Progress::check_abort()) {
+            p.increment();
+            for (int neighbor_id = 0; neighbor_id < element; neighbor_id++) {
+                if (neighbors[neighbor_id]) {
+                    activation_pattern.coeffRef(y, neighbor_id) = transfer_activation_t(graph, y, neighbor_id, strength, loose);
+                }
             }
         }
     }
     
+    if (display_progress) {
+        Rprintf("Solving activation patterns...\n");
+    }
+    
     // Build two matrices
     VectorXd coefficient_matrix = strength * stm * (-1.0);
-    // MatrixXd coefficient_matrix = strength * stm * (-1.0);
     #pragma omp parallel for
     for (int i = 0; i < element; i++) {
         activation_pattern.diagonal()[i] = -1.0;
@@ -73,6 +96,7 @@ template <typename T> VectorXd activation_rate_t(T &graph, const ArrayXd &streng
     BiCGSTAB<MatrixXd> solver;
     solver.compute(activation_pattern);
     VectorXd activated = solver.solve(coefficient_matrix);
+
     return(activated);
 }
 
@@ -224,8 +248,8 @@ double transfer_activation_d(MMatrixXd &graph, const int &y, const int &x, const
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, bool remove_first = false) {
-    return(activation_rate_t(graph, strength, stm, loose, remove_first));
+VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, int threads = 0, bool remove_first = false, bool display_progress = true) {
+    return(activation_rate_t(graph, strength, stm, loose, threads, remove_first, display_progress));
 }
 
 //' Calculate the next-time ACT activation rate
@@ -292,6 +316,6 @@ VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd
 //' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
-VectorXd activation_rate_d(MMatrixXd &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, bool remove_first = false) {
-    return(activation_rate_t(graph, strength, stm, loose, remove_first));
+VectorXd activation_rate_d(MMatrixXd &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, int threads = 0, bool remove_first = false, bool display_progress = true) {
+    return(activation_rate_t(graph, strength, stm, loose, threads, remove_first, display_progress));
 }

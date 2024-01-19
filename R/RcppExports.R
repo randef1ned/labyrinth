@@ -17,12 +17,12 @@ transfer_activation_d <- function(graph, y, x, activation, loose = 1.0) {
     .Call(`_labyrinth_transfer_activation_d`, graph, y, x, activation, loose)
 }
 
-activation_rate_s <- function(graph, strength, stm, loose = 1.0, remove_first = FALSE) {
-    .Call(`_labyrinth_activation_rate_s`, graph, strength, stm, loose, remove_first)
+activation_rate_s <- function(graph, strength, stm, loose = 1.0, threads = 0L, remove_first = FALSE, display_progress = TRUE) {
+    .Call(`_labyrinth_activation_rate_s`, graph, strength, stm, loose, threads, remove_first, display_progress)
 }
 
-activation_rate_d <- function(graph, strength, stm, loose = 1.0, remove_first = FALSE) {
-    .Call(`_labyrinth_activation_rate_d`, graph, strength, stm, loose, remove_first)
+activation_rate_d <- function(graph, strength, stm, loose = 1.0, threads = 0L, remove_first = FALSE, display_progress = TRUE) {
+    .Call(`_labyrinth_activation_rate_d`, graph, strength, stm, loose, threads, remove_first, display_progress)
 }
 
 sigmoid_t <- function(ax, ay, u = 1L) {

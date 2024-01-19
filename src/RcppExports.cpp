@@ -69,8 +69,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // activation_rate_s
-VectorXd activation_rate_s(MSpMat& graph, const ArrayXd& strength, const ArrayXd& stm, const double loose, bool remove_first);
-RcppExport SEXP _labyrinth_activation_rate_s(SEXP graphSEXP, SEXP strengthSEXP, SEXP stmSEXP, SEXP looseSEXP, SEXP remove_firstSEXP) {
+VectorXd activation_rate_s(MSpMat& graph, const ArrayXd& strength, const ArrayXd& stm, const double loose, int threads, bool remove_first, bool display_progress);
+RcppExport SEXP _labyrinth_activation_rate_s(SEXP graphSEXP, SEXP strengthSEXP, SEXP stmSEXP, SEXP looseSEXP, SEXP threadsSEXP, SEXP remove_firstSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -78,14 +78,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const ArrayXd& >::type strength(strengthSEXP);
     Rcpp::traits::input_parameter< const ArrayXd& >::type stm(stmSEXP);
     Rcpp::traits::input_parameter< const double >::type loose(looseSEXP);
+    Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< bool >::type remove_first(remove_firstSEXP);
-    rcpp_result_gen = Rcpp::wrap(activation_rate_s(graph, strength, stm, loose, remove_first));
+    Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(activation_rate_s(graph, strength, stm, loose, threads, remove_first, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
 // activation_rate_d
-VectorXd activation_rate_d(MMatrixXd& graph, const ArrayXd& strength, const ArrayXd& stm, const double loose, bool remove_first);
-RcppExport SEXP _labyrinth_activation_rate_d(SEXP graphSEXP, SEXP strengthSEXP, SEXP stmSEXP, SEXP looseSEXP, SEXP remove_firstSEXP) {
+VectorXd activation_rate_d(MMatrixXd& graph, const ArrayXd& strength, const ArrayXd& stm, const double loose, int threads, bool remove_first, bool display_progress);
+RcppExport SEXP _labyrinth_activation_rate_d(SEXP graphSEXP, SEXP strengthSEXP, SEXP stmSEXP, SEXP looseSEXP, SEXP threadsSEXP, SEXP remove_firstSEXP, SEXP display_progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -93,8 +95,10 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const ArrayXd& >::type strength(strengthSEXP);
     Rcpp::traits::input_parameter< const ArrayXd& >::type stm(stmSEXP);
     Rcpp::traits::input_parameter< const double >::type loose(looseSEXP);
+    Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< bool >::type remove_first(remove_firstSEXP);
-    rcpp_result_gen = Rcpp::wrap(activation_rate_d(graph, strength, stm, loose, remove_first));
+    Rcpp::traits::input_parameter< bool >::type display_progress(display_progressSEXP);
+    rcpp_result_gen = Rcpp::wrap(activation_rate_d(graph, strength, stm, loose, threads, remove_first, display_progress));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -167,8 +171,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_labyrinth_get_neighbors_d", (DL_FUNC) &_labyrinth_get_neighbors_d, 3},
     {"_labyrinth_transfer_activation_s", (DL_FUNC) &_labyrinth_transfer_activation_s, 5},
     {"_labyrinth_transfer_activation_d", (DL_FUNC) &_labyrinth_transfer_activation_d, 5},
-    {"_labyrinth_activation_rate_s", (DL_FUNC) &_labyrinth_activation_rate_s, 5},
-    {"_labyrinth_activation_rate_d", (DL_FUNC) &_labyrinth_activation_rate_d, 5},
+    {"_labyrinth_activation_rate_s", (DL_FUNC) &_labyrinth_activation_rate_s, 7},
+    {"_labyrinth_activation_rate_d", (DL_FUNC) &_labyrinth_activation_rate_d, 7},
     {"_labyrinth_sigmoid_t", (DL_FUNC) &_labyrinth_sigmoid_t, 3},
     {"_labyrinth_spread_gram_s", (DL_FUNC) &_labyrinth_spread_gram_s, 3},
     {"_labyrinth_spread_gram_d", (DL_FUNC) &_labyrinth_spread_gram_d, 3},

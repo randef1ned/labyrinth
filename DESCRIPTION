@@ -22,8 +22,9 @@ Imports:
     methods,
     Rcpp (>= 1.0.11),
     RcppEigen,
-    RcppParallel
-LinkingTo: Rcpp, RcppEigen, RcppParallel
+    RcppParallel,
+    RcppProgress
+LinkingTo: Rcpp, RcppEigen, RcppProgress, RcppParallel
 SystemRequirements: C++17, GNU make
 RoxygenNote: 7.3.0
 Encoding: UTF-8
