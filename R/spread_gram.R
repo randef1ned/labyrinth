@@ -54,24 +54,26 @@ spread_gram <- function(graph, last_activation, loose = 1.0, max_iter = 1e5, thr
   last_gradient <- rep(max_iter, 20)
   act <- last_activation
   convergence <- FALSE
+  freq <- max(round(2e4 / nrow(graph)), 1)
+  
   while (iter < max_iter) {
     # Compute 
     if (is.dgCMatrix(graph)) {
       assert_dgCMatrix(graph)
-      act <- spread_gram_s(graph, act)
+      act <- spread_gram_s(graph, act, display_progress = verbose)
     } else {
       assert_matrix(graph, nrows = ncol(graph), ncols = nrow(graph), min.rows = 3)
-      act <- spread_gram_d(graph, act)
+      act <- spread_gram_d(graph, act, display_progress = verbose)
     }
     
     # Compute loss
-    loss <- gradient(graph, act)
+    loss <- gradient(graph, act, verbose = verbose)
     last_gradient <- c(last_gradient[-1], loss)
-    if (iter %% 1e4 == 0) {
+    if (iter %% freq == 0) {
       message('Iterated #', iter, ' times. Current loss: ', loss)
     }
     ## Check if convergence
-    if ((loss < threshold) | ((iter > min_iter) & all(last_gradient == last_gradient[1]))) {
+    if ((loss < threshold) || ((iter > min_iter) && all(last_gradient == last_gradient[1]))) {
       if (verbose) {
         message('Convergent at #', iter, ' times. Current loss: ', loss)
       }
@@ -199,6 +201,8 @@ sigmoid <- function(ax, ay, u = 1) {
 #'   number of nodes in the graph. This vector should contain the activation 
 #'   rate for each node.
 #' 
+#' @param verbose Show verbose message
+#' 
 #' @return A scalar representing the gradient of the computed activation rates.
 #'   The gradient represents the rate of change of the activation rate.
 #' 
@@ -218,14 +222,14 @@ sigmoid <- function(ax, ay, u = 1) {
 #' 
 #' gradient(graph, last_activation)
 #' 
-gradient <- function(graph, activation) {
+gradient <- function(graph, activation, verbose = TRUE) {
   assert_numeric(activation, any.missing = FALSE, null.ok = FALSE, finite = TRUE, min.len = 4, len = nrow(graph))
   
   if (is.dgCMatrix(graph)) {
     assert_dgCMatrix(graph)
-    grad <- gradient_s(graph, activation)
+    grad <- gradient_s(graph, activation, display_progress = verbose)
   } else {assert_matrix(graph, mode = 'numeric', nrows = ncol(graph), ncols = nrow(graph), min.rows = 3, any.missing = FALSE, all.missing = FALSE, null.ok = FALSE)
-    grad <- gradient_d(graph, activation)
+    grad <- gradient_d(graph, activation, display_progress = verbose)
   }
   return(grad)
 }

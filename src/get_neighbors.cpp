@@ -27,27 +27,6 @@ ArrayXi get_neighbors_t(const T &adj_matrix, const int &node_id, const int &neig
     return(ret_neighbors);
 }
 
-/*
-template <typename T>
-int get_specific_neighbors_t(const T &adj_matrix, const int &x, const int &y, const int &neighbor_type) {
-    if (x == y) {
-        return 0;
-    } else {
-        double neighbors = 0.0;
-        switch(neighbor_type) {
-            case 1:    // forward
-                neighbors = adj_matrix.coeff(x, y);
-                break;
-            case 2:    // backward
-                neighbors = adj_matrix.coeff(y, x);
-                break;
-            default:   // all
-                neighbors = std::max(adj_matrix.coeff(x, y), adj_matrix.coeff(y, x));
-        }
-        return(int(bool(neighbors)));
-    }
-}*/
-
 // TODO: mention overloading, help needed
 //' Get neighboring nodes in a graph (adjacency matrix)
 //'

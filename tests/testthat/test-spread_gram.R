@@ -76,7 +76,7 @@ test_that("Test in example dataset", {
     }
   }
   
-  expect_equal(gradient(graph, last_activation),
+  expect_equal(gradient(graph, last_activation, verbose = FALSE),
                gradient_R(graph, last_activation))
 })
 
@@ -95,7 +95,7 @@ test_that("Test in random graph with random parameters", {
                    sigmoid_R(unname(graph[, test_row]), test_col))
     })
     
-    expect_equal(gradient(graph, last_activation),
+    expect_equal(gradient(graph, last_activation, verbose = FALSE),
                  gradient_R(graph, last_activation))
   })
 })

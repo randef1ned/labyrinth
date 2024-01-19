@@ -52,5 +52,5 @@ typedef Eigen::SparseMatrix<double> SpMat;
 ArrayXi get_neighbors_s(const MSpMat &adj_matrix, const int &node_id, const int neighbor_type = 0);
 ArrayXi get_neighbors_d (const MatrixXd &adj_matrix, const int &node_id, const int neighbor_type = 0);
 template <typename T> ArrayXi get_neighbors_t(const T &adj_matrix, const int &node_id, const int &neighbor_type);
-vector<double> spread_activation_t(MSpMat &graph, VectorXd &last_activation, double loose);
+vector<double> spread_activation_t(const MSpMat &graph, VectorXd &last_activation, double loose);
 
