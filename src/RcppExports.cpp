@@ -38,6 +38,38 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// mrwr_
+VectorXd mrwr_(const MatrixXd& p0, const MatrixXd& W, const double r, const double thresh, const int niter, const bool do_analytical);
+RcppExport SEXP _labyrinth_mrwr_(SEXP p0SEXP, SEXP WSEXP, SEXP rSEXP, SEXP threshSEXP, SEXP niterSEXP, SEXP do_analyticalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const MatrixXd& >::type p0(p0SEXP);
+    Rcpp::traits::input_parameter< const MatrixXd& >::type W(WSEXP);
+    Rcpp::traits::input_parameter< const double >::type r(rSEXP);
+    Rcpp::traits::input_parameter< const double >::type thresh(threshSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< const bool >::type do_analytical(do_analyticalSEXP);
+    rcpp_result_gen = Rcpp::wrap(mrwr_(p0, W, r, thresh, niter, do_analytical));
+    return rcpp_result_gen;
+END_RCPP
+}
+// mrwr_s
+VectorXd mrwr_s(const MatrixXd& p0, const SpMat& W, const double r, const double thresh, const int niter, const bool do_analytical);
+RcppExport SEXP _labyrinth_mrwr_s(SEXP p0SEXP, SEXP WSEXP, SEXP rSEXP, SEXP threshSEXP, SEXP niterSEXP, SEXP do_analyticalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const MatrixXd& >::type p0(p0SEXP);
+    Rcpp::traits::input_parameter< const SpMat& >::type W(WSEXP);
+    Rcpp::traits::input_parameter< const double >::type r(rSEXP);
+    Rcpp::traits::input_parameter< const double >::type thresh(threshSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< const bool >::type do_analytical(do_analyticalSEXP);
+    rcpp_result_gen = Rcpp::wrap(mrwr_s(p0, W, r, thresh, niter, do_analytical));
+    return rcpp_result_gen;
+END_RCPP
+}
 // transfer_activation_s
 double transfer_activation_s(MSpMat& graph, const int& y, const int& x, const ArrayXd& activation, const double loose);
 RcppExport SEXP _labyrinth_transfer_activation_s(SEXP graphSEXP, SEXP ySEXP, SEXP xSEXP, SEXP activationSEXP, SEXP looseSEXP) {
@@ -177,6 +209,8 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_labyrinth_get_neighbors_s", (DL_FUNC) &_labyrinth_get_neighbors_s, 3},
     {"_labyrinth_get_neighbors_d", (DL_FUNC) &_labyrinth_get_neighbors_d, 3},
+    {"_labyrinth_mrwr_", (DL_FUNC) &_labyrinth_mrwr_, 6},
+    {"_labyrinth_mrwr_s", (DL_FUNC) &_labyrinth_mrwr_s, 6},
     {"_labyrinth_transfer_activation_s", (DL_FUNC) &_labyrinth_transfer_activation_s, 5},
     {"_labyrinth_transfer_activation_d", (DL_FUNC) &_labyrinth_transfer_activation_d, 5},
     {"_labyrinth_activation_rate_s", (DL_FUNC) &_labyrinth_activation_rate_s, 7},

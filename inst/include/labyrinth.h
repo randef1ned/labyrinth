@@ -14,6 +14,7 @@
 #include <numeric>
 #include <algorithm>
 #include <omp.h>
+#include <execution>
 
 // headers in this file are loaded in RcppExports.cpp
 #include "hash.h"
@@ -32,6 +33,7 @@
 // [[Rcpp::plugins(openmp)]]
 // [[Rcpp::depends(RcppParallel)]]
 // [[Rcpp::depends(RcppProgress)]]
+// [[Rcpp::depends(diffusr)]]
 
 // other headers are loaded when C++ functions in src/ are being compiled.
 // using namespace RcppSparse;
@@ -53,4 +55,6 @@ ArrayXi get_neighbors_s(const MSpMat &adj_matrix, const int &node_id, const int 
 ArrayXi get_neighbors_d (const MatrixXd &adj_matrix, const int &node_id, const int neighbor_type = 0);
 template <typename T> ArrayXi get_neighbors_t(const T &adj_matrix, const int &node_id, const int &neighbor_type);
 vector<double> spread_activation_t(const MSpMat &graph, VectorXd &last_activation, double loose);
+
+#include <diffusr_RcppExports.h>
 

@@ -9,6 +9,40 @@ get_neighbors_d <- function(adj_matrix, node_id, neighbor_type) {
     .Call(`_labyrinth_get_neighbors_d`, adj_matrix, node_id, neighbor_type)
 }
 
+#' Do a Markon random walk (with restart) on an column-normalised adjacency
+#' matrix.
+#'
+#' @noRd
+#' @param p0  matrix of starting distribution
+#' @param W  the column normalized adjacency matrix
+#' @param r  restart probability
+#' @param thresh  threshold to break as soon as new stationary distribution
+#'   converges to the stationary distribution of the previous timepoint
+#' @param niter  maximum number of iterations for the chain
+#' @param do_analytical  boolean if the stationary distribution shall be
+#'  computed solving the analytical solution or iteratively
+#' @return  returns the matrix of stationary distributions p_inf
+mrwr_ <- function(p0, W, r, thresh, niter, do_analytical) {
+    .Call(`_labyrinth_mrwr_`, p0, W, r, thresh, niter, do_analytical)
+}
+
+#' Do a Markon random walk (with restart) on an column-normalised adjacency
+#' matrix.
+#'
+#' @noRd
+#' @param p0  matrix of starting distribution
+#' @param W  the column normalized adjacency matrix
+#' @param r  restart probability
+#' @param thresh  threshold to break as soon as new stationary distribution
+#'   converges to the stationary distribution of the previous timepoint
+#' @param niter  maximum number of iterations for the chain
+#' @param do_analytical  boolean if the stationary distribution shall be
+#'  computed solving the analytical solution or iteratively
+#' @return  returns the matrix of stationary distributions p_inf
+mrwr_s <- function(p0, W, r, thresh, niter, do_analytical) {
+    .Call(`_labyrinth_mrwr_s`, p0, W, r, thresh, niter, do_analytical)
+}
+
 transfer_activation_s <- function(graph, y, x, activation, loose = 1.0) {
     .Call(`_labyrinth_transfer_activation_s`, graph, y, x, activation, loose)
 }

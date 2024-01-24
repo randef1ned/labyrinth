@@ -45,3 +45,18 @@
 #' data("speech", package = "labyrinth")
 #' 
 "speech"
+
+#' NCBI Info
+#' 
+#' @description
+#' TODO: enhance documentation
+#'
+#' @format A \code{\link[base:data.frame]{data.frame}} representing the 
+#'   information of NCBI genes.
+#' 
+#' @examples
+#' library(labyrinth)
+#' 
+#' data("ncbi_info", package = "labyrinth")
+#' 
+"ncbi_info"

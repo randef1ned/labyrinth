@@ -33,20 +33,8 @@ template <typename T> vector<double> spread_gram_t(const T &graph, ArrayXd &last
     size_t n = graph.rows();
     vector<double> next_activation(n);
     
-    int max_threads = 1;
-#ifdef _OPENMP
-    max_threads = omp_get_max_threads();
-    if (threads > 0 && threads <= max_threads) {
-        omp_set_num_threads(threads);
-    } else {
-        threads = max_threads;
-    }
-# else
-    threads = 1;
-#endif
-
     Progress p(n, display_progress);
-    #pragma omp parallel for schedule(dynamic, 1)
+    #pragma omp parallel for schedule(guided, 10)
     for (size_t y = 0; y < n; y++) {
         // Find all neighbors ID in the graph
         ArrayXi neighbors = get_neighbors_t(graph, y, 0);
@@ -161,20 +149,8 @@ template <typename T> double gradient_t(const T &graph, ArrayXd &activation, int
     VectorXd gradient(n);
     // vector<double> gradient(n);
 
-    int max_threads = 1;
-#ifdef _OPENMP
-    max_threads = omp_get_max_threads();
-    if (threads > 0 && threads <= max_threads) {
-        omp_set_num_threads(threads);
-    } else {
-        threads = max_threads;
-    }
-# else
-    threads = 1;
-#endif
-
     Progress p(n, display_progress);
-    #pragma omp parallel for schedule(dynamic, 1)
+    #pragma omp parallel for    // TODO: I want to use dynamic schedule, but it returns NA if I do not sleep 2 secs.
     // find neighbors line by line
     for (size_t node = 0; node < n; node++) {
         ArrayXi neighbors = get_neighbors_t(graph, node, 0);
@@ -200,7 +176,6 @@ template <typename T> double gradient_t(const T &graph, ArrayXd &activation, int
         }
     }
     double mean_gradient = gradient.mean();
-
     return(mean_gradient);
 }
 

@@ -15,17 +15,23 @@ Description: One paragraph description of what the package does
 License: GPL (>= 2)
 URL: https://github.com/randef1ned/diffusr
 BugReports: https://github.com/randef1ned/diffusr/issues
+biocViews: limma
 Imports: 
     checkmate,
+    limma,
     Matrix,
+    matrixStats,
     methods,
     Rcpp (>= 1.0.11),
     RcppEigen,
     RcppParallel,
-    RcppProgress
-LinkingTo: Rcpp, RcppEigen, RcppProgress, RcppParallel
+    RcppProgress,
+    rpca,
+    diffusr (> 0.2.1)
+Remotes: randef1ned/diffusr@HEAD
+LinkingTo: Rcpp, RcppEigen, RcppProgress, diffusr, RcppParallel
 SystemRequirements: C++17, GNU make
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 Encoding: UTF-8
 Suggests: 
     data.table,
