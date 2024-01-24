@@ -1,7 +1,7 @@
 Package: labyrinth
 Type: Package
 Title: Labyrinth: A Simulation of Knowledge Networks
-Version: 0.2.1
+Version: 0.2.2
 Date: 2023-12-31
 Authors@R: c(
     person("Yinchun","Su", role = c("aut", "cre"),
@@ -13,8 +13,8 @@ Description: One paragraph description of what the package does
        as one or more full sentences. I can use Config/testthat/parallel as 
        true to boost the test efficiency. 
 License: GPL (>= 2)
-URL: https://github.com/randef1ned/diffusr
-BugReports: https://github.com/randef1ned/diffusr/issues
+URL: https://github.com/randef1ned/labyrinth
+BugReports: https://github.com/randef1ned/labyrinth/issues
 biocViews: limma
 Imports: 
     checkmate,

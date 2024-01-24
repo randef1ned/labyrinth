@@ -4,10 +4,12 @@
 \alias{disease_impact_score}
 \title{Get disease impact score}
 \usage{
-disease_impact_score(expr, max.iter = 10000)
+disease_impact_score(expr, control, max.iter = 10000)
 }
 \arguments{
 \item{expr}{The expression matrix}
+
+\item{control}{A vector or scalar of the index of the normal samples.}
 
 \item{max.iter}{Maximal number of iterations of the augumented Lagrange 
 multiplier algorithm, which is used in robust PCA algorithm.}

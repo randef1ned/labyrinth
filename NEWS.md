@@ -31,12 +31,18 @@
 
 # labyrinth 0.2.0
 
-* Rewrite all codes
+* Rewrote all codes
 * Dropped robust z score
 * Applied Eigen and MKL
 
 # labyrinth 0.2.1
 
 * Performance improvement
+* Bug fix
+
+# labyrinth 0.2.2
+
+* Added multi-threaded capability
+* Added random walk
 * Bug fix
 
