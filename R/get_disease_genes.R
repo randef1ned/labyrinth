@@ -13,7 +13,7 @@
 #' @importFrom checkmate assert_number assert_numeric assert_matrix
 #' @importFrom stats sd
 #' @importFrom rpca rpca
-#' @importFrom matrixStats colMeans2 rowSums2
+#' @importFrom matrixStats colMeans2 rowSums2 rowMeans2
 #' @examples
 #' # no examples
 #' # TODO: fill the examples
@@ -38,8 +38,8 @@ disease_impact_score <- function(expr, control, max.iter = 10000) {
   }
   
   # Determine up- or down-regulation
-  sum_contrast <- `if`(length(contrast) == 1, as.numeric(expr[, contrast]), rowSums2(expr[, contrast]))
-  sum_control  <- `if`(length(control)  == 1, as.numeric(expr[, control]),  rowSums2(expr[, control]))
+  sum_contrast <- `if`(length(contrast) == 1, as.numeric(expr[, contrast]), rowMeans2(expr[, contrast]))
+  sum_control  <- `if`(length(control)  == 1, as.numeric(expr[, control]),  rowMeans2(expr[, control]))
   sum_variance <- rowSums2(expr_rpca$S ^ 2) * sign(sum_contrast - sum_control)
   
   if (!is.null(row_names)) {
