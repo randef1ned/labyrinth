@@ -18,7 +18,6 @@ BugReports: https://github.com/randef1ned/labyrinth/issues
 biocViews: limma
 Imports: 
     checkmate,
-    limma,
     Matrix,
     matrixStats,
     methods,
@@ -27,7 +26,8 @@ Imports:
     RcppParallel,
     RcppProgress,
     rpca,
-    diffusr (> 0.2.1)
+    diffusr (> 0.2.1),
+    fastmatch
 Remotes: randef1ned/diffusr@HEAD
 LinkingTo: Rcpp, RcppEigen, RcppProgress, diffusr, RcppParallel
 SystemRequirements: C++17, GNU make
