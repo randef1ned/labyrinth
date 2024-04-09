@@ -128,7 +128,7 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
     graph <- hub.correction(graph)
   }
   stoch.graph <- normalize.stochastic(graph)
-  if ((!allow.ergodic) && (!diffusr:::.is.ergodic(stoch.graph))) {
+  if ((!allow.ergodic) && (!is.ergodic(stoch.graph))) {
     stop(paste("the provided graph has more than one component.",
                "It is likely not ergodic."))
   }
@@ -150,4 +150,11 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
   }
   
   return(l)
+}
+
+#' @noRd
+#' @importFrom utils getFromNamespace
+is.ergodic <- function(obj) {
+  .is.ergodic <- getFromNamespace('.is.ergodic', 'diffusr')
+  return(.is.ergodic(obj))
 }

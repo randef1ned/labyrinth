@@ -37,8 +37,8 @@ update_gene_symbol <- function(gene.pool, ncbi = NA, species = c(
     e <- new.env()
     data("ncbi_info", package = "labyrinth", envir = e)
     ncbi_info <- e$ncbi_info
-    dir <- ncbi_info$dir[ncbi_info$species == species]
-    download.file(paste0("https://ftp.ncbi.nih.gov/gene/DATA/GENE_INFO/", dir, "/", species, ".gene_info.gz"), ncbi, mode = "wb", cacheOK = TRUE)
+    type <- ncbi_info$type[ncbi_info$species == species]
+    download.file(paste0("https://ftp.ncbi.nih.gov/gene/DATA/GENE_INFO/", type, "/", species, ".gene_info.gz"), ncbi, mode = "wb", cacheOK = TRUE)
     
   }
   lookup <- alias2SymbolUsingNCBI(gene.pool, ncbi)$Symbol

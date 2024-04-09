@@ -3,16 +3,26 @@
 \docType{data}
 \name{ncbi_info}
 \alias{ncbi_info}
-\title{NCBI Info}
+\title{NCBI Gene Information}
 \format{
-A \code{\link[base:data.frame]{data.frame}} representing the 
-  information of NCBI genes.
+A \code{\link[data.table:data.table]{data.table}} with the following
+  columns:
+
+\describe{
+  \item{type}{A character vector representing the type of species.}
+  \item{species}{A character vector representing the species that NCBI supports in its online platform.}
+}
+}
+\source{
+This data was obtained from the National Center for Biotechnology Information
+  (NCBI) Gene database (https://www.ncbi.nlm.nih.gov/gene).
 }
 \usage{
 ncbi_info
 }
 \description{
-TODO: enhance documentation
+A data table containing meta information about NCBI genes, including their
+  type and associated species.
 }
 \examples{
 library(labyrinth)

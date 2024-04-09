@@ -23,13 +23,12 @@ Imports:
     methods,
     Rcpp (>= 1.0.11),
     RcppEigen,
-    RcppParallel,
     RcppProgress,
     rpca,
     diffusr (> 0.2.1),
     fastmatch
 Remotes: randef1ned/diffusr@HEAD
-LinkingTo: Rcpp, RcppEigen, RcppProgress, diffusr, RcppParallel
+LinkingTo: Rcpp, RcppEigen, RcppProgress, diffusr
 SystemRequirements: C++17, GNU make
 RoxygenNote: 7.3.1
 Encoding: UTF-8

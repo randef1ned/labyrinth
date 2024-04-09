@@ -22,7 +22,6 @@
 
 // we only include RcppEigen.h which pulls Rcpp.h in for us
 #include <RcppEigen.h>
-#include <RcppParallel.h>
 #include <progress.hpp>
 #include <progress_bar.hpp>
 
@@ -31,7 +30,6 @@
 //
 // [[Rcpp::depends(RcppEigen)]]
 // [[Rcpp::plugins(openmp)]]
-// [[Rcpp::depends(RcppParallel)]]
 // [[Rcpp::depends(RcppProgress)]]
 // [[Rcpp::depends(diffusr)]]
 

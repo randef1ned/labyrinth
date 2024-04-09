@@ -19,7 +19,6 @@
 #' 
 #' @importFrom Rcpp sourceCpp
 #' @importFrom RcppEigen fastLm
-#' @importFrom RcppParallel RcppParallelLibs
 #' @import RcppProgress
 #' 
 NULL

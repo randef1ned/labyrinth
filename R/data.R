@@ -46,13 +46,23 @@
 #' 
 "speech"
 
-#' NCBI Info
+#' NCBI Gene Information
 #' 
 #' @description
-#' TODO: enhance documentation
+#' A data table containing meta information about NCBI genes, including their
+#'   type and associated species.
 #'
-#' @format A \code{\link[base:data.frame]{data.frame}} representing the 
-#'   information of NCBI genes.
+#' @format A \code{\link[data.table:data.table]{data.table}} with the following
+#'   columns:
+#' 
+#' \describe{
+#'   \item{type}{A character vector representing the type of species.}
+#'   \item{species}{A character vector representing the species that NCBI supports in its online platform.}
+#' }
+#' 
+#' @source 
+#' This data was obtained from the National Center for Biotechnology Information
+#'   (NCBI) Gene database (https://www.ncbi.nlm.nih.gov/gene).
 #' 
 #' @examples
 #' library(labyrinth)
@@ -60,3 +70,55 @@
 #' data("ncbi_info", package = "labyrinth")
 #' 
 "ncbi_info"
+
+#' MeSH Annotation Data
+#' 
+#' @description 
+#' A data frame containing annotated Medical Subject Headings (MeSH) terms and
+#'   their associated group information.
+#'
+#' @format A \code{\link[data.table:data.table]{data.table}} with the following 
+#'   columns:
+#' \describe{
+#'   \item{mesh_id}{A character vector representing the MeSH identifier.}
+#'   \item{mesh_term}{A character vector representing the MeSH term.}
+#'   \item{group_id}{A character vector representing the group identifier obtained from NCBI.}
+#'   \item{group_name}{A character vector representing the group name obtained from NCBI.}
+#' }
+#'
+#' @source
+#' The MeSH terms were obtained from the National Library of Medicine's Medical
+#'   Subject Headings (MeSH) database (https://www.nlm.nih.gov/mesh/), and the
+#'   group information was obtained from the National Center for Biotechnology
+#'   Information (NCBI).
+#'
+#' @examples
+#' data(mesh_annot, package = "labyrinth")
+"mesh_annot"
+
+#' MeSH Hierarchy Network
+#' @description
+#' An edgelist network representing the hierarchical structure of the Medical
+#'   Subject Headings (MeSH) terms.
+#'
+#' @format
+#' A \code{\link[data.table:data.table]{data.table}} with the following columns:
+#' \describe{
+#'   \item{from_id}{A character vector representing the MeSH identifier of the parent term.}
+#'   \item{to_id}{A character vector representing the MeSH identifier of the child term.}
+#' }
+#'
+#' @details
+#' The `mesh_hierarchy` data frame is an edgelist network, where each row
+#'   represents a directed edge from a parent MeSH term (`from_id`) to a child
+#'   MeSH term (`to_id`). This structure captures the hierarchical relationships
+#'   between MeSH terms.
+#'
+#' @source
+#' The MeSH hierarchy data was obtained from the National Library of Medicine's
+#'   Medical Subject Headings (MeSH) database (https://www.nlm.nih.gov/mesh/).
+#'
+#' @examples
+#' data(mesh_hierarchy, package = "labyrinth")
+"mesh_hierarchy"
+
