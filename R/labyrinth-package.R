@@ -24,3 +24,18 @@
 NULL
 
 utils::globalVariables(c("."))
+
+.onAttach <- function(libname, pkgname) {
+  data_dir <- tools::R_user_dir('labyrinth')
+  for (i in 1:3) {
+    if (i == 3) {
+      stop('Permission denied.')
+    } else if (!dir.exists(data_dir)) {
+      packageStartupMessage('Data directory is not exist. Creating data directory...')
+      dir.create(data_dir, recursive = TRUE)
+    } else {
+      break
+    }
+  }
+  TRUE
+}

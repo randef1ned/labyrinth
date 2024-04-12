@@ -1,4 +1,4 @@
-#' A small example implemented from Anderson (1983)
+#' @title A small example implemented from Anderson (1983)
 #'
 #' @format Adjacency \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} 
 #'   representing an unweighted directed graph. Inside this adjacency matrix, 
@@ -17,7 +17,7 @@
 #' 
 "graph"
 
-#' A portion of the phonological network examined in Vitevitch (2008).
+#' @title A portion of the phonological network examined in Vitevitch (2008).
 #' 
 #' @description
 #' Depicted are the word *speech*, phonological neighbors of *speech*, and the 
@@ -46,7 +46,7 @@
 #' 
 "speech"
 
-#' NCBI Gene Information
+#' @title NCBI Gene Information
 #' 
 #' @description
 #' A data table containing meta information about NCBI genes, including their
@@ -71,7 +71,7 @@
 #' 
 "ncbi_info"
 
-#' MeSH Annotation Data
+#' @title MeSH Annotation Data
 #' 
 #' @description 
 #' A data frame containing annotated Medical Subject Headings (MeSH) terms and
@@ -96,7 +96,8 @@
 #' data(mesh_annot, package = "labyrinth")
 "mesh_annot"
 
-#' MeSH Hierarchy Network
+#' @title MeSH Hierarchy Network
+#' 
 #' @description
 #' An edgelist network representing the hierarchical structure of the Medical
 #'   Subject Headings (MeSH) terms.
@@ -122,3 +123,110 @@
 #' data(mesh_hierarchy, package = "labyrinth")
 "mesh_hierarchy"
 
+#' @title MeSH Synonyms
+#' 
+#' @description
+#' A data frame containing Medical Subject Headings (MeSH) identifiers and their
+#'   associated synonyms.
+#'
+#' @format
+#' A \code{\link[data.table:data.table]{data.table}} with the following columns:
+#' \describe{
+#'   \item{mesh_id}{A character vector representing the MeSH identifier.}
+#'   \item{mesh_synonyms}{A character vector representing the synonyms associated with the MeSH identifier.}
+#' }
+#'
+#' @details
+#' The `mesh_synonyms` data frame provides a mapping between MeSH identifiers
+#'   and their corresponding synonyms. Each row represents a MeSH identifier 
+#'   (`mesh_id`) and its associated synonyms (`mesh_synonyms`), which can be 
+#'   used for text mining, information retrieval, or other applications 
+#'   involving MeSH terms.
+#'
+#' @source
+#' The MeSH IDs was obtained from the National Library of Medicine's Medical
+#'   Subject Headings (MeSH) database (https://www.nlm.nih.gov/mesh/). The
+#'   synonyms were obtained from Cochrane Library 
+#'   (https://www.cochranelibrary.com/advanced-search/mesh).
+#'
+#' @examples
+#' data(mesh_synonyms, package = "labyrinth")
+"mesh_synonyms"
+
+#' @title Gene-Disease Associations
+#' 
+#' @description
+#' A list containing gene-disease associations obtained from DisGeNET with the
+#'   confidence level of 60%.
+#'
+#' @format 
+#' A \code{\link[methods:namedList-class]{named list}}, where each element is a
+#'   character vector representing the genes associated with a specific MeSH
+#'   disease identifier (MeSH ID). The names of the list elements correspond to
+#'   the MeSH IDs.
+#'
+#' @details
+#' The `gene_disease` data set contains gene-disease associations extracted
+#'   from the DisGeNET database with a confidence level of 60%. Each element of
+#'   the list represents a MeSH disease identifier, and the corresponding
+#'   character vector contains the gene identifiers associated with that
+#'   disease.
+#'
+#' @source
+#' The gene-disease associations were obtained from the DisGeNET database
+#'   (https://www.disgenet.org/), which integrates information from various 
+#'   sources to provide gene-disease associations.
+#'
+#' @examples
+#' data(gene_disease, package = "labyrinth")
+#' gene_disease[["D000168"]]
+"gene_disease"
+
+#' @title Protein-Protein Interaction Network
+#' 
+#' @description
+#' A sparse adjacency matrix representing a protein-protein interaction network
+#'   compiled from multiple databases.
+#'
+#' @format
+#' A \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object from the 
+#'   \code{\link[Matrix:Matrix]{Matrix}} package, where a value of 1 indicates
+#'   a connection (interaction) between two genes, and 0 indicates no 
+#'   connection. The rows and columns of the matrix correspond to gene 
+#'   identifiers, and the matrix is square and symmetric, representing an 
+#'   undirected adjacency network.
+#'
+#' @details
+#' The `ppi` data set is a sparse adjacency matrix representing a 
+#'   protein-protein interaction network. The network was compiled from seven 
+#'   databases: KEGG, Reactome, Biocarta, NCI, SPIKE, HumanCyc, and Panther.
+#'
+#' The rows and columns of the matrix correspond to gene identifiers, and the 
+#'   order of the genes is consistent across rows and columns. The matrix is 
+#'   square and symmetric, representing an undirected network, where an 
+#'   interaction between gene A and gene B is represented by a 1 in both the 
+#'   (A, B) and (B, A) positions of the matrix.
+#'
+#' @source
+#' The protein-protein interaction data was compiled from the following databases:
+#'   \itemize{
+#'     \item KEGG (https://www.genome.jp/kegg/)
+#'     \item Reactome (https://reactome.org/)
+#'     \item Biocarta (https://cgap.nci.nih.gov/Pathways/BioCarta_Pathways)
+#'     \item NCI (https://cancer.gov/about-nci)
+#'     \item SPIKE (https://www.cbrc.kaust.edu.sa/spike/)
+#'     \item HumanCyc (https://humancyc.org/)
+#'     \item Panther (http://www.pantherdb.org/)
+#'   }
+#'
+#' @examples
+#' library(Matrix)
+#' data(ppi, package = "labyrinth")
+#'
+#' # Access a specific element of the matrix
+#' ppi[1, 2]  # Interaction between gene 1 and gene 2
+#'
+#' # Convert to a dense matrix for visualization or analysis
+#' dense_ppi <- as.matrix(ppi)
+#'
+"ppi"

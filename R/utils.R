@@ -108,3 +108,57 @@ alias2SymbolUsingNCBI <- function(alias,
   
   NCBI[m,required.columns,drop=FALSE]
 }
+
+#' @title Load Trained Model
+#' 
+#' @description
+#' This function loads the pre-trained labyrinth model to the R environment. If 
+#'   the model file is not found locally, it attempts to download the file from 
+#'   author's GitHub.
+#'
+#' @details
+#' The function first checks if the model file exists in the labyrinth directory
+#'   (defined by \code{tools::R_user_dir('labyrinth')}). If the model file is 
+#'   not found, it attempts to download the file from GitHub repo up to five 
+#'   times. If the download fails after five attempts, an error is thrown. If 
+#'   the file is successfully downloaded or already exists locally, trained 
+#'   model file is loaded into the current environment.
+#'
+#' @return The loaded model object.
+#'
+#' @export
+#'
+#' @importFrom tools R_user_dir
+#' @importFrom utils download.file
+#' 
+#' @examples
+#' \dontrun{
+#' # Load the model
+#' model <- load_model()
+#' }
+load_model <- function() {
+  # dirs
+  model_path <- system.file(R_user_dir('labyrinth'), 'model.rda')
+  data_path <- system.file('extdata', 'model.rda', package = 'labyrinth')
+  ext_data <- FALSE
+  for (retry in 1:5) {
+    if (retry == 5) {
+      stop('Download failed.')
+    } else if (length(data_path)) {
+      break
+    } else if (file.exists(model_path)) {
+      ext_data <- TRUE
+      break
+    } else {
+      warning('No cached model file. Downloading...')
+      download.file('https://github.com/randef1ned/labyrinth/raw/master/extdata/model.rda', model_path)
+    }
+  }
+  e <- new.env()
+  if (ext_data) {
+    load(model_path, envir = e)
+  } else {
+    load(data_path, envir = e)
+  }
+  return(e$model)
+}
