@@ -132,13 +132,13 @@ alias2SymbolUsingNCBI <- function(alias,
 #' @importFrom utils download.file
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Load the model
 #' model <- load_model()
 #' }
 load_model <- function() {
   # dirs
-  model_path <- system.file(R_user_dir('labyrinth'), 'model.rda')
+  model_path <- file.path(R_user_dir('labyrinth'), 'model.rda')
   data_path <- system.file('extdata', 'model.rda', package = 'labyrinth')
   ext_data <- FALSE
   for (retry in 1:5) {
@@ -151,7 +151,7 @@ load_model <- function() {
       break
     } else {
       warning('No cached model file. Downloading...')
-      download.file('https://github.com/randef1ned/labyrinth/raw/master/extdata/model.rda', model_path)
+      download.file('https://raw.githubusercontent.com/randef1ned/labyrinth/master/extdata/model.rda', model_path)
     }
   }
   e <- new.env()

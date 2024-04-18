@@ -142,7 +142,8 @@ transfer_activation <- function(graph, y, x, activation, loose = 1) {
   if (is.dgCMatrix(graph)) {
     assert_dgCMatrix(graph)
     act <- transfer_activation_s(graph, y - 1, x - 1, activation, loose)
-  } else {assert_matrix(graph, mode = 'numeric', nrows = ncol(graph), ncols = nrow(graph), min.rows = 3, any.missing = FALSE, all.missing = FALSE, null.ok = FALSE)
+  } else {
+    assert_matrix(graph, mode = 'numeric', nrows = ncol(graph), ncols = nrow(graph), min.rows = 3, any.missing = FALSE, all.missing = FALSE, null.ok = FALSE)
     act <- transfer_activation_d(graph, y - 1, x - 1, activation, loose)
   }
   return(act)

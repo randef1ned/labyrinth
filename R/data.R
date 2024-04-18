@@ -230,3 +230,63 @@
 #' dense_ppi <- as.matrix(ppi)
 #'
 "ppi"
+
+#' @title Disease MeSH Identifiers
+#' @description
+#' A character vector containing Medical Subject Headings (MeSH) identifiers for
+#'   all human diseases.
+#'
+#' @format A character vector.
+#'
+#' @details
+#' The `disease_ids` object is a character vector that contains MeSH identifiers
+#'   (MeSH IDs) for various diseases. Each element in the vector represents a
+#'   unique MeSH identifier, which can be used to identify and reference
+#'   specific diseases in the MeSH taxonomy.
+#'
+#' MeSH identifiers are hierarchically organized and provide a standardized way
+#'   of representing and categorizing diseases and other medical concepts.
+#'
+#' @source
+#' The disease MeSH identifiers were obtained from the National Library of
+#'   Medicine's Medical Subject Headings (MeSH) database 
+#'   (https://www.nlm.nih.gov/mesh/).
+#'
+#' @examples
+#' data(disease_ids, package = "labyrinth")
+#' length(disease_ids)
+#'
+#' # Check if a specific MeSH identifier is present
+#' "D000544" %in% disease_ids  # Alzheimer's disease
+"disease_ids"
+
+#' @title Drug Annotations
+#' @description A data.table containing drug identifiers and their corresponding
+#'   names.
+#'
+#' @format A data.table with the following columns:
+#' \describe{
+#'   \item{drug_id}{A character vector representing the drug identifier.}
+#'   \item{drug_name}{A character vector representing the name of the drug.}
+#' }
+#'
+#' @details 
+#' The `drug_annot` data set provides a mapping between drug identifiers and
+#'   their corresponding names. Each row represents a unique drug identifier
+#'   (`drug_id`) and its associated name (`drug_name`).
+#'
+#' The drug identifiers and names in this data set are sourced from ChEMBL, 
+#'   DrugBank, and CTD to extract synonyms for the same drug.
+#' 
+#' @source
+#' The drug annotations were obtained from ChEMBL, DrugBank, and CTD.
+#'
+#' @examples
+#' data(drug_annot, package = "labyrinth")
+#'
+#' # Access drug names for specific identifiers
+#' drug_annot[drug_annot$drug_id == "2838", ]$drug_name  # Imatinib
+#'
+#' # Count the number of unique drugs
+#' length(unique(drug_annot$drug_id))
+"drug_annot"

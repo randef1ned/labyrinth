@@ -23,7 +23,7 @@ The function first checks if the model file exists in the labyrinth directory
   model file is loaded into the current environment.
 }
 \examples{
-\dontrun{
+\donttest{
 # Load the model
 model <- load_model()
 }
