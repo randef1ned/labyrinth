@@ -96,7 +96,7 @@
 #' data(mesh_annot, package = "labyrinth")
 "mesh_annot"
 
-#' @title MeSH Hierarchy Network
+#' @title MeSH hierarchy network
 #' 
 #' @description
 #' An edgelist network representing the hierarchical structure of the Medical
@@ -260,7 +260,7 @@
 #' "D000544" %in% disease_ids  # Alzheimer's disease
 "disease_ids"
 
-#' @title Slimmed drug annotation dataset
+#' @title Drug annotation dataset
 #' @description A data.table containing drug identifiers and their corresponding
 #'   names.
 #'
@@ -290,3 +290,47 @@
 #' # Count the number of unique drugs
 #' length(unique(drug_annot$drug_id))
 "drug_annot"
+
+#' @title Pre-trained model of labyrinth
+#' 
+#' @description
+#' A pre-trained \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object.
+#'
+#' @format
+#' A pre-trained \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object with 
+#'   7,686 columns and 7,686 rows.
+#' 
+#' @details
+#' The labyrinth model is trained by integrating knowledge from two major 
+#'   sources: text-based information from medical corpora and biological 
+#'   knowledge from functional interaction networks.
+#' 
+#' For the text-based component, labyrinth:
+#' 
+#' 1. Extracts drug information (nomenclature, targets, and indications) from 
+#'   databases like DrugBank, CTD, and ChEMBL.
+#' 
+#' 2. Obtains clinical trial data from the Cochrane Library.
+#' 
+#' 3. Mines co-occurrence patterns in published literature from the Web of 
+#'   Science corpus.
+#' 
+#' 4. Preprocesses the text data from over 10 million publications, including 
+#'   stop word removal and term vectorization using Skip-gram models.
+#' 
+#' 5. Quantifies structured drug-disease relationships based on clinical trial 
+#'   phases, citation analysis, and network proximity between gene sets.
+#' 
+#' For the biological component, labyrinth evaluates the network proximity 
+#'   between drug target modules and disease gene modules within a functional 
+#'   interactome network.
+#' 
+#' The text-based and biological knowledge matrices are then integrated through 
+#'   probabilistic computations, simulating the process of storing relevant 
+#'   knowledge in long-term memory for decision-making.
+#'
+#' @examples
+#' data(model, package = "labyrinth")
+#'
+"model"
+
