@@ -17,7 +17,6 @@
 #include <execution>
 
 // headers in this file are loaded in RcppExports.cpp
-#include "hash.h"
 // #include "RcppSparse.h"
 
 // we only include RcppEigen.h which pulls Rcpp.h in for us
