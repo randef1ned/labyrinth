@@ -33,7 +33,7 @@ The drug identifiers and names in this data set are sourced from ChEMBL,
 data(drug_annot, package = "labyrinth")
 
 # Access drug names for specific identifiers
-drug_annot[drug_id == "2838", ]$drug_name  # Imatinib
+drug_annot[drug_annot$drug_id == "2838", ]$drug_name  # Imatinib
 
 # Count the number of unique drugs
 length(unique(drug_annot$drug_id))

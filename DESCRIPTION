@@ -1,7 +1,7 @@
 Package: labyrinth
 Type: Package
 Title: Labyrinth: A Simulation of Knowledge Networks
-Version: 0.2.2
+Version: 0.2.3
 Date: 2023-12-31
 Authors@R: c(
     person("Yinchun","Su", role = c("aut", "cre"),
