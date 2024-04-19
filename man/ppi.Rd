@@ -3,7 +3,7 @@
 \docType{data}
 \name{ppi}
 \alias{ppi}
-\title{Protein-Protein Interaction Network}
+\title{Protein-protein interaction network}
 \format{
 A \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object from the 
   \code{\link[Matrix:Matrix]{Matrix}} package, where a value of 1 indicates

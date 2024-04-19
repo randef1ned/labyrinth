@@ -109,51 +109,68 @@ alias2SymbolUsingNCBI <- function(alias,
   NCBI[m,required.columns,drop=FALSE]
 }
 
-#' @title Load Trained Model
+#' @title Load External Data
 #' 
 #' @description
-#' This function loads the pre-trained labyrinth model to the R environment. If 
-#'   the model file is not found locally, it attempts to download the file from 
-#'   author's GitHub.
+#' This function loads the external data to the R environment. If the required
+#'   file is not found locally, it attempts to download the file from author's 
+#'   GitHub. In this package, it is used to download external data from
+#'   \href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{this folder},
+#'   such as the pre-trained model file, drug annotation file, etc.
 #'
 #' @details
-#' The function first checks if the model file exists in the labyrinth directory
-#'   (defined by \code{tools::R_user_dir('labyrinth')}). If the model file is 
-#'   not found, it attempts to download the file from GitHub repo up to five 
-#'   times. If the download fails after five attempts, an error is thrown. If 
-#'   the file is successfully downloaded or already exists locally, trained 
-#'   model file is loaded into the current environment.
+#' The function first checks if the required file exists in the labyrinth 
+#'   directory (defined by \code{tools::R_user_dir('labyrinth')}). If the 
+#'   required file is not found, it attempts to download the file from GitHub 
+#'   repo up to five times. If the download fails after five attempts, an error 
+#'   is thrown. If the file is successfully downloaded or already exists 
+#'   locally, the function will return the file content.
 #'
-#' @return The loaded model object.
+#' @param required_file Required file name without extensions from 
+#'   \href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{GitHub repo}.
+#' 
+#' @return The content of the required data.
 #'
 #' @export
 #'
 #' @importFrom tools R_user_dir
 #' @importFrom utils download.file
+#' @importFrom checkmate assert_string
 #' 
 #' @examples
 #' \donttest{
-#' # Load the model
-#' model <- load_model()
+#' # Load the trained model
+#' model <- load_data("model")
+#' 
+#' # Load the drug annotation data
+#' drug_annot <- load_data("drug_annot")
 #' }
-load_model <- function() {
+load_data <- function(required_file) {
+  assert_string(required_file, na.ok = FALSE, min.chars = 3, max.chars = 30, null.ok = FALSE)
+  required_file <- paste0(required_file, ".rda")
+  
   # dirs
-  model_path <- file.path(R_user_dir('labyrinth'), 'model.rda')
-  data_path <- system.file('extdata', 'model.rda', package = 'labyrinth')
+  user_dir <- R_user_dir("labyrinth")
+  model_path <- file.path(user_dir, required_file)
+  data_path <- system.file('extdata', required_file, package = "labyrinth")
   ext_data <- FALSE
   for (retry in 1:5) {
     if (retry == 5) {
-      stop('Download failed.')
-    } else if (length(data_path)) {
+      stop("Download failed.")
+    } else if (nchar(data_path)[1]) {
       break
     } else if (file.exists(model_path)) {
       ext_data <- TRUE
       break
     } else {
-      warning('No cached model file. Downloading...')
-      download.file('https://raw.githubusercontent.com/randef1ned/labyrinth/master/extdata/model.rda', model_path)
+      if (!dir.exists(user_dir)) {
+        dir.create(user_dir, recursive = TRUE)
+      }
+      warning("No cached model file. Downloading...")
+      download.file(paste0("https://raw.githubusercontent.com/randef1ned/labyrinth/master/extdata/", required_file), model_path)
     }
   }
+  
   e <- new.env()
   if (ext_data) {
     load(model_path, envir = e)

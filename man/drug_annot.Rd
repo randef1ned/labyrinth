@@ -3,7 +3,7 @@
 \docType{data}
 \name{drug_annot}
 \alias{drug_annot}
-\title{Drug Annotations}
+\title{Slimmed drug annotation dataset}
 \format{
 A data.table with the following columns:
 \describe{
@@ -19,7 +19,8 @@ drug_annot
 }
 \description{
 A data.table containing drug identifiers and their corresponding
-  names.
+  names. It is a subset dataset derived from 
+  \href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{external annotation}.
 }
 \details{
 The `drug_annot` data set provides a mapping between drug identifiers and
@@ -37,5 +38,8 @@ drug_annot[drug_annot$drug_id == "2838", ]$drug_name  # Imatinib
 
 # Count the number of unique drugs
 length(unique(drug_annot$drug_id))
+}
+\seealso{
+[load_data()] for loading external dataset.
 }
 \keyword{datasets}

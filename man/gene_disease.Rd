@@ -3,7 +3,7 @@
 \docType{data}
 \name{gene_disease}
 \alias{gene_disease}
-\title{Gene-Disease Associations}
+\title{Gene-disease associations}
 \format{
 A \code{\link[methods:namedList-class]{named list}}, where each element is a
   character vector representing the genes associated with a specific MeSH

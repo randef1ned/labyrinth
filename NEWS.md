@@ -46,3 +46,9 @@
 * Added random walk
 * Bug fix
 
+# labyrinth 0.2.3
+
+* Added `predict()` function
+* Added several data
+* Bug fix
+

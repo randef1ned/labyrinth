@@ -3,7 +3,7 @@
 \docType{data}
 \name{mesh_annot}
 \alias{mesh_annot}
-\title{MeSH Annotation Data}
+\title{MeSH annotation data}
 \format{
 A \code{\link[data.table:data.table]{data.table}} with the following 
   columns:

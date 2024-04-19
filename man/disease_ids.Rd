@@ -3,7 +3,7 @@
 \docType{data}
 \name{disease_ids}
 \alias{disease_ids}
-\title{Disease MeSH Identifiers}
+\title{Disease MeSH identifiers}
 \format{
 A character vector.
 }

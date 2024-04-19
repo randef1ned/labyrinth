@@ -71,7 +71,7 @@
 #' 
 "ncbi_info"
 
-#' @title MeSH Annotation Data
+#' @title MeSH annotation data
 #' 
 #' @description 
 #' A data frame containing annotated Medical Subject Headings (MeSH) terms and
@@ -96,34 +96,7 @@
 #' data(mesh_annot, package = "labyrinth")
 "mesh_annot"
 
-#' @title MeSH Hierarchy Network
-#' 
-#' @description
-#' An edgelist network representing the hierarchical structure of the Medical
-#'   Subject Headings (MeSH) terms.
-#'
-#' @format
-#' A \code{\link[data.table:data.table]{data.table}} with the following columns:
-#' \describe{
-#'   \item{from_id}{A character vector representing the MeSH identifier of the parent term.}
-#'   \item{to_id}{A character vector representing the MeSH identifier of the child term.}
-#' }
-#'
-#' @details
-#' The `mesh_hierarchy` data frame is an edgelist network, where each row
-#'   represents a directed edge from a parent MeSH term (`from_id`) to a child
-#'   MeSH term (`to_id`). This structure captures the hierarchical relationships
-#'   between MeSH terms.
-#'
-#' @source
-#' The MeSH hierarchy data was obtained from the National Library of Medicine's
-#'   Medical Subject Headings (MeSH) database (https://www.nlm.nih.gov/mesh/).
-#'
-#' @examples
-#' data(mesh_hierarchy, package = "labyrinth")
-"mesh_hierarchy"
-
-#' @title MeSH Synonyms
+#' @title MeSH synonyms
 #' 
 #' @description
 #' A data frame containing Medical Subject Headings (MeSH) identifiers and their
@@ -153,7 +126,7 @@
 #' data(mesh_synonyms, package = "labyrinth")
 "mesh_synonyms"
 
-#' @title Gene-Disease Associations
+#' @title Gene-disease associations
 #' 
 #' @description
 #' A list containing gene-disease associations obtained from DisGeNET with the
@@ -182,7 +155,7 @@
 #' gene_disease[["D000168"]]
 "gene_disease"
 
-#' @title Protein-Protein Interaction Network
+#' @title Protein-protein interaction network
 #' 
 #' @description
 #' A sparse adjacency matrix representing a protein-protein interaction network
@@ -231,7 +204,7 @@
 #'
 "ppi"
 
-#' @title Disease MeSH Identifiers
+#' @title Disease MeSH identifiers
 #' @description
 #' A character vector containing Medical Subject Headings (MeSH) identifiers for
 #'   all human diseases.
@@ -260,9 +233,10 @@
 #' "D000544" %in% disease_ids  # Alzheimer's disease
 "disease_ids"
 
-#' @title Drug Annotations
+#' @title Slimmed drug annotation dataset
 #' @description A data.table containing drug identifiers and their corresponding
-#'   names.
+#'   names. It is a subset dataset derived from 
+#'   \href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{external annotation}.
 #'
 #' @format A data.table with the following columns:
 #' \describe{
@@ -281,6 +255,8 @@
 #' @source
 #' The drug annotations were obtained from ChEMBL, DrugBank, and CTD.
 #'
+#' @seealso [load_data()] for loading external dataset.
+#' 
 #' @examples
 #' data(drug_annot, package = "labyrinth")
 #'

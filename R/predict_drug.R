@@ -16,8 +16,12 @@
 #' 
 #' @param method A character string specifying the prediction method to use. 
 #'   The drug scores can be predicted using one of these three methods: random
-#'   walk with restart (`rwr`), original spreading activation (`sa`), or Spread-
-#'   gram (`sg`). Default option is `rwr`.
+#'   walk with restart (either `rwr` or `wrwr`), original spreading activation 
+#'   (`sa`), or Spread-gram (`sg`). The `rwr` method provides a quick 
+#'   calculation for estimating drug scores. If the criterion for using the 
+#'   quick calculation is not met, it falls back to the `wrwr` method.
+#'
+#'   Default option is `rwr`.
 #' 
 #' @param restart_prob The restart probability for the random walk with restart 
 #'   method. Default is 0.7.
@@ -58,19 +62,21 @@
 #' @examples
 #' # Load example data to the environment
 #' data("drug_annot", package = "labyrinth")
+#' data("disease_ids", package = "labyrinth")
 #' 
 #' \donttest{
 #' # Load models to the environment
-#' model <- load_model()
+#' model <- load_data("model")
 #' 
 #' # Construct disease weights
 #' disease_weights <- sample(c(rep(0, 50), rep(1, 2)), 1098, replace = TRUE)
+#' names(disease_weights) <- disease_ids
 #' 
 #' # Predict drug scores based on disease weights
 #' drug_weights <- predict_drug(disease_weights, model, method = "rwr")
 #' }
 #' 
-predict_drug <- function(disease_weights, model, method = c("rwr", "sg", "sa"), 
+predict_drug <- function(disease_weights, model, method = c("rwr", "wrwr", "sg", "sa"), 
                          restart_prob = 0.7, threshold = 1e-6, max_iter = 1e6,
                          loose = 1.0, print_weight_only = FALSE) {
   method <- match.arg(method)
@@ -99,7 +105,7 @@ predict_drug <- function(disease_weights, model, method = c("rwr", "sg", "sa"),
   
   # Check other fucking inputs
   assert_int(max_iter, lower = 2, na.ok = FALSE, coerce = TRUE, null.ok = FALSE)
-  if (method == "rwr") {
+  if (method %in% c("rwr", "wrwr")) {
     assert_number(restart_prob, lower = 0, upper = 1, na.ok = FALSE, 
                   finite = TRUE, null.ok = FALSE)
     assert_number(threshold, lower = 0, upper = 1, na.ok = FALSE, finite = TRUE,
@@ -117,12 +123,18 @@ predict_drug <- function(disease_weights, model, method = c("rwr", "sg", "sa"),
   } else {
     drug_num <- nrow(model) - length(disease_weights)
   }
+  
   initial_weights <- c(numeric(length = drug_num),
                        unname(disease_weights))
-  if (method == "rwr") {
-    conv_weights <- random_walk(p0 = initial_weights, graph = model, 
-                                r = restart_prob, thresh = threshold,
-                                niter = max_iter, return.pt.only = TRUE)
+  if (method %in% c("rwr", "wrwr")) {
+    if (method == "rwr" & (sum(disease_weights == min(disease_weights)) + 1 == length(disease_weights))) {
+      disease_id <- which.max(disease_weights) + drug_num
+      conv_weights <- unname(model[disease_id, ] + model[, disease_id])
+    } else {
+      conv_weights <- random_walk(p0 = initial_weights, graph = model, 
+                                  r = restart_prob, thresh = threshold,
+                                  niter = max_iter, return.pt.only = TRUE)
+    }
   } else if (method == "sg") {
     conv_weights <- spread_gram(model, initial_weights, loose = loose, 
                                 max_iter = max_iter, threshold = threshold)
@@ -131,27 +143,26 @@ predict_drug <- function(disease_weights, model, method = c("rwr", "sg", "sa"),
                                     loose = loose, threads = 0)
   }
   
-  # Print results
+  # Normalize and print results
   if (sparse) {
     drug_ids <- head(model@Dimnames[[1]], drug_num)
   } else {
     drug_ids <- head(colnames(model), drug_num)
   }
   drug_weights <- head(conv_weights, drug_num)
+  drug_weights <- scale(drug_weights)[, 1]
   
   if (print_weight_only) {
     names(drug_weights) <- drug_ids
   } else {
-    drug_weights <- data.frame(drug_id = drug_ids, drug_weights = drug_weights)
-    
     data("drug_annot", package = "labyrinth", envir = e)
     # Use the first appeared name for drugs
     drug_annot <- group_by(e$drug_annot, .data$drug_id) %>% 
       summarize(drug_name = first(.data$drug_name))
     drug_weights <- data.frame(drug_id = drug_ids, 
                                drug_weights = drug_weights) %>%
-      left_join(drug_annot, by = 'drug_id') %>%
-      relocate(.data$drug_id, .data$drug_name) %>%
+      left_join(drug_annot, by = "drug_id") %>%
+      relocate("drug_id", "drug_name") %>%
       arrange(desc(.data$drug_weights))
       
     # drug_annot <- e$drug_annot[!duplicated(e$drug_annot$drug_id),]

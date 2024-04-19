@@ -3,7 +3,7 @@
 \docType{data}
 \name{mesh_synonyms}
 \alias{mesh_synonyms}
-\title{MeSH Synonyms}
+\title{MeSH synonyms}
 \format{
 A \code{\link[data.table:data.table]{data.table}} with the following columns:
 \describe{

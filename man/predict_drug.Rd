@@ -7,7 +7,7 @@
 predict_drug(
   disease_weights,
   model,
-  method = c("rwr", "sg", "sa"),
+  method = c("rwr", "wrwr", "sg", "sa"),
   restart_prob = 0.7,
   threshold = 1e-06,
   max_iter = 1e+06,
@@ -24,9 +24,13 @@ disease IDs in the \link[labyrinth:disease_ids]{`disease_ids` dataset}.}
 \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} of the pre-trained model.}
 
 \item{method}{A character string specifying the prediction method to use. 
-The drug scores can be predicted using one of these three methods: random
-walk with restart (`rwr`), original spreading activation (`sa`), or Spread-
-gram (`sg`). Default option is `rwr`.}
+  The drug scores can be predicted using one of these three methods: random
+  walk with restart (either `rwr` or `wrwr`), original spreading activation 
+  (`sa`), or Spread-gram (`sg`). The `rwr` method provides a quick 
+  calculation for estimating drug scores. If the criterion for using the 
+  quick calculation is not met, it falls back to the `wrwr` method.
+
+  Default option is `rwr`.}
 
 \item{restart_prob}{The restart probability for the random walk with restart 
 method. Default is 0.7.}
@@ -61,13 +65,15 @@ This function predict drug response scores based on disease weights using
 \examples{
 # Load example data to the environment
 data("drug_annot", package = "labyrinth")
+data("disease_ids", package = "labyrinth")
 
 \donttest{
 # Load models to the environment
-model <- load_model()
+model <- load_data("model")
 
 # Construct disease weights
 disease_weights <- sample(c(rep(0, 50), rep(1, 2)), 1098, replace = TRUE)
+names(disease_weights) <- disease_ids
 
 # Predict drug scores based on disease weights
 drug_weights <- predict_drug(disease_weights, model, method = "rwr")
