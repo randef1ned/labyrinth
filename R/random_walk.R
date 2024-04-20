@@ -5,7 +5,7 @@
 #' and calculates the stationary distribution of that.
 #' The diffusion process is regulated by a restart probability \eqn{r} which
 #' controls how often the MRW jumps back to the initial values.
-#' 
+#'
 #' The source code was brought from diffusr v0.2.1.
 #'
 #' @param p0  an \eqn{n \times p}-dimensional numeric non-negative vector/matrix
@@ -65,7 +65,8 @@
 #' @importFrom checkmate assert_number assert_int assert_logical assert_numeric
 #'                       assert test_matrix check_numeric test_atomic_vector
 #' @importFrom methods as
-#' @importFrom diffusr normalize.stochastic hub.correction is.dgCMatrix assert_dgCMatrix
+#' @importFrom diffusr normalize.stochastic hub.correction is.dgCMatrix
+#'                     assert_dgCMatrix
 #' @importFrom Rcpp sourceCpp
 #'
 #' @examples
@@ -91,7 +92,7 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
                  all.missing = FALSE, null.ok = FALSE)
   assert_logical(correct.for.hubs, len = 1, any.missing = FALSE,
                  all.missing = FALSE, null.ok = FALSE)
-  
+
   # graph must be either matrix or dgCMatrix
   n_elements <- nrow(graph)
   if (is.dgCMatrix(graph)) {
@@ -107,7 +108,7 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
     )
     sparse <- FALSE
   }
-  
+
   # convert p0 if p0 is vector
   if (test_atomic_vector(p0)) {
     assert_numeric(p0, lower = 0, len = n_elements, finite = TRUE,
@@ -121,7 +122,7 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
       combine = "and"
     )
   }
-  
+
   # begin program
   diag(graph) <- 0
   if (correct.for.hubs) {
@@ -132,7 +133,7 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
     stop(paste("the provided graph has more than one component.",
                "It is likely not ergodic."))
   }
-  
+
   if (sparse) {
     # sparse matrix
     if (!is.dgCMatrix(stoch.graph)) {
@@ -148,13 +149,13 @@ random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
   if (!return.pt.only) {
     l <- list(p.inf = l, transition.matrix = stoch.graph)
   }
-  
+
   return(l)
 }
 
 #' @noRd
 #' @importFrom utils getFromNamespace
 is.ergodic <- function(obj) {
-  .is.ergodic <- getFromNamespace('.is.ergodic', 'diffusr')
+  .is.ergodic <- getFromNamespace(".is.ergodic", "diffusr")
   return(.is.ergodic(obj))
 }

@@ -10,7 +10,7 @@ sigmoid_R <- function(ax, ay, u = 1) {
 
 gradient_R <- function(graph, activation) {
   # find neighbors line by line
-  gradient <- sapply(1:nrow(graph), function(node) {
+  gradient <- sapply(seq_len(nrow(graph)), function(node) {
     neighbors <- get_neighbors(graph, node, return_type = "binary")
     
     # Consider if the node who do not have any neighbors
@@ -40,7 +40,7 @@ gradient_R <- function(graph, activation) {
 
 spread_gram_R <- function(graph, last_activation, loose = 1.0) {
   #iterate all nodes
-  next_activation <- sapply(1:nrow(graph), function(y) {
+  next_activation <- sapply(seq_len(nrow(graph)), function(y) {
     # Find all neighbors ID in the graph
     neighbors <- get_neighbors(graph, y)
     
@@ -69,8 +69,8 @@ test_that("Test in example dataset", {
   expect_equal(spread_gram_1(graph, last_activation),
                spread_gram_R(graph, last_activation))
   
-  for (i in 1:nrow(graph)) {
-    for (j in 1:nrow(graph)) {
+  for (i in seq_len(nrow(graph))) {
+    for (j in seq_len(nrow(graph))) {
       expect_equal(sigmoid(unname(graph[, i]), j),
                    sigmoid_R(unname(graph[, i]), j))
     }
@@ -88,8 +88,8 @@ test_that("Test in random graph with random parameters", {
                  spread_gram_R(graph, last_activation))
     
     replicate(2, {
-      test_row <- sample(x = 1:nrow(graph), size = 1, replace = FALSE)
-      test_col <- sample(x = 1:nrow(graph), size = 1, replace = FALSE)
+      test_row <- sample(x = seq_len(nrow(graph)), size = 1, replace = FALSE)
+      test_col <- sample(x = seq_len(nrow(graph)), size = 1, replace = FALSE)
       
       expect_equal(sigmoid(unname(graph[, test_row]), test_col),
                    sigmoid_R(unname(graph[, test_row]), test_col))

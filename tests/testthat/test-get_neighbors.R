@@ -36,13 +36,13 @@ test_that("Test get_neighbors in original Anderson's paper", {
     0, 1, 1, 0, 0, 0, 0,
     0, 0, 1, 0, 0, 0, 0,
     0, 0, 0, 1, 1, 1, 0), sparse = TRUE)
-  graph <- as(graph, 'generalMatrix')
+  graph <- as(graph, "generalMatrix")
   colnames(graph) <- rownames(graph) <- as.character(seq_len(nrow(graph)) - 1)
   initial_info <- data.frame(node = colnames(graph),
                              strength = c(2, 4, 3, 2, 2, 1, 5),
                              in_stm = c(rep(1, 3), rep(0, 4)))
   
-  for (i in 1:nrow(graph)) {
+  for (i in seq_len(nrow(graph))) {
     expect_equal(get_neighbors(graph, i),
                  get_neighbors_R(graph, i))
   }
@@ -54,7 +54,7 @@ test_that("Test get_neighbors in large matrix", {
     
     for (g in c('both', 'forward', 'backward')) {
       for (r in c('binary', 'name', 'id')) {
-        node <- sample(1:nrow(graph), 1)
+        node <- sample(seq_len(nrow(graph)), 1)
         expect_equal(sort(get_neighbors(graph, node, neighbor_type = g,
                                         return_type = r)),
                      sort(get_neighbors_R(graph, node, neighbor_type = g,

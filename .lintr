@@ -1,0 +1,35 @@
+linters: list(
+              abspathlintr  = absolute_path_linter(),
+              assignlintr   = assignment_linter(),
+              brace         = brace_linter(),
+              comma         = commas_linter(),
+              comment_code  = commented_code_linter(),
+              cyclocomp     = cyclocomp_linter(),
+              equal_na      = equals_na_linter(),
+              left_par      = function_left_parentheses_linter(),
+              infix_spaces  = infix_spaces_linter(),
+              linelen       = line_length_linter(80),
+              notab         = whitespace_linter(),
+              object_length = object_length_linter(),
+              object_usage  = object_usage_linter(),
+              par_body      = paren_body_linter(),
+              quotes        = quotes_linter(),
+              semicolon     = semicolon_linter(),
+              seq           = seq_linter(),
+              spaces        = spaces_inside_linter(),
+              space_par     = spaces_left_parentheses_linter(),
+              t_f_symbol    = T_and_F_symbol_linter(),
+              blank_lines   = trailing_blank_lines_linter(),
+              trailingwhites= trailing_whitespace_linter(),
+              vector_logic  = vector_logic_linter())
+exclusions: list("tests/testthat.R",
+                 "tests/testthat/test-spread_gram.R",
+                 "tests/testthat/test-get_neighbors.R",
+                 "tests/testthat/test-spread_activation.R",
+                 "inst/doc/labyrinth.R",
+                 "vignettes/labyrinth.R",
+                 "vignettes/labyrinth.Rmd",
+                 "R/RcppExports.R")
+exclude: "# Exclude Linting"
+exclude_start: "# Begin Exclude Linting"
+exclude_end: "# End Exclude Linting"
