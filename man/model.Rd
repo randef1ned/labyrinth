@@ -5,7 +5,7 @@
 \alias{model}
 \title{Pre-trained model of labyrinth}
 \format{
-A pre-trained \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object with 
+A pre-trained \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object with
   7,686 columns and 7,686 rows.
 }
 \usage{
@@ -15,36 +15,39 @@ model
 A pre-trained \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object.
 }
 \details{
-The labyrinth model is trained by integrating knowledge from two major 
-  sources: text-based information from medical corpora and biological 
+The labyrinth model is trained by integrating knowledge from two major
+  sources: text-based information from medical corpora and biological
   knowledge from functional interaction networks.
 
 For the text-based component, labyrinth:
 
-1. Extracts drug information (nomenclature, targets, and indications) from 
+1. Extracts drug information (nomenclature, targets, and indications) from
   databases like DrugBank, CTD, and ChEMBL.
 
 2. Obtains clinical trial data from the Cochrane Library.
 
-3. Mines co-occurrence patterns in published literature from the Web of 
+3. Mines co-occurrence patterns in published literature from the Web of
   Science corpus.
 
-4. Preprocesses the text data from over 10 million publications, including 
+4. Preprocesses the text data from over 10 million publications, including
   stop word removal and term vectorization using Skip-gram models.
 
-5. Quantifies structured drug-disease relationships based on clinical trial 
+5. Quantifies structured drug-disease relationships based on clinical trial
   phases, citation analysis, and network proximity between gene sets.
 
-For the biological component, labyrinth evaluates the network proximity 
-  between drug target modules and disease gene modules within a functional 
+For the biological component, labyrinth evaluates the network proximity
+  between drug target modules and disease gene modules within a functional
   interactome network.
 
-The text-based and biological knowledge matrices are then integrated through 
-  probabilistic computations, simulating the process of storing relevant 
+The text-based and biological knowledge matrices are then integrated through
+  probabilistic computations, simulating the process of storing relevant
   knowledge in long-term memory for decision-making.
 }
 \examples{
+library(labyrinth)
+
 data(model, package = "labyrinth")
 
+dim(model)
 }
 \keyword{datasets}

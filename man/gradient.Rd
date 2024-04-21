@@ -7,17 +7,17 @@
 gradient(graph, activation, threads = 0, verbose = TRUE)
 }
 \arguments{
-\item{graph}{A square \code{\link[base]{matrix}} (or 
-\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-graph. Inside this adjacency matrix, each row and column of the matrix 
-represents a node in the graph. The values of the matrix should be either 0 
-or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-relations between two nodes. The diagonal of the matrix should be 0, as 
+\item{graph}{A square \code{\link[base]{matrix}} (or
+\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+graph. Inside this adjacency matrix, each row and column of the matrix
+represents a node in the graph. The values of the matrix should be either 0
+or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+relations between two nodes. The diagonal of the matrix should be 0, as
 there are no self-edges in the graph.}
 
-\item{activation}{A numeric vector representing the computed activation rates 
-for each node in the graph. The length of the vector should be equal to the 
-number of nodes in the graph. This vector should contain the activation 
+\item{activation}{A numeric vector representing the computed activation rates
+for each node in the graph. The length of the vector should be equal to the
+number of nodes in the graph. This vector should contain the activation
 rate for each node.}
 
 \item{threads}{A scalar numeric indicating the parallel threads. Default is 0
@@ -30,12 +30,12 @@ A scalar representing the gradient of the computed activation rates.
   The gradient represents the rate of change of the activation rate.
 }
 \description{
-This function calculates the gradient of the computed activation rates for a 
-  given background graph. The gradient is computed based on the Sigmoid 
+This function calculates the gradient of the computed activation rates for a
+  given background graph. The gradient is computed based on the Sigmoid
   function and the log likelihood, which iteratively computes the error
-  between each permutation. 
-  
-This function requires the background graph and the computed activation rates 
+  between each permutation.
+
+This function requires the background graph and the computed activation rates
   as input.
 }
 \examples{

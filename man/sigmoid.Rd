@@ -7,7 +7,7 @@
 sigmoid(ax, ay, u = 1)
 }
 \arguments{
-\item{ax}{A vector of the activation rates of x, which is a set of the y's 
+\item{ax}{A vector of the activation rates of x, which is a set of the y's
 neighbors}
 
 \item{ay}{A scalar of the activation rate of node y.}
@@ -18,9 +18,9 @@ neighbors}
 A vector of sigma
 }
 \description{
-The Sigmoid function is one of the basic function in Spreadgram algorithm. 
-  This function calculates the Sigmoid function of a specific node given the 
-  activation rates of the nodes and its neighbors. 
+The Sigmoid function is one of the basic function in Spreadgram algorithm.
+  This function calculates the Sigmoid function of a specific node given the
+  activation rates of the nodes and its neighbors.
   The equation writes
   \deqn{\sigma (x,y) = {{\exp [a(x)a(y)]} \over {1 + \exp [a(x)a(y)]}}}.
 }

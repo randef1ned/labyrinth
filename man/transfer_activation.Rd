@@ -7,30 +7,30 @@
 transfer_activation(graph, y, x, activation, loose = 1)
 }
 \arguments{
-\item{graph}{A square \code{\link[base]{matrix}} (or 
-\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-graph. Inside this adjacency matrix, each row and column of the matrix 
-represents a node in the graph. The values of the matrix should be either 0 
-or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-relations between two nodes. The diagonal of the matrix should be 0, as 
+\item{graph}{A square \code{\link[base]{matrix}} (or
+\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+graph. Inside this adjacency matrix, each row and column of the matrix
+represents a node in the graph. The values of the matrix should be either 0
+or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+relations between two nodes. The diagonal of the matrix should be 0, as
 there are no self-edges in the graph.}
 
 \item{y}{The index or ID of the node for which to specify the attention place}
 
 \item{x}{The index or ID of the neighbor of node y}
 
-\item{activation}{A vector containing the last-time activation values of all 
+\item{activation}{A vector containing the last-time activation values of all
 nodes. the sequence is the same as the matrix.}
 
-\item{loose}{A scalar numeric between 0 and 1 that determines the loose (or 
+\item{loose}{A scalar numeric between 0 and 1 that determines the loose (or
 weight) in the calculation process.}
 }
 \value{
 A scalar value representing the activation value for node x
 }
 \description{
-This function calculates the next-time received activation value from node y 
-to node x in the specific graph, based on the activation values of its 
+This function calculates the next-time received activation value from node y
+to node x in the specific graph, based on the activation values of its
 neighbors (including y) and a weighting factor loose.
 
 The formula is \eqn{f^{t+1}(x,j) = l \cdot s_k / \sum_{j} {s_j}}.

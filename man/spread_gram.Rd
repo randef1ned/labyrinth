@@ -15,18 +15,18 @@ spread_gram(
 )
 }
 \arguments{
-\item{graph}{A square \code{\link[base]{matrix}} (or 
-\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-graph. Inside this adjacency matrix, each row and column of the matrix 
-represents a node in the graph. The values of the matrix should be either 0 
-or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-relations between two nodes. The diagonal of the matrix should be 0, as 
+\item{graph}{A square \code{\link[base]{matrix}} (or
+\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+graph. Inside this adjacency matrix, each row and column of the matrix
+represents a node in the graph. The values of the matrix should be either 0
+or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+relations between two nodes. The diagonal of the matrix should be 0, as
 there are no self-edges in the graph.}
 
-\item{last_activation}{A vector that containing the last time activation 
+\item{last_activation}{A vector that containing the last time activation
 rates of all nodes. The sequence is the same as the matrix.}
 
-\item{loose}{A scalar numeric between 0 and 1 that determines the loose (or 
+\item{loose}{A scalar numeric between 0 and 1 that determines the loose (or
 weight) in the calculation process.}
 
 \item{max_iter}{Max iteration times.}
@@ -56,5 +56,4 @@ data("graph", package = "labyrinth")
 last_activation = c(2, 4, 3, 2, 2, 1, 5)
 
 results <- spread_gram(graph, last_activation)
-
 }

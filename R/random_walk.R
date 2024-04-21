@@ -73,12 +73,15 @@
 #' # count of nodes
 #' n <- 5
 #' # starting distribution (has to sum to one)
-#' p0    <- as.vector(rmultinom(1, 1, prob=rep(.2, n)))
+#' p0    <- as.vector(rmultinom(1, 1, prob = rep(.2, n)))
 #' # adjacency matrix (either normalized or not)
-#' graph <- matrix(abs(rnorm(n*n)), n, n)
+#' graph <- matrix(abs(rnorm(n * n)), n, n)
+#'
 #' # computation of stationary distribution
 #' pt    <- random_walk(p0, graph)
 #'
+#' # draw histogram of the `pt` vector
+#' hist(pt$p.inf)
 random_walk <- function(p0, graph, r = 0.5, niter = 1e4, thresh = 1e-4,
                         do.analytical = FALSE, correct.for.hubs = FALSE,
                         allow.ergodic = FALSE, return.pt.only = FALSE) {

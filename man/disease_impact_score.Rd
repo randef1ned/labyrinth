@@ -11,7 +11,7 @@ disease_impact_score(expr, control, max.iter = 10000)
 
 \item{control}{A vector or scalar of the index of the normal samples.}
 
-\item{max.iter}{Maximal number of iterations of the augumented Lagrange 
+\item{max.iter}{Maximal number of iterations of the augumented Lagrange
 multiplier algorithm, which is used in robust PCA algorithm.}
 }
 \value{

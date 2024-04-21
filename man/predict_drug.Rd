@@ -16,50 +16,50 @@ predict_drug(
 )
 }
 \arguments{
-\item{disease_weights}{A \code{\link[methods:namedList-class]{named vector}} 
-of disease weights. The names of the vector should correspond to the 
+\item{disease_weights}{A \code{\link[methods:namedList-class]{named vector}}
+of disease weights. The names of the vector should correspond to the
 disease IDs in the \link[labyrinth:disease_ids]{`disease_ids` dataset}.}
 
-\item{model}{A square \code{\link[base]{matrix}} (or 
+\item{model}{A square \code{\link[base]{matrix}} (or
 \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} of the pre-trained model.}
 
-\item{method}{A character string specifying the prediction method to use. 
+\item{method}{A character string specifying the prediction method to use.
   The drug scores can be predicted using one of these three methods: random
-  walk with restart (either `rwr` or `wrwr`), original spreading activation 
-  (`sa`), or Spread-gram (`sg`). The `rwr` method provides a quick 
-  calculation for estimating drug scores. If the criterion for using the 
+  walk with restart (either `rwr` or `wrwr`), original spreading activation
+  (`sa`), or Spread-gram (`sg`). The `rwr` method provides a quick
+  calculation for estimating drug scores. If the criterion for using the
   quick calculation is not met, it falls back to the `wrwr` method.
 
   Default option is `rwr`.}
 
-\item{restart_prob}{The restart probability for the random walk with restart 
+\item{restart_prob}{The restart probability for the random walk with restart
 method. Default is 0.7.}
 
-\item{threshold}{The convergence threshold for the iteration. Recommended 
+\item{threshold}{The convergence threshold for the iteration. Recommended
 value is 1e-6 in `rwr` and 1 in `sg`.}
 
 \item{max_iter}{The maximum number of iterations. Default value is 1e6.}
 
-\item{loose}{The loose parameter for the original spreading activation 
+\item{loose}{The loose parameter for the original spreading activation
 method. Default is 1.0.}
 
 \item{print_weight_only}{A logical value indicating whether to print only the
-predicted drug weights. If TRUE, only one 
-\link[methods:numeric-class]{numeric vector} with all drug weights is 
-returned. If FALSE, a \link[methods:data.frame-class]{data frame} with drug 
+predicted drug weights. If TRUE, only one
+\link[methods:numeric-class]{numeric vector} with all drug weights is
+returned. If FALSE, a \link[methods:data.frame-class]{data frame} with drug
 IDs, drug names, and drug weights is returned. Default value is FALSE.}
 }
 \value{
-The return value is based on `print_weight_only`. If TRUE, only one 
-  \link[methods:numeric-class]{numeric vector} with all drug weights is 
-  returned. If FALSE, a \link[methods:data.frame-class]{data frame} with drug 
+The return value is based on `print_weight_only`. If TRUE, only one
+  \link[methods:numeric-class]{numeric vector} with all drug weights is
+  returned. If FALSE, a \link[methods:data.frame-class]{data frame} with drug
   IDs, drug names, and drug weights is returned.
 }
 \description{
-This function predict drug response scores based on disease weights using 
-  multiple methods. It takes a vector of disease weights and a sparse matrix 
-  representing a drug-disease interaction model, and calculates the predicted 
-  drug scores using one of three methods: random walk with restart (`rwr`), 
+This function predict drug response scores based on disease weights using
+  multiple methods. It takes a vector of disease weights and a sparse matrix
+  representing a drug-disease interaction model, and calculates the predicted
+  drug scores using one of three methods: random walk with restart (`rwr`),
   original spreading activation (`sa`), or Spread-gram (`sg`).
 }
 \examples{
@@ -78,7 +78,6 @@ names(disease_weights) <- disease_ids
 # Predict drug scores based on disease weights
 drug_weights <- predict_drug(disease_weights, model, method = "rwr")
 }
-
 }
 \seealso{
 [random_walk()] for technical details of random walk with restart method.

@@ -5,13 +5,15 @@
 \alias{mesh_annot}
 \title{MeSH annotation data}
 \format{
-A \code{\link[data.table:data.table]{data.table}} with the following 
+A \code{\link[data.table:data.table]{data.table}} with the following
   columns:
 \describe{
   \item{mesh_id}{A character vector representing the MeSH identifier.}
   \item{mesh_term}{A character vector representing the MeSH term.}
-  \item{group_id}{A character vector representing the group identifier obtained from NCBI.}
-  \item{group_name}{A character vector representing the group name obtained from NCBI.}
+  \item{group_id}{A character vector representing the group identifier
+  obtained from NCBI.}
+  \item{group_name}{A character vector representing the group name obtained
+  from NCBI.}
 }
 }
 \source{
@@ -28,6 +30,11 @@ A data frame containing annotated Medical Subject Headings (MeSH) terms and
   their associated group information.
 }
 \examples{
+library(labyrinth)
+
 data(mesh_annot, package = "labyrinth")
+
+# Preview the data
+head(mesh_annot)
 }
 \keyword{datasets}

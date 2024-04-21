@@ -7,8 +7,10 @@
 \format{
 A \code{\link[data.table:data.table]{data.table}} with the following columns:
 \describe{
-  \item{from_id}{A character vector representing the MeSH identifier of the parent term.}
-  \item{to_id}{A character vector representing the MeSH identifier of the child term.}
+  \item{from_id}{A character vector representing the MeSH identifier of the
+  parent term.}
+  \item{to_id}{A character vector representing the MeSH identifier of the
+  child term.}
 }
 }
 \source{
@@ -29,6 +31,18 @@ The `mesh_hierarchy` data frame is an edgelist network, where each row
   between MeSH terms.
 }
 \examples{
+library(labyrinth)
+
 data(mesh_hierarchy, package = "labyrinth")
+
+# Preview the data
+head(mesh_hierarchy)
+
+# Draw the network plots using igraph
+\donttest{
+library(igraph)
+mesh_network <- graph_from_edgelist(as.matrix(mesh_hierarchy))
+plot(mesh_network)
+}
 }
 \keyword{datasets}

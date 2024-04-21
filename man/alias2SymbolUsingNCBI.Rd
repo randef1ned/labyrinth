@@ -13,9 +13,11 @@ alias2SymbolUsingNCBI(
 \arguments{
 \item{alias}{character vector of gene aliases}
 
-\item{gene.info.file}{the name of a gene information file downloaded from the NCBI.}
+\item{gene.info.file}{the name of a gene information file downloaded from the
+NCBI.}
 
-\item{required.columns}{character vector of columns from the gene information file that are required in the output.}
+\item{required.columns}{character vector of columns from the gene information
+file that are required in the output.}
 }
 \value{
 A data frame with the latest gene symbols

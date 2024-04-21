@@ -5,17 +5,17 @@
 \alias{speech}
 \title{A portion of the phonological network examined in Vitevitch (2008).}
 \format{
-Adjacency \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} 
-  representing an unweighted directed graph. Inside this adjacency matrix, 
-  each row and column of the matrix represents a node in the graph. There are 
+Adjacency \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}}
+  representing an unweighted directed graph. Inside this adjacency matrix,
+  each row and column of the matrix represents a node in the graph. There are
   34 nodes and 96 edges, and no self-loops inside the graph.
 }
 \usage{
 speech
 }
 \description{
-Depicted are the word *speech*, phonological neighbors of *speech*, and the 
-  phonological neighbors of those neighbors. It is taken from 
+Depicted are the word *speech*, phonological neighbors of *speech*, and the
+  phonological neighbors of those neighbors. It is taken from
   \code{\link[spreadr:pnetm]{spreadr}} package.
 }
 \examples{
@@ -23,15 +23,23 @@ library(labyrinth)
 
 data("speech", package = "labyrinth")
 
+dim(speech)
+
+# Draw the network plots using igraph
+\donttest{
+library(igraph)
+speech_graph <- graph_from_adjacency_matrix(as.matrix(speech))
+plot(speech_graph)
+}
 }
 \references{
-Chan, K. Y., & Vitevitch, M. S. (2009). The influence of the phonological 
-neighborhood clustering coefficient on spoken word recognition. *Journal of 
-experimental psychology: Human perception and performance*, *35*(6), 1934–1949. 
-https://doi.org/10.1037/a0016902.
+Chan, K. Y., & Vitevitch, M. S. (2009). The influence of the phonological
+  neighborhood clustering coefficient on spoken word recognition. *Journal of
+  experimental psychology: Human perception and performance*, *35*(6),
+  1934–1949. https://doi.org/10.1037/a0016902.
 
-Siew C. S. Q. (2019). spreadr: An R package to simulate spreading activation 
-in a network. *Behavior research methods*, *51*(2), 910–929. 
-https://doi.org/10.3758/s13428-018-1186-5.
+Siew C. S. Q. (2019). spreadr: An R package to simulate spreading activation
+  in a network. *Behavior research methods*, *51*(2), 910–929.
+  https://doi.org/10.3758/s13428-018-1186-5.
 }
 \keyword{datasets}

@@ -5,15 +5,16 @@
 \alias{ppi}
 \title{Protein-protein interaction network}
 \format{
-A \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object from the 
+A \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} object from the
   \code{\link[Matrix:Matrix]{Matrix}} package, where a value of 1 indicates
-  a connection (interaction) between two genes, and 0 indicates no 
-  connection. The rows and columns of the matrix correspond to gene 
-  identifiers, and the matrix is square and symmetric, representing an 
+  a connection (interaction) between two genes, and 0 indicates no
+  connection. The rows and columns of the matrix correspond to gene
+  identifiers, and the matrix is square and symmetric, representing an
   undirected adjacency network.
 }
 \source{
-The protein-protein interaction data was compiled from the following databases:
+The protein-protein interaction data was compiled from the following
+  databases:
   \itemize{
     \item KEGG (https://www.genome.jp/kegg/)
     \item Reactome (https://reactome.org/)
@@ -32,14 +33,14 @@ A sparse adjacency matrix representing a protein-protein interaction network
   compiled from multiple databases.
 }
 \details{
-The `ppi` data set is a sparse adjacency matrix representing a 
-  protein-protein interaction network. The network was compiled from seven 
+The `ppi` data set is a sparse adjacency matrix representing a
+  protein-protein interaction network. The network was compiled from seven
   databases: KEGG, Reactome, Biocarta, NCI, SPIKE, HumanCyc, and Panther.
 
-The rows and columns of the matrix correspond to gene identifiers, and the 
-  order of the genes is consistent across rows and columns. The matrix is 
-  square and symmetric, representing an undirected network, where an 
-  interaction between gene A and gene B is represented by a 1 in both the 
+The rows and columns of the matrix correspond to gene identifiers, and the
+  order of the genes is consistent across rows and columns. The matrix is
+  square and symmetric, representing an undirected network, where an
+  interaction between gene A and gene B is represented by a 1 in both the
   (A, B) and (B, A) positions of the matrix.
 }
 \examples{
@@ -47,10 +48,10 @@ library(Matrix)
 data(ppi, package = "labyrinth")
 
 # Access a specific element of the matrix
+dim(ppi)
 ppi[1, 2]  # Interaction between gene 1 and gene 2
 
 # Convert to a dense matrix for visualization or analysis
 dense_ppi <- as.matrix(ppi)
-
 }
 \keyword{datasets}

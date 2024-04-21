@@ -15,6 +15,14 @@
 #'
 #' data("graph", package = "labyrinth")
 #'
+#' dim(graph)
+#'
+#' # Draw the network plots using igraph
+#' \donttest{
+#' library(igraph)
+#' graph <- graph_from_adjacency_matrix(as.matrix(graph))
+#' plot(graph)
+#' }
 "graph"
 
 #' @title A portion of the phonological network examined in Vitevitch (2008).
@@ -44,6 +52,14 @@
 #'
 #' data("speech", package = "labyrinth")
 #'
+#' dim(speech)
+#'
+#' # Draw the network plots using igraph
+#' \donttest{
+#' library(igraph)
+#' speech_graph <- graph_from_adjacency_matrix(as.matrix(speech))
+#' plot(speech_graph)
+#' }
 "speech"
 
 #' @title NCBI Gene Information
@@ -70,6 +86,8 @@
 #'
 #' data("ncbi_info", package = "labyrinth")
 #'
+#' # Preview the data
+#' head(ncbi_info)
 "ncbi_info"
 
 #' @title MeSH annotation data
@@ -96,7 +114,12 @@
 #'   Information (NCBI).
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(mesh_annot, package = "labyrinth")
+#'
+#' # Preview the data
+#' head(mesh_annot)
 "mesh_annot"
 
 #' @title MeSH hierarchy network
@@ -125,7 +148,19 @@
 #'   Medical Subject Headings (MeSH) database (https://www.nlm.nih.gov/mesh/).
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(mesh_hierarchy, package = "labyrinth")
+#'
+#' # Preview the data
+#' head(mesh_hierarchy)
+#'
+#' # Draw the network plots using igraph
+#' \donttest{
+#' library(igraph)
+#' mesh_network <- graph_from_edgelist(as.matrix(mesh_hierarchy))
+#' plot(mesh_network)
+#' }
 "mesh_hierarchy"
 
 #' @title MeSH synonyms
@@ -156,7 +191,12 @@
 #'   (https://www.cochranelibrary.com/advanced-search/mesh).
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(mesh_synonyms, package = "labyrinth")
+#'
+#' # Preview the data
+#' head(mesh_synonyms)
 "mesh_synonyms"
 
 #' @title Gene-disease associations
@@ -184,8 +224,18 @@
 #'   sources to provide gene-disease associations.
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(gene_disease, package = "labyrinth")
+#'
+#' # Preview the data
 #' gene_disease[["D000168"]]
+#'
+#' # Visualize the pattern
+#' \donttest{
+#' disease_gene_count <- purrr::map_int(gene_disease, ~length(.x))
+#' hist(disease_gene_count)
+#' }
 "gene_disease"
 
 #' @title Protein-protein interaction network
@@ -231,14 +281,15 @@
 #' data(ppi, package = "labyrinth")
 #'
 #' # Access a specific element of the matrix
+#' dim(ppi)
 #' ppi[1, 2]  # Interaction between gene 1 and gene 2
 #'
 #' # Convert to a dense matrix for visualization or analysis
 #' dense_ppi <- as.matrix(ppi)
-#'
 "ppi"
 
 #' @title Disease MeSH identifiers
+#'
 #' @description
 #' A character vector containing Medical Subject Headings (MeSH) identifiers for
 #'   all human diseases.
@@ -260,7 +311,10 @@
 #'   (https://www.nlm.nih.gov/mesh/).
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(disease_ids, package = "labyrinth")
+#'
 #' length(disease_ids)
 #'
 #' # Check if a specific MeSH identifier is present
@@ -290,6 +344,8 @@
 #' The drug annotations were obtained from ChEMBL, DrugBank, and CTD.
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(drug_annot, package = "labyrinth")
 #'
 #' # Access drug names for specific identifiers
@@ -297,6 +353,10 @@
 #'
 #' # Count the number of unique drugs
 #' length(unique(drug_annot$drug_id))
+#'
+#' # Visualize the data
+#' drug_id <- drug_annot$drug_id
+#' hist(table(drug_id))
 "drug_annot"
 
 #' @title Pre-trained model of labyrinth
@@ -338,6 +398,9 @@
 #'   knowledge in long-term memory for decision-making.
 #'
 #' @examples
+#' library(labyrinth)
+#'
 #' data(model, package = "labyrinth")
 #'
+#' dim(model)
 "model"

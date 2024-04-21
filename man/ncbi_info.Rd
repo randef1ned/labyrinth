@@ -10,7 +10,8 @@ A \code{\link[data.table:data.table]{data.table}} with the following
 
 \describe{
   \item{type}{A character vector representing the type of species.}
-  \item{species}{A character vector representing the species that NCBI supports in its online platform.}
+  \item{species}{A character vector representing the species that NCBI
+  supports in its online platform.}
 }
 }
 \source{
@@ -29,5 +30,7 @@ library(labyrinth)
 
 data("ncbi_info", package = "labyrinth")
 
+# Preview the data
+head(ncbi_info)
 }
 \keyword{datasets}

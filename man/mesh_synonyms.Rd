@@ -8,13 +8,14 @@
 A \code{\link[data.table:data.table]{data.table}} with the following columns:
 \describe{
   \item{mesh_id}{A character vector representing the MeSH identifier.}
-  \item{mesh_synonyms}{A character vector representing the synonyms associated with the MeSH identifier.}
+  \item{mesh_synonyms}{A character vector representing the synonyms
+  associated with the MeSH identifier.}
 }
 }
 \source{
 The MeSH IDs was obtained from the National Library of Medicine's Medical
   Subject Headings (MeSH) database (https://www.nlm.nih.gov/mesh/). The
-  synonyms were obtained from Cochrane Library 
+  synonyms were obtained from Cochrane Library
   (https://www.cochranelibrary.com/advanced-search/mesh).
 }
 \usage{
@@ -26,12 +27,17 @@ A data frame containing Medical Subject Headings (MeSH) identifiers and their
 }
 \details{
 The `mesh_synonyms` data frame provides a mapping between MeSH identifiers
-  and their corresponding synonyms. Each row represents a MeSH identifier 
-  (`mesh_id`) and its associated synonyms (`mesh_synonyms`), which can be 
-  used for text mining, information retrieval, or other applications 
+  and their corresponding synonyms. Each row represents a MeSH identifier
+  (`mesh_id`) and its associated synonyms (`mesh_synonyms`), which can be
+  used for text mining, information retrieval, or other applications
   involving MeSH terms.
 }
 \examples{
+library(labyrinth)
+
 data(mesh_synonyms, package = "labyrinth")
+
+# Preview the data
+head(mesh_synonyms)
 }
 \keyword{datasets}

@@ -15,29 +15,29 @@ activation_rate(
 )
 }
 \arguments{
-\item{graph}{A square \code{\link[base]{matrix}} (or 
-\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-graph. Inside this adjacency matrix, each row and column of the matrix 
-represents a node in the graph. The values of the matrix should be either 0 
-or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-relations between two nodes. The diagonal of the matrix should be 0, as 
+\item{graph}{A square \code{\link[base]{matrix}} (or
+\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+graph. Inside this adjacency matrix, each row and column of the matrix
+represents a node in the graph. The values of the matrix should be either 0
+or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+relations between two nodes. The diagonal of the matrix should be 0, as
 there are no self-edges in the graph.}
 
-\item{strength}{A vector containing the *relative strength* of connections 
-for each node in the graph, which is the same as the last time activation 
+\item{strength}{A vector containing the *relative strength* of connections
+for each node in the graph, which is the same as the last time activation
 rates of all nodes. The sequence is the same as the matrix.}
 
-\item{stm}{A binary vector which indicating whether the node is activated, or 
+\item{stm}{A binary vector which indicating whether the node is activated, or
 in the short-term memory}
 
-\item{loose}{A scalar numeric between 0 and 1 that determines the loose (or 
+\item{loose}{A scalar numeric between 0 and 1 that determines the loose (or
 weight) in the calculation process.}
 
 \item{threads}{A scalar numeric indicating the parallel threads. Default is 0
 (auto-detected).}
 
-\item{remove_first}{A logical value indicating whether or not to exclude the 
-first node from the calculation}
+\item{remove_first}{A logical value indicating whether or not to exclude the
+first node from the calculation.}
 
 \item{display_progress}{A logical value indicating whether or not to show the
 progress.}
@@ -46,8 +46,8 @@ progress.}
 A vector containing the activation rate for each node in the graph
 }
 \description{
-This function calculates the activation rate for each node in a graph based 
-on its connectivity to other nodes, the *relative strength* of the 
+This function calculates the activation rate for each node in a graph based
+on its connectivity to other nodes, the *relative strength* of the
 connections, and a global loose factor.
 
 The ACT spreading activation formula is represented in Equation 1:
@@ -68,14 +68,14 @@ graph <- matrix(nrow = 7, ncol=7, data=c(
   0, 0, 1, 0, 0, 0, 0,
   0, 0, 0, 1, 1, 1, 0))
 diag(graph) <- 0
-colnames(graph) <- rownames(graph) <- seq_len(nrow(graph)) \%>\% 
+colnames(graph) <- rownames(graph) <- seq_len(nrow(graph)) \%>\%
   subtract(1) \%>\% as.character()
 
 initial_info <- data.frame(node = colnames(graph),
                            strength = c(2, 4, 3, 2, 2, 1, 5),
                            in_stm = c(rep(1, 3), rep(0, 4)))
 
-activation_rate(graph, initial_info$strength, initial_info$in_stm, 
+activation_rate(graph, initial_info$strength, initial_info$in_stm,
   loose = 0.8, remove_first = TRUE)
 
 }

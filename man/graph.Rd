@@ -5,13 +5,13 @@
 \alias{graph}
 \title{A small example implemented from Anderson (1983)}
 \format{
-Adjacency \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} 
-  representing an unweighted directed graph. Inside this adjacency matrix, 
-  each row and column of the matrix represents a node in the graph. There are 
+Adjacency \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}}
+  representing an unweighted directed graph. Inside this adjacency matrix,
+  each row and column of the matrix represents a node in the graph. There are
   7 nodes and 9 edges, and no self-loops inside the graph.
 }
 \source{
-Anderson, J. R. (1983). A spreading activation theory of memory. *Journal of 
+Anderson, J. R. (1983). A spreading activation theory of memory. *Journal of
 verbal learning and verbal behavior*, *22*(3), 261-295.
 https://doi.org/10.1016/S0022-5371(83)90201-3.
 }
@@ -26,5 +26,13 @@ library(labyrinth)
 
 data("graph", package = "labyrinth")
 
+dim(graph)
+
+# Draw the network plots using igraph
+\donttest{
+library(igraph)
+graph <- graph_from_adjacency_matrix(as.matrix(graph))
+plot(graph)
+}
 }
 \keyword{datasets}

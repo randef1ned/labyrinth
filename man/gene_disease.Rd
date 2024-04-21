@@ -12,7 +12,7 @@ A \code{\link[methods:namedList-class]{named list}}, where each element is a
 }
 \source{
 The gene-disease associations were obtained from the DisGeNET database
-  (https://www.disgenet.org/), which integrates information from various 
+  (https://www.disgenet.org/), which integrates information from various
   sources to provide gene-disease associations.
 }
 \usage{
@@ -30,7 +30,17 @@ The `gene_disease` data set contains gene-disease associations extracted
   disease.
 }
 \examples{
+library(labyrinth)
+
 data(gene_disease, package = "labyrinth")
+
+# Preview the data
 gene_disease[["D000168"]]
+
+# Visualize the pattern
+\donttest{
+disease_gene_count <- purrr::map_int(gene_disease, ~length(.x))
+hist(disease_gene_count)
+}
 }
 \keyword{datasets}

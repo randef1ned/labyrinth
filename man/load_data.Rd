@@ -7,25 +7,25 @@
 load_data(required_file)
 }
 \arguments{
-\item{required_file}{Required file name without extensions from 
-\href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{GitHub repo}.}
+\item{required_file}{Required file name without extensions from GitHub
+\href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{repo}.}
 }
 \value{
 The content of the required data.
 }
 \description{
 This function loads the external data to the R environment. If the required
-  file is not found locally, it attempts to download the file from author's 
+  file is not found locally, it attempts to download the file from author's
   GitHub. In this package, it is used to download external data from
-  \href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{this folder},
-  such as the pre-trained model file, drug annotation file, etc.
+  \href{https://github.com/randef1ned/labyrinth/tree/master/extdata}{this}
+  folder, such as the pre-trained model file, drug annotation file, etc.
 }
 \details{
-The function first checks if the required file exists in the labyrinth 
-  directory (defined by \code{tools::R_user_dir('labyrinth')}). If the 
-  required file is not found, it attempts to download the file from GitHub 
-  repo up to five times. If the download fails after five attempts, an error 
-  is thrown. If the file is successfully downloaded or already exists 
+The function first checks if the required file exists in the labyrinth
+  directory (defined by \code{tools::R_user_dir('labyrinth')}). If the
+  required file is not found, it attempts to download the file from GitHub
+  repo up to five times. If the download fails after five attempts, an error
+  is thrown. If the file is successfully downloaded or already exists
   locally, the function will return the file content.
 }
 \examples{

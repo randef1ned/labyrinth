@@ -12,32 +12,32 @@ get_neighbors(
 )
 }
 \arguments{
-\item{adj_matrix}{A square \code{\link[base]{matrix}} (or 
-\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-graph. Inside this adjacency matrix, each row and column of the matrix 
-represents a node in the graph. The values of the matrix should be either 0 
-or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-relations between two nodes. The diagonal of the matrix should be 0, as 
+\item{adj_matrix}{A square \code{\link[base]{matrix}} (or
+\code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+graph. Inside this adjacency matrix, each row and column of the matrix
+represents a node in the graph. The values of the matrix should be either 0
+or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+relations between two nodes. The diagonal of the matrix should be 0, as
 there are no self-edges in the graph.}
 
-\item{node_id}{The ID of the node whose neighbors are being retrieved. Node 
+\item{node_id}{The ID of the node whose neighbors are being retrieved. Node
 name is also acceptable.}
 
-\item{neighbor_type}{The `neighbor_type` parameter specifies the type of 
-neighbors to include in the output: 
-- **both**: return all neighbors of the specific node, regarding the graph 
-  as undirected. 
-- **forward**: return only the neighbors that are reachable from the 
-  specified node, specifically means downstream neighbors in the directed 
+\item{neighbor_type}{The `neighbor_type` parameter specifies the type of
+neighbors to include in the output:
+- **both**: return all neighbors of the specific node, regarding the graph
+  as undirected.
+- **forward**: return only the neighbors that are reachable from the
+  specified node, specifically means downstream neighbors in the directed
   networks.
-- **backward**: return the upstream neighbors from the specific nodes. 
-  Specifically, it will reverse the direction of all edges in the graph and 
+- **backward**: return the upstream neighbors from the specific nodes.
+  Specifically, it will reverse the direction of all edges in the graph and
   then return the downstream neighbors.}
 
 \item{return_type}{The `return_type` paramater specifies the type of return:
-- **binary**: return a binary vector of length equal to the total number of 
-  all nodes in the graph. The elements of vector will be set to 1 for nodes 
-  that are neighbors of the specific nodes, and 0 for all other nodes. 
+- **binary**: return a binary vector of length equal to the total number of
+  all nodes in the graph. The elements of vector will be set to 1 for nodes
+  that are neighbors of the specific nodes, and 0 for all other nodes.
 - **name**: return a character vector containing the names of all neighbor
   nodes.
 - **id**: return a integer vector containing IDs of all neighbor nodes.}
@@ -46,8 +46,8 @@ neighbors to include in the output:
 A vector based on `return_type`.
 }
 \description{
-It returns the neighboring nodes of a specified node in a graph. The 
-neighboring nodes can be returned in various formats, depending on the 
+It returns the neighboring nodes of a specified node in a graph. The
+neighboring nodes can be returned in various formats, depending on the
 `return_type` parameter.
 }
 \examples{
@@ -61,7 +61,8 @@ get_neighbors(mat, 2)
 
 }
 \references{
-https://www.ibm.com/docs/en/cognos-analytics/11.1.0?topic=terms-modified-z-score
+https://www.ibm.com/docs/en/cognos-analytics/11.1.0?
+topic=terms-modified-z-score
 }
 \seealso{
 \code{\link{scale}}, \code{\link{mad}}

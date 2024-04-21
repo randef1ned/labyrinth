@@ -1,0 +1,12 @@
+---
+title: "The introduction to labyrinth"
+author: "Yinchun Su"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_document
+  
+vignette: >
+  %\VignetteIndexEntry{labyrinth}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

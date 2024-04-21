@@ -9,7 +9,7 @@ A character vector.
 }
 \source{
 The disease MeSH identifiers were obtained from the National Library of
-  Medicine's Medical Subject Headings (MeSH) database 
+  Medicine's Medical Subject Headings (MeSH) database
   (https://www.nlm.nih.gov/mesh/).
 }
 \usage{
@@ -29,7 +29,10 @@ MeSH identifiers are hierarchically organized and provide a standardized way
   of representing and categorizing diseases and other medical concepts.
 }
 \examples{
+library(labyrinth)
+
 data(disease_ids, package = "labyrinth")
+
 length(disease_ids)
 
 # Check if a specific MeSH identifier is present

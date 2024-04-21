@@ -18,18 +18,19 @@ The drug annotations were obtained from ChEMBL, DrugBank, and CTD.
 drug_annot
 }
 \description{
-A data.table containing drug identifiers and their corresponding
-  names.
+A data.table containing drug identifiers and their corresponding names.
 }
 \details{
 The `drug_annot` data set provides a mapping between drug identifiers and
   their corresponding names. Each row represents a unique drug identifier
   (`drug_id`) and its associated name (`drug_name`).
 
-The drug identifiers and names in this data set are sourced from ChEMBL, 
+The drug identifiers and names in this data set are sourced from ChEMBL,
   DrugBank, and CTD to extract synonyms for the same drug.
 }
 \examples{
+library(labyrinth)
+
 data(drug_annot, package = "labyrinth")
 
 # Access drug names for specific identifiers
@@ -37,5 +38,9 @@ drug_annot[drug_annot$drug_id == "2838", ]$drug_name  # Imatinib
 
 # Count the number of unique drugs
 length(unique(drug_annot$drug_id))
+
+# Visualize the data
+drug_id <- drug_annot$drug_id
+hist(table(drug_id))
 }
 \keyword{datasets}

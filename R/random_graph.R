@@ -9,7 +9,6 @@
 #' @noRd
 #'
 #' @importFrom stats rnorm runif
-#' @importFrom Matrix Matrix
 #' @importFrom methods as
 #' @examples
 #' # Generate a random graph
@@ -33,8 +32,8 @@ random_graph <- function(n_element = sample(10:500, 1),
   }
 
   if (sparse) {
-    graph <- Matrix(nrow = n_element, ncol = n_element,
-                    data = random_nums, sparse = TRUE)
+    graph <- Matrix::Matrix(nrow = n_element, ncol = n_element,
+                            data = random_nums, sparse = TRUE)
     graph <- as(graph, "dgCMatrix")
   } else {
     graph <- matrix(nrow = n_element, ncol = n_element, data = random_nums)
