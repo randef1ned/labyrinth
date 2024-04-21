@@ -29,6 +29,8 @@ exclusions: list("tests/testthat.R",
                  "inst/doc/labyrinth.R",
                  "vignettes/labyrinth.R",
                  "vignettes/labyrinth.Rmd",
+                 "vignettes/preface.Rmd",
+                 "vignettes/references.bib",
                  "R/RcppExports.R")
 exclude: "# Exclude Linting"
 exclude_start: "# Begin Exclude Linting"

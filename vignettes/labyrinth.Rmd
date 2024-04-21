@@ -3,10 +3,14 @@ title: "The introduction to labyrinth"
 author: "Yinchun Su"
 date: "`r Sys.Date()`"
 output: 
-  rmarkdown::html_document
-  
+  html_document:
+    toc: true
+  md_document:
+    variant: markdown_github
 vignette: >
-  %\VignetteIndexEntry{labyrinth}
+  %\VignetteIndexEntry{The introduction to labyrinth}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+## Introduction

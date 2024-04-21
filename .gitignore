@@ -60,3 +60,5 @@ src/*.dll
 Rcpp.pro
 Rcpp.pro.user
 *.autosave
+/doc/
+/Meta/
