@@ -11,7 +11,6 @@ linters: list(
               linelen       = line_length_linter(80),
               notab         = whitespace_linter(),
               object_length = object_length_linter(),
-              object_usage  = object_usage_linter(),
               par_body      = paren_body_linter(),
               quotes        = quotes_linter(),
               semicolon     = semicolon_linter(),
