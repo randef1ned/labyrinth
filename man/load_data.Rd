@@ -29,7 +29,7 @@ The function first checks if the required file exists in the labyrinth
   locally, the function will return the file content.
 }
 \examples{
-\donttest{
+\dontrun{
 # Load the trained model
 model <- load_data("model")
 

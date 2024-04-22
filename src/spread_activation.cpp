@@ -144,40 +144,39 @@ double transfer_activation_s(MSpMat &graph, const int &y, const int &x, const Ar
 
 //' Calculate the received activation in Spreading Activation (f)
 //'
-//' @description 
-//' This function calculates the next-time received activation value from node y 
-//' to node x in the specific graph, based on the activation values of its 
+//' @description
+//' This function calculates the next-time received activation value from node y
+//' to node x in the specific graph, based on the activation values of its
 //' neighbors (including y) and a weighting factor loose.
-//' 
+//'
 //' The formula is \eqn{f^{t+1}(x,j) = l \cdot s_k / \sum_{j} {s_j}}.
 //'
-//' @param graph A square \code{\link[base]{matrix}} (or 
-//'   \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-//'   graph. Inside this adjacency matrix, each row and column of the matrix 
-//'   represents a node in the graph. The values of the matrix should be either 0 
-//'   or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-//'   relations between two nodes. The diagonal of the matrix should be 0, as 
+//' @param graph A square \code{\link[base]{matrix}} (or
+//'   \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+//'   graph. Inside this adjacency matrix, each row and column of the matrix
+//'   represents a node in the graph. The values of the matrix should be either 0
+//'   or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+//'   relations between two nodes. The diagonal of the matrix should be 0, as
 //'   there are no self-edges in the graph.
-//' 
+//'
 //' @param y The index or ID of the node for which to specify the attention place
-//' 
+//'
 //' @param x The index or ID of the neighbor of node y
-//' 
-//' @param activation A vector containing the last-time activation values of all 
+//'
+//' @param activation A vector containing the last-time activation values of all
 //'   nodes. the sequence is the same as the matrix.
-//' 
-//' @param loose A scalar numeric between 0 and 1 that determines the loose (or 
-//'   weight) in the calculation process. 
+//'
+//' @param loose A scalar numeric between 0 and 1 that determines the loose (or
+//'   weight) in the calculation process.
 //'
 //' @return A scalar value representing the activation value for node x
-//' 
+//'
 //' @examples
 //' # make an adjacency matrix and randomly fill some cells with 1s
 //' mat <- matrix(sample(c(0,1), 100, replace = TRUE), 10, 10)
 //' diag(mat) <- 0 # remove self-loops
 //'
 //' transfer_activation_d(mat, 3, 2, 1:10)
-//' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
 double transfer_activation_d(MMatrixXd &graph, const int &y, const int &x, const ArrayXd &activation, const double loose = 1.0) {
@@ -185,48 +184,48 @@ double transfer_activation_d(MMatrixXd &graph, const int &y, const int &x, const
 }
 
 //' Calculate the next-time ACT activation rate
-//' 
+//'
 //' @description
-//' This function calculates the activation rate for each node in a graph based 
-//' on its connectivity to other nodes, the *relative strength* of the 
+//' This function calculates the activation rate for each node in a graph based
+//' on its connectivity to other nodes, the *relative strength* of the
 //' connections, and a global loose factor.
-//' 
+//'
 //' The ACT spreading activation formula is represented in Equation 1:
 //'   \deqn{a(y) = \sum_x {f(x,y) \cdot a(x)} + c(y)},
 //'  where c(y) represents the baseline activation of y.
 //'   \eqn{\alpha} represents the proximity of a node in this network.
 //'   \eqn{t} represents the iteration number
-//' 
-//' @param graph A square \code{\link[base]{matrix}} (or 
-//'   \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-//'   graph. Inside this adjacency matrix, each row and column of the matrix 
-//'   represents a node in the graph. The values of the matrix should be either 0 
-//'   or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-//'   relations between two nodes. The diagonal of the matrix should be 0, as 
+//'
+//' @param graph A square \code{\link[base]{matrix}} (or
+//'   \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+//'   graph. Inside this adjacency matrix, each row and column of the matrix
+//'   represents a node in the graph. The values of the matrix should be either 0
+//'   or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+//'   relations between two nodes. The diagonal of the matrix should be 0, as
 //'   there are no self-edges in the graph.
-//' 
-//' @param strength A vector containing the *relative strength* of connections 
-//'   for each node in the graph, which is the same as the last time activation 
+//'
+//' @param strength A vector containing the *relative strength* of connections
+//'   for each node in the graph, which is the same as the last time activation
 //'   rates of all nodes. The sequence is the same as the matrix.
-//' 
-//' @param stm A binary vector which indicating whether the node is activated, or 
+//'
+//' @param stm A binary vector which indicating whether the node is activated, or
 //'   in the short-term memory
-//' 
-//' @param loose A scalar numeric between 0 and 1 that determines the loose (or 
-//'   weight) in the calculation process. 
-//' 
-//' @param remove_first A logical value indicating whether or not to exclude the 
+//'
+//' @param loose A scalar numeric between 0 and 1 that determines the loose (or
+//'   weight) in the calculation process.
+//'
+//' @param remove_first A logical value indicating whether or not to exclude the
 //'   first node from the calculation
-//' 
+//'
 //' @return A vector containing the activation rate for each node in the graph
-//' 
+//'
 //' @examples
 //' library(magrittr)
-//' 
+//'
 //' # make an adjacency matrix and randomly fill some cells with 1s
 //' mat <- matrix(sample(c(0,1), 100, replace = TRUE), 10, 10)
 //' diag(mat) <- 0 # remove self-loops
-//' 
+//'
 //' graph <- matrix(nrow=7, ncol=7, data=c(
 //'   0, 0, 0, 0, 0, 0, 0,
 //'   1, 0, 0, 0, 0, 0, 0,
@@ -238,7 +237,7 @@ double transfer_activation_d(MMatrixXd &graph, const int &y, const int &x, const
 //' diag(graph) <- 0
 //' colnames(graph) <- rownames(graph) <- seq_len(nrow(graph)) %>% 
 //'   subtract(1) %>% as.character()
-//' 
+//'
 //' initial_info <- data.frame(node = colnames(graph),
 //'                            strength = c(2, 4, 3, 2, 2, 1, 5),
 //'                            in_stm = c(rep(1, 3), rep(0, 4)))
@@ -253,48 +252,48 @@ VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd
 }
 
 //' Calculate the next-time ACT activation rate
-//' 
+//'
 //' @description
-//' This function calculates the activation rate for each node in a graph based 
-//' on its connectivity to other nodes, the *relative strength* of the 
+//' This function calculates the activation rate for each node in a graph based
+//' on its connectivity to other nodes, the *relative strength* of the
 //' connections, and a global loose factor.
-//' 
+//'
 //' The ACT spreading activation formula is represented in Equation 1:
 //'   \deqn{a(y) = \sum_x {f(x,y) \cdot a(x)} + c(y)},
 //'  where c(y) represents the baseline activation of y.
 //'   \eqn{\alpha} represents the proximity of a node in this network.
 //'   \eqn{t} represents the iteration number
-//' 
-//' @param graph A square \code{\link[base]{matrix}} (or 
-//'   \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background 
-//'   graph. Inside this adjacency matrix, each row and column of the matrix 
-//'   represents a node in the graph. The values of the matrix should be either 0 
-//'   or 1 (or either 0 or larger than 0), where a value of 0 indicates no 
-//'   relations between two nodes. The diagonal of the matrix should be 0, as 
+//'
+//' @param graph A square \code{\link[base]{matrix}} (or
+//'   \code{\link[Matrix:dgCMatrix-class]{dgCMatrix}} representing the background
+//'   graph. Inside this adjacency matrix, each row and column of the matrix
+//'   represents a node in the graph. The values of the matrix should be either 0
+//'   or 1 (or either 0 or larger than 0), where a value of 0 indicates no
+//'   relations between two nodes. The diagonal of the matrix should be 0, as
 //'   there are no self-edges in the graph.
-//' 
-//' @param strength A vector containing the *relative strength* of connections 
-//'   for each node in the graph, which is the same as the last time activation 
+//'
+//' @param strength A vector containing the *relative strength* of connections
+//'   for each node in the graph, which is the same as the last time activation
 //'   rates of all nodes. The sequence is the same as the matrix.
-//' 
-//' @param stm A binary vector which indicating whether the node is activated, or 
+//'
+//' @param stm A binary vector which indicating whether the node is activated, or
 //'   in the short-term memory
-//' 
-//' @param loose A scalar numeric between 0 and 1 that determines the loose (or 
-//'   weight) in the calculation process. 
-//' 
-//' @param remove_first A logical value indicating whether or not to exclude the 
+//'
+//' @param loose A scalar numeric between 0 and 1 that determines the loose (or
+//'   weight) in the calculation process.
+//'
+//' @param remove_first A logical value indicating whether or not to exclude the
 //'   first node from the calculation
-//' 
+//'
 //' @return A vector containing the activation rate for each node in the graph
-//' 
+//'
 //' @examples
 //' library(magrittr)
-//' 
+//'
 //' # make an adjacency matrix and randomly fill some cells with 1s
 //' mat <- matrix(sample(c(0,1), 100, replace = TRUE), 10, 10)
 //' diag(mat) <- 0 # remove self-loops
-//' 
+//'
 //' graph <- matrix(nrow=7, ncol=7, data=c(
 //'   0, 0, 0, 0, 0, 0, 0,
 //'   1, 0, 0, 0, 0, 0, 0,
@@ -306,14 +305,13 @@ VectorXd activation_rate_s(MSpMat &graph, const ArrayXd &strength, const ArrayXd
 //' diag(graph) <- 0
 //' colnames(graph) <- rownames(graph) <- seq_len(nrow(graph)) %>% 
 //'   subtract(1) %>% as.character()
-//' 
+//'
 //' initial_info <- data.frame(node = colnames(graph),
 //'                            strength = c(2, 4, 3, 2, 2, 1, 5),
 //'                            in_stm = c(rep(1, 3), rep(0, 4)))
-//' 
+//'
 //' activation_rate_t(graph, initial_info$strength, initial_info$in_stm, 
 //'   loose = 0.8, remove_first = TRUE)
-//' 
 // [[Rcpp::plugins("cpp17")]]
 // [[Rcpp::export]]
 VectorXd activation_rate_d(MMatrixXd &graph, const ArrayXd &strength, const ArrayXd &stm, const double loose = 1.0, int threads = 0, bool remove_first = false, bool display_progress = true) {

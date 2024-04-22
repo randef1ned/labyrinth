@@ -10,13 +10,14 @@
 #'
 #' @export
 #'
+#' @seealso [alias2SymbolUsingNCBI()]
+#'
 #' @importFrom checkmate assert_character
 #' @importFrom utils data download.file
 #'
 #' @examples
 #' library(labyrinth)
 #' \donttest{update_gene_symbol('IL-6')}
-#'
 update_gene_symbol <- function(gene.pool, ncbi = NA, species = c(
   "Homo_sapiens", "Mus_musculus", "Pan_troglodytes", "Rattus_norvegicus",
   "Archaea", "Bacteria", "Escherichia_coli_str._K-12_substr._MG1655",
@@ -69,13 +70,14 @@ update_gene_symbol <- function(gene.pool, ncbi = NA, species = c(
 #'
 #' @export
 #'
+#' @seealso [update_gene_symbol()]
+#'
 #' @importFrom utils read.delim
 #' @importFrom fastmatch fmatch
 #'
 #' @examples
 #' library(labyrinth)
 #' \donttest{update_gene_symbol('IL-6')}
-#'
 alias2SymbolUsingNCBI <- function(
     alias, gene.info.file,
     required.columns = c("GeneID", "Symbol", "description")) {
@@ -147,7 +149,7 @@ alias2SymbolUsingNCBI <- function(
 #' @importFrom checkmate assert_string
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Load the trained model
 #' model <- load_data("model")
 #'

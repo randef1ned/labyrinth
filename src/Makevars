@@ -10,6 +10,6 @@ PKG_LIBS += $(SHLIB_OPENMP_CXXFLAGS)
 ## set the appropriate value, possibly CXX17.
 CXX_STD = CXX17
 
-PKG_CPPFLAGS = -w -I../inst/include/ -I/opt/intel/oneapi/mkl/latest/include/ -I/usr/include/mkl -Wno-ignored-attributes -DMKL_ILP64 -m64 -DRCPP_USE_UNWIND_PROTECT -fopenmp -O3 -march=native -fno-math-errno -mfma
+PKG_CPPFLAGS = -w -I../inst/include/ -I/opt/intel/oneapi/mkl/latest/include/ -I/usr/include/mkl -Wno-ignored-attributes -DMKL_ILP64 -DRCPP_USE_UNWIND_PROTECT -fno-math-errno
 PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) -DEIGEN_INITIALIZE_MATRICES_BY_ZERO -DEIGEN_NO_DEBUG -lmkl_intel_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl
 
