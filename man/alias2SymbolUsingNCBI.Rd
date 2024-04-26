@@ -28,5 +28,7 @@ Maps gene alias names to official gene symbols.
 \examples{
 library(labyrinth)
 \donttest{update_gene_symbol('IL-6')}
-
+}
+\seealso{
+[update_gene_symbol()]
 }

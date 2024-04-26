@@ -1,17 +1,20 @@
 ---
-title: "Preface"
+title: "Introduction and inspirations of labyrinth"
 author: "Yinchun Su"
-date: "`r Sys.Date()`"
-output: 
+output:
   html_document:
     toc: true
+    standalone: true
   md_document:
-    variant: markdown_github
+    variant: gfm
+    toc: true
+    standalone: true
 bibliography: references.bib
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{Preface}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ## 1. From human memory to activation diffusion network
@@ -50,7 +53,7 @@ Attention mechanisms in deep learning, inspired by human selective attention, wh
 
 Attention mechanisms in deep learning are implemented through mathematical functions that assign weights to different elements of the input data [@niu_review_2021; @de_santana_correia_attention_2022]. However, a subset of studies has found that the attention mechanism in deep learning cannot fully simulate human attention and lacks the cognitive and emotional context that human attention encompasses [@lai_understanding_2021]. Despite these differences, artificial neural networks have been successfully applied in several fields, including image and speech recognition, natural language processing, robot control, gaming, and decision support systems. These applications demonstrate the power of artificial neural networks in dealing with complex problems and simulating certain human cognitive processes while highlighting the unique advantages of models that simulate human cognitive abilities.
 
-## 3 Simulating Human Cognitive Abilities: The Way Forward
+## 3. Simulating Human Cognitive Abilities: The Way Forward
 
 In recent years, the Transformer model has excelled in various tasks that rely on self-attentive mechanisms for data processing [@vaswani_attention_2023; @khan_transformers_2022]. It departs from traditional recurrent neural networks (RNNs) and convolutional neural networks (CNNs), favoring a comprehensive utilization of attentional mechanisms to process sequential data. The Transformer's attention model is primarily applied through self-attention and multi-head attention mechanisms. The self-attention mechanism considers all other elements in the sequence when processing each input element, enabling the model to capture long-range dependencies within the sequence [@vig_analyzing_2019]. Each element is transformed into query (*q*), key (*k*), and value (*v*) vectors, representing the current lexical element, other lexical elements, and the information contained in the lexical element, respectively. The attention score is computed by calculating the similarity scores of *q* and *k*, and weighted summing over *v*. Recently, LLMs have employed the Transformer's framework, demonstrating an improved simulation of human cognition.
 

@@ -12,3 +12,6 @@
 ^docs$
 ^doc$
 ^Meta$
+^CODE_OF_CONDUCT\.md$
+^tools$
+^vignettes/*\.md$

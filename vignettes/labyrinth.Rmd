@@ -1,16 +1,19 @@
 ---
 title: "The introduction to labyrinth"
 author: "Yinchun Su"
-date: "`r Sys.Date()`"
-output: 
+output:
   html_document:
     toc: true
+    standalone: true
   md_document:
-    variant: markdown_github
+    variant: gfm
+    toc: true
+    standalone: true
 vignette: >
   %\VignetteIndexEntry{The introduction to labyrinth}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ## Introduction
+ab

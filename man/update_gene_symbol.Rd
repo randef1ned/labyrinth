@@ -34,5 +34,7 @@ Update gene symbol using NCBI Entrez Gene
 \examples{
 library(labyrinth)
 \donttest{update_gene_symbol('IL-6')}
-
+}
+\seealso{
+[alias2SymbolUsingNCBI()]
 }

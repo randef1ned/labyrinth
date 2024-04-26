@@ -41,15 +41,16 @@ jobs:
         Rscript -e "install.packages(c('matrixStats', 'RcppProgress', 'rpca', 'BiocManager'), repo = 'https://cloud.r-project.org/')"
         Rscript -e "BiocManager::install('sparseMatrixStats', ask = FALSE, update = FALSE)"
         # Clone `diffusr` package
-        git clone https://github.com/randef1ned/diffusr.git
-        R CMD INSTALL diffusr
+        # git clone https://github.com/randef1ned/diffusr.git
+        # R CMD INSTALL diffusr
+        Rscript -e "remotes::install_github('randef1ned/diffusr', upgrade = 'always')"
       
-    - name: Update docs
-      run: devtools::document()
-      shell: Rscript {0}
-
     - name: Build site
-      run: pkgdown::build_site_github_pages(new_process = FALSE, install = TRUE)
+      run: |
+        devtools::document()
+        devtools::load_all()
+        pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        pkgdown::build_reference(topics = 'random_walk')
       shell: Rscript {0}
 
     - name: Deploy to GitHub pages 🚀

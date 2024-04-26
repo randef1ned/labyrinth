@@ -65,8 +65,7 @@
 #' @importFrom checkmate assert_number assert_int assert_logical assert_numeric
 #'                       assert test_matrix check_numeric test_atomic_vector
 #' @importFrom methods as
-#' @importFrom diffusr normalize.stochastic hub.correction is.dgCMatrix
-#'                     assert_dgCMatrix
+#' @importFrom diffusr normalize.stochastic hub.correction
 #' @importFrom Rcpp sourceCpp
 #'
 #' @examples
