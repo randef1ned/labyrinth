@@ -4,90 +4,169 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="One paragraph description of what the package does as one or more full sentences. I can use Config/testthat/parallel as true to boost the test efficiency.">
 <title>Labyrinth: A Simulation of Knowledge Networks • labyrinth</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Labyrinth: A Simulation of Knowledge Networks">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Labyrinth: A Simulation of Knowledge Networks">
 <meta property="og:description" content="One paragraph description of what the package does as one or more full sentences. I can use Config/testthat/parallel as true to boost the test efficiency.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">labyrinth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">labyrinth</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="articles/labyrinth.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="articles/labyrinth.html">Get started</a>
 </li>
-<li>
-  <a href="reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/preface.html">Preface</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/randef1ned/labyrinth/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/preface.html">Introduction and inspirations of labyrinth</a>
+    <a class="dropdown-item" href="articles/training.html">Training the model</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/randef1ned/labyrinth/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-
-<p>I am currently rewriting this R package</p>
+    
+  </div>
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="labyrinth">Labyrinth<a class="anchor" aria-label="anchor" href="#labyrinth"></a>
+</h1></div>
+<p><a href="https://github.com/randef1ned/labyrinth" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.2.3-blue.svg" alt="Current devel version: 0.2.3"></a> <a href="https://www.repostatus.org/#wip" class="external-link"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a> <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL_v2-blue.svg" alt="License: GPL v2"></a> <a href="https://app.codacy.com/gh/randef1ned/labyrinth/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade" class="external-link"><img src="https://app.codacy.com/project/badge/Grade/09b138b2fa9242229f081cd180f6fc91" alt="Codacy Badge"></a> <a href="https://makeapullrequest.com" class="external-link"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a> <a href="https://github.com/randef1ned/labyrinth/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/randef1ned/labyrinth.svg" alt="Last commit"></a> <a href="https://github.com/randef1ned/labyrinth" class="external-link"><img src="https://img.shields.io/github/languages/code-size/randef1ned/labyrinth.svg" alt="Code size"></a></p>
+<p>Labyrinth is a human-inspired computational framework for personalized drug prioritization.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p><code>labyrinth</code> is a computational framework designed at drug prioritization at both the population and individual levels. It integrates multiple sources of prior medical knowledge, including:</p>
+<ul>
+<li>Clinical trial information.</li>
+<li>Co-occurrence networks from literature citations.</li>
+<li>Drug-target interactions.</li>
+<li>Drug-indication importance.</li>
+<li>Disease-drug distance.</li>
+</ul>
+<p><code>labyrinth</code> emphasizes the importance of aligning computational models with intuitive human reasoning. Thus, it employs a human-like knowledge retrieval methodology to identify potential drug candidates for various diseases. <code>labyrinth</code> aims to strike a balance between predictive accuracy and model interpretability, as demonstrated by its robust performance across diverse diseases, evaluated using ROC-AUC metrics.</p>
+<div class="float">
+<img src="reference/figures/intro.jpg" alt="A simple schema of the labyrinth"><div class="figcaption">A simple schema of the labyrinth</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="a-notice-on-operating-system-compatibility">A notice on operating system compatibility<a class="anchor" aria-label="anchor" href="#a-notice-on-operating-system-compatibility"></a>
+</h2>
+<p>I developed and tested <code>labyrinth</code> on Fedora Linux version 38 and 39. While this package does not contain any operating system-specific code, it has not been tested on other operating systems. In theory, <code>labyrinth</code> should work on other Unix-like operating systems as long as the required dependencies are installed.</p>
+<p>We recommended these dependencies to be installed:</p>
+<ul>
+<li>
+<strong>R (≥ 4.3.0)</strong>: We developed this R package using R version 4.3.3.</li>
+<li>
+<strong>Python</strong>: Python is required for drawing plots in demos. It is recommended to have Python and <code>seaborn</code> installed, as the <code>reticulate</code> package will use the system’s Python installation.</li>
+<li>
+<strong>OpenMP</strong>: This package uses OpenMP for parallelization and multithreading if OpenMP exists. Having OpenMP installed can significantly improve performance.</li>
+<li>
+<strong>Intel oneAPI Math Kernel Library (oneMKL)</strong>: This library can further enhance mathematical performance, especially on Intel processors. oneMKL is not required but highly recommended.</li>
+</ul>
+<p>If you encounter any issues while running this package on other operating system, please open an <a href="https://github.com/randef1ned/labyrinth/issues" class="external-link">issue</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="before-installation">Before installation<a class="anchor" aria-label="anchor" href="#before-installation"></a>
+</h2>
+<p>Before installation, we recommended you install Intel oneAPI Math Kernel Library (oneMKL) to optimize the computational performance of linear algebra.</p>
+<p>Windows users can download oneMKL from <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-download.html" class="external-link">Intel’s website</a> and install it in the default directory. The default directory is: <code>C:\Program Files (x86)\Intel\oneAPI</code>.</p>
+<p>Debian and Ubuntu users can download oneMKL using apt in the non-free repo:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install oneMKL version 2020.4.304-4</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">sudo</span> apt install intel-mkl-full</span></code></pre></div>
+<p>Or using the Intel repo:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Set up the repository and signed the entry</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O-</span> https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="kw">|</span> <span class="ex">gpg</span> <span class="at">--dearmor</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /usr/share/keyrings/oneapi-archive-keyring.gpg <span class="op">&gt;</span> /dev/null</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main"</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/oneAPI.list</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># Update the package list</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># Install the latest oneMKL (version 2024.1)</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">sudo</span> apt install intel-oneapi-mkl</span></code></pre></div>
+<p>Fedora users can download oneMKL by using dnf:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Create dnf repository file</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">tee</span> <span class="op">&gt;</span> /tmp/oneAPI.repo <span class="op">&lt;&lt; EOF</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="st">[oneAPI]</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="st">name=Intel® oneAPI repository</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="st">baseurl=https://yum.repos.intel.com/oneapi</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="st">enabled=1</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="st">gpgcheck=1</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="st">repo_gpgcheck=1</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="st">gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="op">EOF</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">sudo</span> mv /tmp/oneAPI.repo /etc/yum.repos.d</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co"># Install the latest oneMKL (version 2024.0)</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="fu">sudo</span> dnf install intel-oneapi-mkl</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Install <code>labyrinth</code> using:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'devtools'</span>, <span class="st">'BiocManager'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"randef1ned/labyrinth"</span><span class="op">)</span></span></code></pre></div>
+<p>Or you can download the pre-built binary packages from <a href="https://github.com/randef1ned/labyrinth/releases" class="external-link">Releases</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>Load the package using <code><a href="https://github.com/randef1ned/labyrinth" class="external-link">library(labyrinth)</a></code>. We provide a vignette for the package that can be called using: <code><a href="articles/labyrinth.html">vignette("labyrinth")</a></code>. Alternatively, you can view the online version on <a href="https://labyrinth.yinchun.su/articles/labyrinth">website</a> or <a href="doc/labyrinth_knit.html">GitHub</a>. Basically that is all you have to know.</p>
+<p><a href="doc/training_knit.html">This documentation</a> contains information about the contents and the necessary information for training the model used in this project. The <code>tools/</code> folder contains all the code and scripts required for constructing your own model, so that you can understand the technical details. Besides, you can refer to <a href="doc/preface_knit.html">this documentation</a> for the background and inspirations behind the overall workflow of `labyrinth.</p>
+</div>
+<div class="section level2">
+<h2 id="changelog">Changelog<a class="anchor" aria-label="anchor" href="#changelog"></a>
+</h2>
 <p>Changelog: <a href="NEWS.html">see this</a></p>
+<!--
+## Star history
 
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+[![Star History Chart](https://api.star-history.com/svg?repos=randef1ned/labyrinth&type=Date)](https://star-history.com/#randef1ned/labyrinth&Date)
+-->
+</div>
+</div>
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/randef1ned/labyrinth/" class="external-link">Browse source code</a></li>
@@ -103,6 +182,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -121,25 +206,22 @@
 
 
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Yinchun Su.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Yinchun Su.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

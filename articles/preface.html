@@ -4,91 +4,83 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preface • labyrinth</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="labyrinth">
+<title>Introduction and inspirations of labyrinth • labyrinth</title>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Preface">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction and inspirations of labyrinth">
 <meta property="og:description" content="labyrinth">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">labyrinth</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">labyrinth</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/labyrinth.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../articles/labyrinth.html">Get started</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/preface.html">Preface</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/randef1ned/labyrinth/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/preface.html">Introduction and inspirations of labyrinth</a>
+    <a class="dropdown-item" href="../articles/training.html">Training the model</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/randef1ned/labyrinth/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Preface</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>Introduction and inspirations of labyrinth</h1>
                         <h4 data-toc-skip class="author">Yinchun Su</h4>
             
-            <h4 data-toc-skip class="date">2024-04-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/randef1ned/labyrinth/blob/HEAD/vignettes/preface.Rmd" class="external-link"><code>vignettes/preface.Rmd</code></a></small>
-      <div class="hidden name"><code>preface.Rmd</code></div>
-
+      <div class="d-none name"><code>preface.Rmd</code></div>
     </div>
 
     
@@ -98,71 +90,76 @@
 </h2>
 <p>Memory is a fundamental cognitive process that allows the brain to
 store, acquire, and recall information. It serves as a temporary storage
-system when sensory cues disappear <span class="citation">(Benjamin
-2007)</span>. Memory plays a crucial role in encoding, storing,
-retaining, and recalling everything from simple sensory data to complex
-knowledge and experiences. Additionally, memory is the basis for
-learning, planning, and decision-making <span class="citation">(Benjamin
-2007; Nussenbaum, Prentis, and Hartley 2020)</span>. Specifically, it
-enables us to learn from past experiences and simulate potential future
-outcomes, thereby influencing current behavior and future actions <span class="citation">(Schacter et al. 2012)</span>.</p>
+system when sensory cues disappear <span class="citation">(<a href="#ref-benjamin_memory_2007">Benjamin 2007</a>)</span>. Memory plays
+a crucial role in encoding, storing, retaining, and recalling everything
+from simple sensory data to complex knowledge and experiences.
+Additionally, memory is the basis for learning, planning, and
+decision-making <span class="citation">(<a href="#ref-benjamin_memory_2007">Benjamin 2007</a>; <a href="#ref-nussenbaum_memorys_2020">Nussenbaum, Prentis, and Hartley
+2020</a>)</span>. Specifically, it enables us to learn from past
+experiences and simulate potential future outcomes, thereby influencing
+current behavior and future actions <span class="citation">(<a href="#ref-schacter_future_2012">Schacter et al. 2012</a>)</span>.</p>
 <p>The formation of memories, their recall, and reasoning based on them
 involve a combination of systems and physiological processes that allow
-humans to adapt well to their environment <span class="citation">(Schacter et al. 2012; Camina and Güell 2017; Nairne
-and Pandeirada 2016)</span>.Memory formation comprises three stages:
-information perception, encoding, and storage <span class="citation">(Atkinson and Shiffrin 1968)</span>. These stages
-correspond to three types of memory: (1) sensory memory <span class="citation">(Atkinson and Shiffrin 1968)</span> briefly stores raw
-physical stimuli from primary receptors such as vision and hearing; (2)
-short-term memory (STM) <span class="citation">(Baddeley 2000)</span>
-involves the transient storage and manipulation of information, allowing
+humans to adapt well to their environment <span class="citation">(<a href="#ref-schacter_future_2012">Schacter et al. 2012</a>; <a href="#ref-camina_neuroanatomical_2017">Camina and Güell 2017</a>; <a href="#ref-nairne_adaptive_2016">Nairne and Pandeirada
+2016</a>)</span>.Memory formation comprises three stages: information
+perception, encoding, and storage <span class="citation">(<a href="#ref-atkinson_human_1968">Atkinson and Shiffrin 1968</a>)</span>.
+These stages correspond to three types of memory: (1) sensory memory
+<span class="citation">(<a href="#ref-atkinson_human_1968">Atkinson and
+Shiffrin 1968</a>)</span> briefly stores raw physical stimuli from
+primary receptors such as vision and hearing; (2) short-term memory
+(STM) <span class="citation">(<a href="#ref-baddeley_episodic_2000">Baddeley 2000</a>)</span> involves
+the transient storage and manipulation of information, allowing
 individuals to temporarily memorize small amounts of data to perform
-current and future tasks; (3) long-term memory (LTM) <span class="citation">(Camina and Güell 2017)</span> is the long-term storage
-of information, divided into episodic and implicit memory. Episodic
-memory consists of knowledge processed and recalled at a conscious
-level, such as personal experiences and specialized knowledge, while
-implicit memory encompasses skills and habits expressed without
-conscious awareness, such as fear, riding a bicycle, heart rate
-regulation, and other conditioned reflexes <span class="citation">(Smith
-and Grossman 2008)</span>. In contrast to the limited-capacity sensory
+current and future tasks; (3) long-term memory (LTM) <span class="citation">(<a href="#ref-camina_neuroanatomical_2017">Camina and
+Güell 2017</a>)</span> is the long-term storage of information, divided
+into episodic and implicit memory. Episodic memory consists of knowledge
+processed and recalled at a conscious level, such as personal
+experiences and specialized knowledge, while implicit memory encompasses
+skills and habits expressed without conscious awareness, such as fear,
+riding a bicycle, heart rate regulation, and other conditioned reflexes
+<span class="citation">(<a href="#ref-smith_multiple_2008">Smith and
+Grossman 2008</a>)</span>. In contrast to the limited-capacity sensory
 memory and STM, LTM is a more complex cognitive system with an unlimited
 capacity for long-term storage and retrieval of a wide range of
 information, including factual knowledge and personal experiences.</p>
 <p>Memory can also be categorized into contextual memory, referring to
 an individual’s personal experiences, and semantic memory, referring to
-textual knowledge about concepts <span class="citation">(Renoult et al.
-2019)</span>. Storing contextual and semantic knowledge allows
-individuals to construct new knowledge based on past experiences,
-facilitating their survival <span class="citation">(Kazanas and
-Altarriba 2015)</span>. In addition to storing information and memories,
-LTM plays an important role in learning and reasoning. It can
-automatically relate relationships and attributes between objects <span class="citation">(Nairne and Pandeirada 2016)</span>, giving individuals
-the ability to use stored skills and concepts to make rational decisions
-by evaluating different choices in various environments and predicting
-possible outcomes <span class="citation">(Camina and Güell
-2017)</span>.</p>
+textual knowledge about concepts <span class="citation">(<a href="#ref-renoult_knowing_2019">Renoult et al. 2019</a>)</span>.
+Storing contextual and semantic knowledge allows individuals to
+construct new knowledge based on past experiences, facilitating their
+survival <span class="citation">(<a href="#ref-kazanas_survival_2015">Kazanas and Altarriba
+2015</a>)</span>. In addition to storing information and memories, LTM
+plays an important role in learning and reasoning. It can automatically
+relate relationships and attributes between objects <span class="citation">(<a href="#ref-nairne_adaptive_2016">Nairne and
+Pandeirada 2016</a>)</span>, giving individuals the ability to use
+stored skills and concepts to make rational decisions by evaluating
+different choices in various environments and predicting possible
+outcomes <span class="citation">(<a href="#ref-camina_neuroanatomical_2017">Camina and Güell
+2017</a>)</span>.</p>
 <p>The formation and consolidation of LTM involve several brain regions,
 including the prefrontal lobe, associated with working memory and
-situational memory in LTM <span class="citation">(Blumenfeld and
-Ranganath 2019)</span>, and the temporal lobe, associated with semantic
-memory in LTM <span class="citation">(Simmons and Martin 2009)</span>.
-The hippocampus acts as a relay station for information <span class="citation">(Squire and Zola-Morgan 1991)</span> and can integrate
-situational memory into the semantic memory knowledge network stored in
-LTM <span class="citation">(Renoult et al. 2019)</span>. Consequently,
-even for the same concept or knowledge, the knowledge network formed by
-different individuals can vary.</p>
+situational memory in LTM <span class="citation">(<a href="#ref-blumenfeld_lateral_2019">Blumenfeld and Ranganath
+2019</a>)</span>, and the temporal lobe, associated with semantic memory
+in LTM <span class="citation">(<a href="#ref-simmons_anterior_2009">Simmons and Martin 2009</a>)</span>.
+The hippocampus acts as a relay station for information <span class="citation">(<a href="#ref-squire_medial_1991">Squire and
+Zola-Morgan 1991</a>)</span> and can integrate situational memory into
+the semantic memory knowledge network stored in LTM <span class="citation">(<a href="#ref-renoult_knowing_2019">Renoult et al.
+2019</a>)</span>. Consequently, even for the same concept or knowledge,
+the knowledge network formed by different individuals can vary.</p>
 <p>Each individual has unique experiences and backgrounds, leading to
 different understandings and reactions when interpreting the same
 information. LTM is stored as a vast and complex semantic network, which
 includes various types of interconnected nodes, such as concepts,
-memories, and experiences <span class="citation">(Collins and Loftus
-1975)</span>. Other kinds of memories or experiences are also integrated
-into this network; for example, an individual’s representation of
-abstract concepts (e.g., time) may be based on physical sensations <span class="citation">(Casasanto and Boroditsky 2008)</span>. In such cases,
-individuals associate time with their experiences, forming their
-knowledge network. This form of organization is named semantic networks
-or knowledge networks, emphasizing how information is interconnected and
-organized according to meaning <span class="citation">(Lehmann
-1992)</span>.</p>
+memories, and experiences <span class="citation">(<a href="#ref-collins_spreading_activation_1975">Collins and Loftus
+1975</a>)</span>. Other kinds of memories or experiences are also
+integrated into this network; for example, an individual’s
+representation of abstract concepts (e.g., time) may be based on
+physical sensations <span class="citation">(<a href="#ref-casasanto_time_2008">Casasanto and Boroditsky
+2008</a>)</span>. In such cases, individuals associate time with their
+experiences, forming their knowledge network. This form of organization
+is named semantic networks or knowledge networks, emphasizing how
+information is interconnected and organized according to meaning <span class="citation">(<a href="#ref-lehmann_semantic_1992">Lehmann
+1992</a>)</span>.</p>
 <p>In this article, we use the term <strong>semantic network</strong> to
 represent the form of memory storage and organization in LTM, while
 <strong>knowledge network</strong> refers to an artificially built
@@ -171,23 +168,26 @@ nodes, and concept-to-concept relationships are represented as edges
 between nodes, with edge weights indicating the strength of the
 association. A higher edge weight implies a closer relationship between
 two nodes, typically resulting in a higher recall rate after receiving a
-stimulus <span class="citation">(Anderson 1983)</span>. Learning and
-memorizing new knowledge and experiences involve building new edges or
-reinforcing existing ones. This organization facilitates information
+stimulus <span class="citation">(<a href="#ref-anderson_spreading_1983">Anderson 1983</a>)</span>. Learning
+and memorizing new knowledge and experiences involve building new edges
+or reinforcing existing ones. This organization facilitates information
 retrieval by enabling individuals to jump from one concept to another in
 the network and simultaneously activate neighboring nodes to form
 knowledge connections, even if there is no direct correlation between
-them <span class="citation">(Lehmann 1992)</span>. An interesting
-example is that in the semantic network of some police officers, black
-people produce a strong association with weapons, and this association
-is even stronger if the police officer is sleep-deprived <span class="citation">(James 2018)</span>. Another example is that an
-individual’s preference for Coca-Cola or McDonald’s is determined by
-their attitude and reflected in their semantic network <span class="citation">(Lee and Kim 2013; Karpinski, Steinman, and Hilton
-2005)</span>.</p>
+them <span class="citation">(<a href="#ref-lehmann_semantic_1992">Lehmann 1992</a>)</span>. An
+interesting example is that in the semantic network of some police
+officers, black people produce a strong association with weapons, and
+this association is even stronger if the police officer is
+sleep-deprived <span class="citation">(<a href="#ref-james_stability_2018">James 2018</a>)</span>. Another example
+is that an individual’s preference for Coca-Cola or McDonald’s is
+determined by their attitude and reflected in their semantic network
+<span class="citation">(<a href="#ref-lee_comparison_2013">Lee and Kim
+2013</a>; <a href="#ref-karpinski_attitude_2005">Karpinski, Steinman,
+and Hilton 2005</a>)</span>.</p>
 <p>Homogeneous networks consist of nodes with similar properties or
-characteristics <span class="citation">(Mhatre and Rosenberg
-2004)</span>. Nodes represented as the same kind of elements and edges
-connected nodes with high correlations, which jointly creating a
+characteristics <span class="citation">(<a href="#ref-mhatre_homogeneous_2004">Mhatre and Rosenberg
+2004</a>)</span>. Nodes represented as the same kind of elements and
+edges connected nodes with high correlations, which jointly creating a
 homogeneous network. The two examples mentioned above illustrate that
 different individuals form different LTMs, and the memory contents
 stored in their LTMs do not satisfy homogeneity.</p>
@@ -195,20 +195,21 @@ stored in their LTMs do not satisfy homogeneity.</p>
 homogeneous network. The process by which individuals store their
 memories in the same semantic network and retrieve information from LTM
 is often described as spreading activation, and this network is also
-called the spreading activation network <span class="citation">(Sharifian and Samani 1997)</span>. In this network
-model, if an initial node is activated, this activation state spreads to
-other nodes along connected edges. This diffusion process can quickly
-span multiple network layers, extensively activating the concepts and
-memories associated with the initial node. When a node receives
-activation above a certain threshold, it is fully activated like
-neurons. Otherwise, it will not be activated. This may lead to the
-recall of specific memories, the formation of decisions, or the
-generation of problem-solving strategies.</p>
+called the spreading activation network <span class="citation">(<a href="#ref-sharifian_hierarchical_1997">Sharifian and Samani
+1997</a>)</span>. In this network model, if an initial node is
+activated, this activation state spreads to other nodes along connected
+edges. This diffusion process can quickly span multiple network layers,
+extensively activating the concepts and memories associated with the
+initial node. When a node receives activation above a certain threshold,
+it is fully activated like neurons. Otherwise, it will not be activated.
+This may lead to the recall of specific memories, the formation of
+decisions, or the generation of problem-solving strategies.</p>
 <p>As mentioned earlier, some unrelated concepts in a semantic network
 may have relatively strong associations. The implicit association test
 (IAT) paradigm proposed by Greenwald can effectively test the edge
-connections between nodes of an individual in a semantic network <span class="citation">(Greenwald, McGhee, and Schwartz 1998; Greenwald et al.
-2009)</span>. This paradigm tests the strength of association in the
+connections between nodes of an individual in a semantic network <span class="citation">(<a href="#ref-greenwald_measuring_1998">Greenwald,
+McGhee, and Schwartz 1998</a>; <a href="#ref-greenwald_understanding_2009">Greenwald et al.
+2009</a>)</span>. This paradigm tests the strength of association in the
 human brain between two nodes, i.e., the edge weights. The mechanisms of
 association and activation in activation diffusion networks depend on
 the strength of association between nodes. If the strength is high, the
@@ -226,13 +227,13 @@ retrieval and use.</p>
 </h2>
 <p>Compared to computer programs, humans possess an ability to think
 about problems from different perspectives and exhibit greater
-flexibility in knowledge association <span class="citation">(Lehmann
-1992)</span>. Therefore, humans have the advantage of applying knowledge
-from one domain to another seemingly unrelated domain. For example,
-concepts from biology can be transferred to economics <span class="citation">(Lawlor et al. 2008)</span>, economic models to the
-field of electronic information <span class="citation">(Han et al.
-2019)</span>, and linguistic concepts to neuroscience <span class="citation">(Mayberry et al. 2018)</span> and computer science
-<span class="citation">(H. Zhang et al. 2023)</span>. This
+flexibility in knowledge association <span class="citation">(<a href="#ref-lehmann_semantic_1992">Lehmann 1992</a>)</span>. Therefore,
+humans have the advantage of applying knowledge from one domain to
+another seemingly unrelated domain. For example, concepts from biology
+can be transferred to economics <span class="citation">(<a href="#ref-lawlor_mendelian_2008">Lawlor et al. 2008</a>)</span>,
+economic models to the field of electronic information <span class="citation">(<a href="#ref-han_rational_2019">Han et al.
+2019</a>)</span>, and linguistic concepts to neuroscience <span class="citation">(<a href="#ref-mayberry_neurolinguistic_2018">Mayberry
+et al. 2018</a>)</span> and computer science <span class="citation">(<a href="#ref-zhang_algorithm_2023">H. Zhang et al. 2023</a>)</span>. This
 characteristic has led humans to create many cross-disciplinary fields,
 such as artificial intelligence, computational biology, neuropolitics,
 and bioinformatics. Humans can use intuition and creative thinking to
@@ -240,186 +241,205 @@ solve problems, and this ability to think across domains allows them to
 make new connections between different areas, thereby building new
 disciplinary knowledge.</p>
 <p>The human brain contains approximately 100 billion neurons and
-roughly the same number of glial cells <span class="citation">(Bartheld,
-Bahney, and Herculano-Houzel 2016)</span>, of each connected to
-thousands of others via synapses <span class="citation">(Herculano-Houzel 2009)</span>. Neurons and glial cells
-form extremely complex networks. Neurons communicate via the all-or-none
-principle <span class="citation">(Pareti 2007)</span>, and glial cells
-play crucial roles in central nervous system formation, neuronal
-differentiation, synapse formation <span class="citation">(Allen and
-Lyons 2018)</span>, regulation of neuroinflammatory immunity <span class="citation">(Yang and Zhou 2019)</span>, and neurological diseases
-like dementia <span class="citation">(Kim, Choi, and Yoon 2020)</span>,
-in addition to their traditional supportive functions <span class="citation">(Wolosker et al. 2008)</span>. Such complexity lays the
-foundation for an individual’s ability to process information,
-experience emotions, maintain awareness, and exhibit creativity.</p>
+roughly the same number of glial cells <span class="citation">(<a href="#ref-von_bartheld_search_2016">Bartheld, Bahney, and
+Herculano-Houzel 2016</a>)</span>, of each connected to thousands of
+others via synapses <span class="citation">(<a href="#ref-herculano_houzel_human_2009">Herculano-Houzel
+2009</a>)</span>. Neurons and glial cells form extremely complex
+networks. Neurons communicate via the all-or-none principle <span class="citation">(<a href="#ref-pareti_all_or_none_2007">Pareti
+2007</a>)</span>, and glial cells play crucial roles in central nervous
+system formation, neuronal differentiation, synapse formation <span class="citation">(<a href="#ref-allen_glia_2018">Allen and Lyons
+2018</a>)</span>, regulation of neuroinflammatory immunity <span class="citation">(<a href="#ref-yang_neuroinflammation_2019">Yang and
+Zhou 2019</a>)</span>, and neurological diseases like dementia <span class="citation">(<a href="#ref-kim_neuron_glia_2020">Kim, Choi, and
+Yoon 2020</a>)</span>, in addition to their traditional supportive
+functions <span class="citation">(<a href="#ref-wolosker_d_amino_2008">Wolosker et al. 2008</a>)</span>. Such
+complexity lays the foundation for an individual’s ability to process
+information, experience emotions, maintain awareness, and exhibit
+creativity.</p>
 <p>Drawing on the fundamentals of human cognition, artificial neural
 networks have been simulated using computers to mimic the brain’s
 information processing. They emulate human cognitive abilities to some
 extent, excelling in tasks like learning, decision-making, and pattern
-recognition that humans are naturally proficient at <span class="citation">(Agatonovic-Kustrin and Beresford 2000; Parisi
-1997)</span>. The simulation of human cognitive abilities has shown
-great potential <span class="citation">(Parisi 1997; Zahedi
-1991)</span>. However, the neurons used in deep learning and artificial
-neural networks are highly abstract, and the architecture is unable to
-account for the neurons <span class="citation">(Cichy and Kaiser
-2019)</span>. Therefore, this field has focused more attention on
-fitting data rather than interpreting it <span class="citation">(Pichler
-and Hartig 2023)</span>.</p>
+recognition that humans are naturally proficient at <span class="citation">(<a href="#ref-agatonovic_kustrin_basic_2000">Agatonovic-Kustrin and
+Beresford 2000</a>; <a href="#ref-parisi_artificial_1997">Parisi
+1997</a>)</span>. The simulation of human cognitive abilities has shown
+great potential <span class="citation">(<a href="#ref-parisi_artificial_1997">Parisi 1997</a>; <a href="#ref-zahedi_introduction_1991">Zahedi 1991</a>)</span>. However,
+the neurons used in deep learning and artificial neural networks are
+highly abstract, and the architecture is unable to account for the
+neurons <span class="citation">(<a href="#ref-cichy_deep_2019">Cichy and
+Kaiser 2019</a>)</span>. Therefore, this field has focused more
+attention on fitting data rather than interpreting it <span class="citation">(<a href="#ref-pichler_machine_2023">Pichler and Hartig
+2023</a>)</span>.</p>
 <p>Currently, the field of deep learning is more concerned with fitting
 data, the effect of fitting is used as a guiding criterion in this
 field, rather than integrating cognitive mechanisms discovered by
-neuroscience <span class="citation">(Chavlis and Poirazi 2021)</span>.
+neuroscience <span class="citation">(<a href="#ref-chavlis_drawing_2021">Chavlis and Poirazi 2021</a>)</span>.
 Much of the progress in deep learning over recent decades can be
 attributed to the application of backpropagation, often used with
 optimization methods to update weights and minimize the loss function.
 However, while neural networks and deep learning are biologically
 inspired approaches, the biological rationality of backpropagation
 remains questionable, as activated neurons do not acquire features
-through backpropagation <span class="citation">(Whittington and Bogacz
-2019; Lillicrap et al. 2020; Aru, Suzuki, and Larkum 2020)</span>.
-Currently, two mainstream learning mechanisms have been identified in
-the human brain using electrophysiological methods: Hebbian learning
-<span class="citation">(Munakata and Pfaffly 2004)</span> and
-reinforcement learning <span class="citation">(Botvinick et al.
-2019)</span>. Additionally, synaptic pruning may be related to learning
-<span class="citation">(Halassa and Haydon 2010)</span>, and epigenetic
-mechanisms also play an important role <span class="citation">(Changeux,
-Courrège, and Danchin 1973)</span>. Although Hebbian learning,
+through backpropagation <span class="citation">(<a href="#ref-whittington_theories_2019">Whittington and Bogacz 2019</a>;
+<a href="#ref-lillicrap_backpropagation_2020">Lillicrap et al. 2020</a>;
+<a href="#ref-aru_cellular_2020">Aru, Suzuki, and Larkum
+2020</a>)</span>. Currently, two mainstream learning mechanisms have
+been identified in the human brain using electrophysiological methods:
+Hebbian learning <span class="citation">(<a href="#ref-munakata_hebbian_2004">Munakata and Pfaffly 2004</a>)</span>
+and reinforcement learning <span class="citation">(<a href="#ref-botvinick_reinforcement_2019">Botvinick et al.
+2019</a>)</span>. Additionally, synaptic pruning may be related to
+learning <span class="citation">(<a href="#ref-halassa_integrated_2010">Halassa and Haydon 2010</a>)</span>,
+and epigenetic mechanisms also play an important role <span class="citation">(<a href="#ref-changeux_theory_1973">Changeux,
+Courrège, and Danchin 1973</a>)</span>. Although Hebbian learning,
 reinforcement learning, and attempts to migrate human cognitive
 mechanisms have been applied in deep learning for years, they still
-cannot perfectly reproduce human learning features <span class="citation">(Volzhenin, Changeux, and Dumas 2022)</span>.
-Comparatively, the energy consumption when using neural networks for
-reasoning is huge <span class="citation">(Desislavov, Martínez-Plumed,
-and Hernández-Orallo 2023)</span>, in contrast to the human brain’s
-lower energy usage for training and reasoning <span class="citation">(Attwell and Laughlin 2001)</span>.</p>
+cannot perfectly reproduce human learning features <span class="citation">(<a href="#ref-volzhenin_multilevel_2022">Volzhenin,
+Changeux, and Dumas 2022</a>)</span>. Comparatively, the energy
+consumption when using neural networks for reasoning is huge <span class="citation">(<a href="#ref-desislavov_trends_2023">Desislavov,
+Martínez-Plumed, and Hernández-Orallo 2023</a>)</span>, in contrast to
+the human brain’s lower energy usage for training and reasoning <span class="citation">(<a href="#ref-attwell_energy_2001">Attwell and
+Laughlin 2001</a>)</span>.</p>
 <p>Another example is the attention mechanism in neural networks,
-inspired by human attention <span class="citation">(Vaswani et al.
-2023)</span>. Attention is a cognitive ability that selectively receives
-information with limited resources <span class="citation">(Nelson Cowan
-et al. 2005)</span>. It’s a complex biological process involving
-multiple brain regions, encompassing not only selective attention but
-also coordinated consciousness, memory, and cognition. Selective
-attention mechanisms are associated with short-term memory, where only
-3-5 chunks of original stimuli can enter during a single session <span class="citation">(N. Cowan 2001)</span>, with attention lasting just a
-few seconds to minutes <span class="citation">(Polti, Martin, and Van
-Wassenhove 2018)</span>. This selective mechanism allows humans to focus
-on targets with limited resources, reducing cognitive resource
-consumption <span class="citation">(Buschman and Kastner 2015)</span>,
-refining elements deposited into memory <span class="citation">(Chun and
-Turk-Browne 2007)</span>, delimiting the problem space, and narrowing
-memory retrieval in problem-solving situations <span class="citation">(Wiley and Jarosz 2012)</span>. Human intuition about
-numbers may also relate to attention <span class="citation">(Kutter et
-al. 2023)</span>. Thus, selective attention is crucial for cognitive
-activities like perception, memory, and decision-making.</p>
+inspired by human attention <span class="citation">(<a href="#ref-vaswani_attention_2023">Vaswani et al. 2023</a>)</span>.
+Attention is a cognitive ability that selectively receives information
+with limited resources <span class="citation">(<a href="#ref-cowan_capacity_2005">Nelson Cowan et al. 2005</a>)</span>.
+It’s a complex biological process involving multiple brain regions,
+encompassing not only selective attention but also coordinated
+consciousness, memory, and cognition. Selective attention mechanisms are
+associated with short-term memory, where only 3-5 chunks of original
+stimuli can enter during a single session <span class="citation">(<a href="#ref-cowan_magical_2001">N. Cowan 2001</a>)</span>, with attention
+lasting just a few seconds to minutes <span class="citation">(<a href="#ref-polti_effect_2018">Polti, Martin, and Van Wassenhove
+2018</a>)</span>. This selective mechanism allows humans to focus on
+targets with limited resources, reducing cognitive resource consumption
+<span class="citation">(<a href="#ref-buschman_behavior_2015">Buschman
+and Kastner 2015</a>)</span>, refining elements deposited into memory
+<span class="citation">(<a href="#ref-chun_interactions_2007">Chun and
+Turk-Browne 2007</a>)</span>, delimiting the problem space, and
+narrowing memory retrieval in problem-solving situations <span class="citation">(<a href="#ref-wiley_working_2012">Wiley and Jarosz
+2012</a>)</span>. Human intuition about numbers may also relate to
+attention <span class="citation">(<a href="#ref-kutter_distinct_2023">Kutter et al. 2023</a>)</span>. Thus,
+selective attention is crucial for cognitive activities like perception,
+memory, and decision-making.</p>
 <p>Attention mechanisms in deep learning, inspired by human selective
 attention, which have been successfully integrated into various
-frameworks <span class="citation">(Niu, Zhong, and Yu 2021)</span>,
-greatly improving performance in tasks like natural language processing
-(NLP), computer vision, and speech recognition <span class="citation">(B. Zhang, Xiong, and Su 2020; Guo et al. 2022; Ding et
-al. 2021)</span>. In recent years, the Transformer model, relying on
+frameworks <span class="citation">(<a href="#ref-niu_review_2021">Niu,
+Zhong, and Yu 2021</a>)</span>, greatly improving performance in tasks
+like natural language processing (NLP), computer vision, and speech
+recognition <span class="citation">(<a href="#ref-zhang_neural_2020">B.
+Zhang, Xiong, and Su 2020</a>; <a href="#ref-guo_attention_2022">Guo et
+al. 2022</a>; <a href="#ref-ding_deep_2021">Ding et al.
+2021</a>)</span>. In recent years, the Transformer model, relying on
 self-attention mechanisms to process data, has demonstrated superior
-performance across various tasks <span class="citation">(Vaswani et al.
-2023; Khan et al. 2022)</span>. Its multi-head attention mechanism
-performs multiple parallel self-attention computations with different
-parameters, allowing the model to capture information from different
-subspaces and improving fitting efficiency and accuracy <span class="citation">(Liu, Liu, and Han 2021)</span>. Practically, with the
-Transformer, neural networks have made significant progress in areas
-like NLP and vision tasks.</p>
+performance across various tasks <span class="citation">(<a href="#ref-vaswani_attention_2023">Vaswani et al. 2023</a>; <a href="#ref-khan_transformers_2022">Khan et al. 2022</a>)</span>. Its
+multi-head attention mechanism performs multiple parallel self-attention
+computations with different parameters, allowing the model to capture
+information from different subspaces and improving fitting efficiency
+and accuracy <span class="citation">(<a href="#ref-liu_multi_head_2021">Liu, Liu, and Han 2021</a>)</span>.
+Practically, with the Transformer, neural networks have made significant
+progress in areas like NLP and vision tasks.</p>
 <p>Attention mechanisms in deep learning are implemented through
 mathematical functions that assign weights to different elements of the
-input data <span class="citation">(Niu, Zhong, and Yu 2021; De Santana
-Correia and Colombini 2022)</span>. However, a subset of studies has
-found that the attention mechanism in deep learning cannot fully
-simulate human attention and lacks the cognitive and emotional context
-that human attention encompasses <span class="citation">(Lai et al.
-2021)</span>. Despite these differences, artificial neural networks have
-been successfully applied in several fields, including image and speech
-recognition, natural language processing, robot control, gaming, and
-decision support systems. These applications demonstrate the power of
-artificial neural networks in dealing with complex problems and
-simulating certain human cognitive processes while highlighting the
-unique advantages of models that simulate human cognitive abilities.</p>
+input data <span class="citation">(<a href="#ref-niu_review_2021">Niu,
+Zhong, and Yu 2021</a>; <a href="#ref-de_santana_correia_attention_2022">De Santana Correia and
+Colombini 2022</a>)</span>. However, a subset of studies has found that
+the attention mechanism in deep learning cannot fully simulate human
+attention and lacks the cognitive and emotional context that human
+attention encompasses <span class="citation">(<a href="#ref-lai_understanding_2021">Lai et al. 2021</a>)</span>. Despite
+these differences, artificial neural networks have been successfully
+applied in several fields, including image and speech recognition,
+natural language processing, robot control, gaming, and decision support
+systems. These applications demonstrate the power of artificial neural
+networks in dealing with complex problems and simulating certain human
+cognitive processes while highlighting the unique advantages of models
+that simulate human cognitive abilities.</p>
 </div>
 <div class="section level2">
-<h2 id="simulating-human-cognitive-abilities-the-way-forward">3 Simulating Human Cognitive Abilities: The Way Forward<a class="anchor" aria-label="anchor" href="#simulating-human-cognitive-abilities-the-way-forward"></a>
+<h2 id="simulating-human-cognitive-abilities-the-way-forward">3. Simulating Human Cognitive Abilities: The Way Forward<a class="anchor" aria-label="anchor" href="#simulating-human-cognitive-abilities-the-way-forward"></a>
 </h2>
 <p>In recent years, the Transformer model has excelled in various tasks
-that rely on self-attentive mechanisms for data processing <span class="citation">(Vaswani et al. 2023; Khan et al. 2022)</span>. It
-departs from traditional recurrent neural networks (RNNs) and
-convolutional neural networks (CNNs), favoring a comprehensive
-utilization of attentional mechanisms to process sequential data. The
-Transformer’s attention model is primarily applied through
-self-attention and multi-head attention mechanisms. The self-attention
-mechanism considers all other elements in the sequence when processing
-each input element, enabling the model to capture long-range
-dependencies within the sequence <span class="citation">(Vig and
-Belinkov 2019)</span>. Each element is transformed into query
-(<em>q</em>), key (<em>k</em>), and value (<em>v</em>) vectors,
-representing the current lexical element, other lexical elements, and
-the information contained in the lexical element, respectively. The
-attention score is computed by calculating the similarity scores of
-<em>q</em> and <em>k</em>, and weighted summing over <em>v</em>.
-Recently, LLMs have employed the Transformer’s framework, demonstrating
-an improved simulation of human cognition.</p>
-<p>LLMs are large-scale simulations of human cognitive functions <span class="citation">(Binz and Schulz 2023)</span>, and their emergence mark
-a significant advancement in computers’ ability to simulate human
-cognition. LLMs possess enhanced reasoning capabilities, and Claude 3,
-released this month by Anthropic, exhibits self-awareness through
-contextual understanding in a needle-in-a-haystack task <span class="citation">(Anthropic 2024; Kuratov et al. 2024)</span>. In
+that rely on self-attentive mechanisms for data processing <span class="citation">(<a href="#ref-vaswani_attention_2023">Vaswani et al.
+2023</a>; <a href="#ref-khan_transformers_2022">Khan et al.
+2022</a>)</span>. It departs from traditional recurrent neural networks
+(RNNs) and convolutional neural networks (CNNs), favoring a
+comprehensive utilization of attentional mechanisms to process
+sequential data. The Transformer’s attention model is primarily applied
+through self-attention and multi-head attention mechanisms. The
+self-attention mechanism considers all other elements in the sequence
+when processing each input element, enabling the model to capture
+long-range dependencies within the sequence <span class="citation">(<a href="#ref-vig_analyzing_2019">Vig and Belinkov 2019</a>)</span>. Each
+element is transformed into query (<em>q</em>), key (<em>k</em>), and
+value (<em>v</em>) vectors, representing the current lexical element,
+other lexical elements, and the information contained in the lexical
+element, respectively. The attention score is computed by calculating
+the similarity scores of <em>q</em> and <em>k</em>, and weighted summing
+over <em>v</em>. Recently, LLMs have employed the Transformer’s
+framework, demonstrating an improved simulation of human cognition.</p>
+<p>LLMs are large-scale simulations of human cognitive functions <span class="citation">(<a href="#ref-binz_turning_2023">Binz and Schulz
+2023</a>)</span>, and their emergence mark a significant advancement in
+computers’ ability to simulate human cognition. LLMs possess enhanced
+reasoning capabilities, and Claude 3, released this month by Anthropic,
+exhibits self-awareness through contextual understanding in a
+needle-in-a-haystack task <span class="citation">(<a href="#ref-anthropic_claude_2024">Anthropic 2024</a>; <a href="#ref-kuratov_search_2024">Kuratov et al. 2024</a>)</span>. In
 zero-shot problem scenarios, LLMs’ reasoning abilities without prior
 knowledge surpass those of humans, who rely on analogies for reasoning
-<span class="citation">(Webb, Holyoak, and Lu 2023)</span>. Furthermore,
-LLMs can comprehend others’ beliefs, goals, and mental states with an
-accuracy of up to 80%. Notably, GPT-4, considered the most advanced LLM,
-can achieve 100% accuracy in theory of mind (ToM) tasks after suitable
-prompting, indicating a human-like level of ToM <span class="citation">(Thaler 1988)</span>.</p>
+<span class="citation">(<a href="#ref-webb_emergent_2023">Webb, Holyoak,
+and Lu 2023</a>)</span>. Furthermore, LLMs can comprehend others’
+beliefs, goals, and mental states with an accuracy of up to 80%.
+Notably, GPT-4, considered the most advanced LLM, can achieve 100%
+accuracy in theory of mind (ToM) tasks after suitable prompting,
+indicating a human-like level of ToM <span class="citation">(<a href="#ref-thaler_anomalies_1988">Thaler 1988</a>)</span>.</p>
 <p>LLMs can also simulate human behavior observed in experiments, such
-as the ultimatum game <span class="citation">(Thaler 1988)</span>,
-garden-path sentences <span class="citation">(Ferreira, Christianson,
-and Hollingworth 2001)</span>, loss aversion <span class="citation">(Kimball 1993)</span>, and reactions to the Milgram
-electric shock experiment <span class="citation">(Blass 1999; Aher,
-Arriaga, and Kalai 2022)</span>. Additionally, LLMs exhibit cognitive
-biases or errors that humans typically demonstrate, such as additive
-bias <span class="citation">(Winter et al. 2023)</span>, where
+as the ultimatum game <span class="citation">(<a href="#ref-thaler_anomalies_1988">Thaler 1988</a>)</span>, garden-path
+sentences <span class="citation">(<a href="#ref-ferreira_misinterpretations_2001">Ferreira, Christianson, and
+Hollingworth 2001</a>)</span>, loss aversion <span class="citation">(<a href="#ref-kimball_standard_1993">Kimball 1993</a>)</span>, and
+reactions to the Milgram electric shock experiment <span class="citation">(<a href="#ref-blass_milgram_1999">Blass 1999</a>; <a href="#ref-aher_using_2022">Aher, Arriaga, and Kalai 2022</a>)</span>.
+Additionally, LLMs exhibit cognitive biases or errors that humans
+typically demonstrate, such as additive bias <span class="citation">(<a href="#ref-winter_more_2023">Winter et al. 2023</a>)</span>, where
 individuals default to adding or modifying existing content rather than
-deleting or pushing back when problem-solving <span class="citation">(Adams et al. 2021)</span>. LLMs produce various human
-cognitive effects, including priming effects and biases <span class="citation">(Koo et al. 2023; Shaki, Kraus, and Wooldridge
-2023)</span>, suggesting that LLMs mimicking human cognitive processes
-may possess cognitive abilities approaching the human level.</p>
+deleting or pushing back when problem-solving <span class="citation">(<a href="#ref-adams_people_2021">Adams et al. 2021</a>)</span>. LLMs
+produce various human cognitive effects, including priming effects and
+biases <span class="citation">(<a href="#ref-koo_benchmarking_2023">Koo
+et al. 2023</a>; <a href="#ref-shaki_cognitive_2023">Shaki, Kraus, and
+Wooldridge 2023</a>)</span>, suggesting that LLMs mimicking human
+cognitive processes may possess cognitive abilities approaching the
+human level.</p>
 <p>In specific domains, LLMs closely mimic human-specific abilities. For
 instance, ChatGPT’s accuracy in medical diagnosis and providing feasible
 medical advice in complex situations is comparable to that of human
-physicians <span class="citation">(Hopkins et al. 2023)</span>. The
+physicians <span class="citation">(<a href="#ref-hopkins_artificial_2023">Hopkins et al. 2023</a>)</span>. The
 performance metrics show that it diagnoses up to 93.3% of common
-clinical cases correctly <span class="citation">(Hirosawa et al.
-2023)</span>. Furthermore, in standardized clinical decision-making
-tasks, ChatGPT achieves an accuracy rate close to 70% <span class="citation">(Rao et al. 2023)</span>, similar to the expected level
-of third-year medical students in the United States <span class="citation">(Gilson et al. 2023)</span>. Due to GPT-4’s superior
-ToM, it correctly answered 90% of soft skill questions <span class="citation">(Brin et al. 2023)</span>, demonstrating excellent
-clinical skills.</p>
+clinical cases correctly <span class="citation">(<a href="#ref-hirosawa_diagnostic_2023">Hirosawa et al. 2023</a>)</span>.
+Furthermore, in standardized clinical decision-making tasks, ChatGPT
+achieves an accuracy rate close to 70% <span class="citation">(<a href="#ref-rao_assessing_2023">Rao et al. 2023</a>)</span>, similar to
+the expected level of third-year medical students in the United States
+<span class="citation">(<a href="#ref-gilson_how_2023">Gilson et al.
+2023</a>)</span>. Due to GPT-4’s superior ToM, it correctly answered 90%
+of soft skill questions <span class="citation">(<a href="#ref-brin_comparing_2023">Brin et al. 2023</a>)</span>,
+demonstrating excellent clinical skills.</p>
 <p>However, ChatGPT’s ability to handle complex questions remains
 unsatisfactory compared to widely used technologies like Google search
-<span class="citation">(Hopkins et al. 2023)</span>. It cannot fully
-replicate professional clinicians’ decision-making abilities when faced
-with complex problems, primarily due to its text-based training data,
-resulting in less satisfactory performance in non-text-based tasks <span class="citation">(Y. Zhang et al. 2024)</span>. Furthermore, in patient
-care and other medically related domains, it sometimes generates false
-or misleading information, potentially causing doctors, nurses, or
-caregivers to make erroneous decisions, endangering patients’ lives
-<span class="citation">(Z. Ji et al. 2023)</span>.</p>
+<span class="citation">(<a href="#ref-hopkins_artificial_2023">Hopkins
+et al. 2023</a>)</span>. It cannot fully replicate professional
+clinicians’ decision-making abilities when faced with complex problems,
+primarily due to its text-based training data, resulting in less
+satisfactory performance in non-text-based tasks <span class="citation">(<a href="#ref-zhang_unexpectedly_2024">Y. Zhang et al.
+2024</a>)</span>. Furthermore, in patient care and other medically
+related domains, it sometimes generates false or misleading information,
+potentially causing doctors, nurses, or caregivers to make erroneous
+decisions, endangering patients’ lives <span class="citation">(<a href="#ref-ji_survey_2023">Z. Ji et al. 2023</a>)</span>.</p>
 <p>LLMs often contain billions to hundreds of billions of parameters,
 making it difficult to implement debugging and understand their
-decision-making processes <span class="citation">(Z. Ji et al. 2023;
-Khullar, Wang, and Wang 2024)</span>. Therefore, developing relatively
-interpretable models is a viable alternative at the moment. These models
-are trained in specific areas of expertise, possessing prior knowledge
-and learning not exclusively from samples. Recently, the life2vec model
-successfully predicted the relationship between early mortality and
-aspects of an individual’s personality traits, demonstrating relatively
-good predictive efficacy <span class="citation">(Savcisens et al.
-2023)</span>. The model provides clinicians and family physicians with
-insights and assistance that can help patients better manage their
-lifespan, showcasing the potential of specialized models.</p>
+decision-making processes <span class="citation">(<a href="#ref-ji_survey_2023">Z. Ji et al. 2023</a>; <a href="#ref-khullar_large_2024">Khullar, Wang, and Wang 2024</a>)</span>.
+Therefore, developing relatively interpretable models is a viable
+alternative at the moment. These models are trained in specific areas of
+expertise, possessing prior knowledge and learning not exclusively from
+samples. Recently, the life2vec model successfully predicted the
+relationship between early mortality and aspects of an individual’s
+personality traits, demonstrating relatively good predictive efficacy
+<span class="citation">(<a href="#ref-savcisens_using_2023">Savcisens et
+al. 2023</a>)</span>. The model provides clinicians and family
+physicians with insights and assistance that can help patients better
+manage their lifespan, showcasing the potential of specialized
+models.</p>
 </div>
 <div class="section level2">
 <h2 id="simulating-human-knowledge-representation-using-large-scale-medical-knowledge-networks">4. Simulating human knowledge representation using large-scale
@@ -433,27 +453,32 @@ aspects that have not been addressed adequately in addition to the
 aforementioned medical issues.</p>
 <p>LLMs require an enormous number of parameters and a vast amount of
 training data, consuming substantial computational resources during the
-training process <span class="citation">(S. Zhang et al. 2022)</span>.
-Even after training, reasoning with LLMs consumes significant
-computational resources <span class="citation">(Samsi et al.
-2023)</span>. Furthermore, LLMs produce a large carbon footprint <span class="citation">(S. Zhang et al. 2022; Faiz et al. 2023)</span> and
-require considerable water consumption for cooling <span class="citation">(George, A.S.Hovan George, and A.S.Gabrio Martin
-2023)</span>, exacerbating environmental concerns and extreme climate
-events. As computational power is concentrated in a few labs, LLM also
-exacerbates inequality issues and prevents most labs from gaining LLMs
-<span class="citation">(S. Zhang et al. 2022)</span>.</p>
+training process <span class="citation">(<a href="#ref-zhang_opt_2022">S. Zhang et al. 2022</a>)</span>. Even after
+training, reasoning with LLMs consumes significant computational
+resources <span class="citation">(<a href="#ref-samsi_words_2023">Samsi
+et al. 2023</a>)</span>. Furthermore, LLMs produce a large carbon
+footprint <span class="citation">(<a href="#ref-zhang_opt_2022">S. Zhang
+et al. 2022</a>; <a href="#ref-faiz_llmcarbon_2023">Faiz et al.
+2023</a>)</span> and require considerable water consumption for cooling
+<span class="citation">(<a href="#ref-george_environmental_2023">George,
+A.S.Hovan George, and A.S.Gabrio Martin 2023</a>)</span>, exacerbating
+environmental concerns and extreme climate events. As computational
+power is concentrated in a few labs, LLM also exacerbates inequality
+issues and prevents most labs from gaining LLMs <span class="citation">(<a href="#ref-zhang_opt_2022">S. Zhang et al.
+2022</a>)</span>.</p>
 <p>LLMs are often considered black boxes, making it difficult to
 understand and explain their operating mechanisms. Recently, OpenAI has
 demonstrated early forms of artificial intelligence in LLMs by
-increasing their parameters and training sample size <span class="citation">(OpenAI et al. 2023; Bubeck et al. 2023; Schaeffer,
-Miranda, and Koyejo 2023; Wei et al. 2022)</span>, challenging many
-scholars’ perceptions. Some have argued that it resembles the Chinese
-room problem, where LLMs do not emerge intelligence but rather acquire
-deeper features of language, as consciousness may be a special form of
-language <span class="citation">(Hamid 2023)</span>. Others contend that
-the emergent intelligence of LLMs is merely wishful thinking by
-researchers <span class="citation">(Schaeffer, Miranda, and Koyejo
-2023)</span>. Alternatively, it has been proposed that LLMs resemble
+increasing their parameters and training sample size <span class="citation">(<a href="#ref-openai_gpt_4_2023">OpenAI et al.
+2023</a>; <a href="#ref-bubeck_sparks_2023">Bubeck et al. 2023</a>; <a href="#ref-schaeffer_are_2023">Schaeffer, Miranda, and Koyejo 2023</a>;
+<a href="#ref-wei_emergent_2022">Wei et al. 2022</a>)</span>,
+challenging many scholars’ perceptions. Some have argued that it
+resembles the Chinese room problem, where LLMs do not emerge
+intelligence but rather acquire deeper features of language, as
+consciousness may be a special form of language <span class="citation">(<a href="#ref-hamid_chatgpt_2023">Hamid
+2023</a>)</span>. Others contend that the emergent intelligence of LLMs
+is merely wishful thinking by researchers <span class="citation">(<a href="#ref-schaeffer_are_2023">Schaeffer, Miranda, and Koyejo
+2023</a>)</span>. Alternatively, it has been proposed that LLMs resemble
 human societies, where a large number of individuals collectively
 exhibit abilities that individuals do not possess, with emergent
 capabilities resulting from complex relationships between numerous data
@@ -464,7 +489,7 @@ relatively interpretable specialized models would maximize usability and
 transparency, making them safer for clinical applications. Over the past
 decades, humans have accumulated substantial historical experience in
 fighting diseases and a large number of low-practice-value papers and
-monographs <span class="citation">(Hanson et al. 2023)</span>.
+monographs <span class="citation">(<a href="#ref-hanson_strain_2023">Hanson et al. 2023</a>)</span>.
 Translating this experience into clinical resources in bulk has become
 an important issue in modern medical research.</p>
 <p>We observed that clinicians tend to treat patients automatically
@@ -483,53 +508,58 @@ that abstracts core concepts and relationships in reality, allowing AI
 systems to understand complex relationships and reason about them. It
 can integrate various data sources and types to represent relationships
 between elements and their properties. Knowledge networks abstract the
-real world for AI systems <span class="citation">(Martin and Baggio
-2020)</span>, enabling them to solve complex tasks and reason about the
-world <span class="citation">(S. Ji et al. 2022)</span>.</p>
+real world for AI systems <span class="citation">(<a href="#ref-martin_modelling_2020">Martin and Baggio 2020</a>)</span>,
+enabling them to solve complex tasks and reason about the world <span class="citation">(<a href="#ref-ji_survey_2022">S. Ji et al.
+2022</a>)</span>.</p>
 <p>Biomedical knowledge is characterized using formalism, an abstraction
 process of the human brain to model systems formally and mathematically
-<span class="citation">(Phillips 2020)</span>. Although biomedical
-knowledge does not use formulas to describe biological processes like
-mathematics, physics, and chemistry, knowledge networks can establish
-the mechanisms involved in biological processes <span class="citation">(Martin and Baggio 2020)</span>. For example,
-biologists usually use nodes to represent genes and edges to represent
-regulatory relationships between genes.</p>
+<span class="citation">(<a href="#ref-phillips_sheavinguniversal_2020">Phillips 2020</a>)</span>.
+Although biomedical knowledge does not use formulas to describe
+biological processes like mathematics, physics, and chemistry, knowledge
+networks can establish the mechanisms involved in biological processes
+<span class="citation">(<a href="#ref-martin_modelling_2020">Martin and
+Baggio 2020</a>)</span>. For example, biologists usually use nodes to
+represent genes and edges to represent regulatory relationships between
+genes.</p>
 <p>Once the knowledge network is having constructed, we can simulate how
 humans utilize LTM by choosing the random walk approach. Numerous
 studies have shown that random walk can effectively simulate human
-semantic cognition <span class="citation">(S. Ji et al. 2022; Kumar,
-Steyvers, and Balota 2021)</span> and is consistent with the human
-memory retrieval process. Compared to the outputs of spreading
-activation, that of computer-simulated random walks showed higher
-correlation with the spreading activation model’s results <span class="citation">(Abbott, Austerweil, and Griffiths 2015; Zemla and
-Austerweil 2018; Siew 2019)</span>. Furthermore, brain scientists have
-used random walk algorithms to explore theoretical concepts <span class="citation">(Abbott, Austerweil, and Griffiths 2015; Siew
-2019)</span> or simulate specific human cognitive behaviors to reduce
-experimental errors introduced by external environments <span class="citation">(Abbott, Austerweil, and Griffiths 2015; Zemla and
-Austerweil 2018)</span>.</p>
+semantic cognition <span class="citation">(<a href="#ref-ji_survey_2022">S. Ji et al. 2022</a>; <a href="#ref-kumar_semantic_2021">Kumar, Steyvers, and Balota
+2021</a>)</span> and is consistent with the human memory retrieval
+process. Compared to the outputs of spreading activation, that of
+computer-simulated random walks showed higher correlation with the
+spreading activation model’s results <span class="citation">(<a href="#ref-abbott_random_2015">Abbott, Austerweil, and Griffiths
+2015</a>; <a href="#ref-zemla_estimating_2018">Zemla and Austerweil
+2018</a>; <a href="#ref-siew_spreadr_2019">Siew 2019</a>)</span>.
+Furthermore, brain scientists have used random walk algorithms to
+explore theoretical concepts <span class="citation">(<a href="#ref-abbott_random_2015">Abbott, Austerweil, and Griffiths
+2015</a>; <a href="#ref-siew_spreadr_2019">Siew 2019</a>)</span> or
+simulate specific human cognitive behaviors to reduce experimental
+errors introduced by external environments <span class="citation">(<a href="#ref-abbott_random_2015">Abbott, Austerweil, and Griffiths
+2015</a>; <a href="#ref-zemla_estimating_2018">Zemla and Austerweil
+2018</a>)</span>.</p>
 <p>Similar to the repeated, random selection of various possible
 solutions in the human brain, the random walk simulates the random
 events that exists in individual problem-solving and decision-making
 processes. As a diffusion model, it is applicable to a wide range of
-situations, even computer-simulated human societies <span class="citation">(Park et al. 2023)</span>, demonstrating the broad
-applicability of such computer models to many different biological
-scenarios.</p>
+situations, even computer-simulated human societies <span class="citation">(<a href="#ref-park_generative_2023">Park et al.
+2023</a>)</span>, demonstrating the broad applicability of such computer
+models to many different biological scenarios.</p>
 </div>
 <div class="section level2">
 <h2 id="conclusion">5. Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
-<p>Humans excel at employing existing problem-solving strategies <span class="citation">(Kaula 1995)</span>. With the rapid advancement of
-computer technology, there has been a surge in research articles on drug
-repositioning aided by computational biology and bioinformatics. Figure
-<span class="math inline">\(\ref{fig:banana}\)</span> demonstrates that
-the relative number of articles on drug repositioning included in
-PubMed, shows an increasing trend over the years with a more significant
-rise in recent years. The calculation method also exhibits the same
-increasing trend. The <em>banana</em> metric has proven effective in
-quantifying and analyzing research interest trends across various
-fields, which is defined as the number of articles retrieved using
-<em>banana</em> as a keyword per year <span class="citation">(Dalmaijer
-et al. 2021)</span>.</p>
+<p>Humans excel at employing existing problem-solving strategies <span class="citation">(<a href="#ref-kaula_problem_1995">Kaula
+1995</a>)</span>. With the rapid advancement of computer technology,
+there has been a surge in research articles on drug repositioning aided
+by computational biology and bioinformatics. Figure <span class="math inline">\(\ref{fig:banana}\)</span> demonstrates that the
+relative number of articles on drug repositioning included in PubMed,
+shows an increasing trend over the years with a more significant rise in
+recent years. The calculation method also exhibits the same increasing
+trend. The <em>banana</em> metric has proven effective in quantifying
+and analyzing research interest trends across various fields, which is
+defined as the number of articles retrieved using <em>banana</em> as a
+keyword per year <span class="citation">(<a href="#ref-dalmaijer_banana_2021">Dalmaijer et al. 2021</a>)</span>.</p>
 <div class="figure">
 <img src="img/banana.png" alt="\label{fig:banana}**Bibliometric analysis for drug repurposing. **Drug repurposing gains significant attention since 2010. We adopted banana scale to depict this trend." width="100%"><p class="caption">
 <strong>Bibliometric analysis for drug repurposing. </strong>Drug
@@ -1163,33 +1193,24 @@ Common Liver Diseases from <span>CT</span> Scan Images.”</span>
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Yinchun Su.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Yinchun Su.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

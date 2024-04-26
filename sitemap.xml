@@ -1,111 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://labyrinth.yinchun.su/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://labyrinth.yinchun.su/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://labyrinth.yinchun.su/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/articles/labyrinth.html</loc>
+    <loc>https://labyrinth.yinchun.su/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/preface.html</loc>
+    <loc>https://labyrinth.yinchun.su/articles/labyrinth.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://labyrinth.yinchun.su/articles/preface.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://labyrinth.yinchun.su/articles/training.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://labyrinth.yinchun.su/authors.html</loc>
   </url>
   <url>
-    <loc>/reference/activation_rate.html</loc>
+    <loc>https://labyrinth.yinchun.su/index.html</loc>
   </url>
   <url>
-    <loc>/reference/alias2SymbolUsingNCBI.html</loc>
+    <loc>https://labyrinth.yinchun.su/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/assert_dgCMatrix.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/activation_rate.html</loc>
   </url>
   <url>
-    <loc>/reference/disease_ids.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/alias2SymbolUsingNCBI.html</loc>
   </url>
   <url>
-    <loc>/reference/disease_impact_score.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/assert_dgCMatrix.html</loc>
   </url>
   <url>
-    <loc>/reference/drug_annot.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/disease_ids.html</loc>
   </url>
   <url>
-    <loc>/reference/gene_disease.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/disease_impact_score.html</loc>
   </url>
   <url>
-    <loc>/reference/get_neighbors.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/drug_annot.html</loc>
   </url>
   <url>
-    <loc>/reference/gradient.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/gene_disease.html</loc>
   </url>
   <url>
-    <loc>/reference/graph.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/get_neighbors.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/gradient.html</loc>
   </url>
   <url>
-    <loc>/reference/is.dgCMatrix.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/graph.html</loc>
   </url>
   <url>
-    <loc>/reference/labyrinth-package.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/load_data.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/is.dgCMatrix.html</loc>
   </url>
   <url>
-    <loc>/reference/mesh_annot.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/labyrinth-package.html</loc>
   </url>
   <url>
-    <loc>/reference/mesh_hierarchy.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/load_data.html</loc>
   </url>
   <url>
-    <loc>/reference/mesh_synonyms.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/mesh_annot.html</loc>
   </url>
   <url>
-    <loc>/reference/model.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/mesh_hierarchy.html</loc>
   </url>
   <url>
-    <loc>/reference/ncbi_info.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/mesh_synonyms.html</loc>
   </url>
   <url>
-    <loc>/reference/ppi.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/model.html</loc>
   </url>
   <url>
-    <loc>/reference/predict_drug.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/ncbi_info.html</loc>
   </url>
   <url>
-    <loc>/reference/random_walk.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/ppi.html</loc>
   </url>
   <url>
-    <loc>/reference/sigmoid.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/predict_drug.html</loc>
   </url>
   <url>
-    <loc>/reference/speech.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/random_walk.html</loc>
   </url>
   <url>
-    <loc>/reference/spread_gram.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/sigmoid.html</loc>
   </url>
   <url>
-    <loc>/reference/spread_gram_1.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/speech.html</loc>
   </url>
   <url>
-    <loc>/reference/transfer_activation.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/spread_gram.html</loc>
   </url>
   <url>
-    <loc>/reference/update_gene_symbol.html</loc>
+    <loc>https://labyrinth.yinchun.su/reference/spread_gram_1.html</loc>
+  </url>
+  <url>
+    <loc>https://labyrinth.yinchun.su/reference/transfer_activation.html</loc>
+  </url>
+  <url>
+    <loc>https://labyrinth.yinchun.su/reference/update_gene_symbol.html</loc>
   </url>
 </urlset>
