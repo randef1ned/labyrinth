@@ -39,12 +39,11 @@ jobs:
         sudo dnf install R-CRAN-devtools R-CRAN-checkmate R-CRAN-RcppEigen R-CRAN-fastmatch R-CRAN-tidyverse R-CRAN-pkgdown R-CRAN-data.table R-CRAN-igraph R-CRAN-knitr R-CRAN-magrittr R-CRAN-markdown R-CRAN-testthat R-CRAN-memuse R-CRAN-pryr -y
         # Install other packages
         Rscript -e "install.packages(c('matrixStats', 'RcppProgress', 'rpca', 'BiocManager'), repo = 'https://cloud.r-project.org/')"
-        Rscript -e "BiocManager::install('sparseMatrixStats', ask = FALSE, update = FALSE)"
+        Rscript -e "BiocManager::install('sparseMatrixStats', ask = FALSE, update = TRUE)"
         # Clone `diffusr` package
-        # git clone https://github.com/randef1ned/diffusr.git
-        # R CMD INSTALL diffusr
-        Rscript -e "remotes::install_github('randef1ned/diffusr', upgrade = 'always')"
-      
+        git clone https://github.com/randef1ned/diffusr.git
+        R CMD INSTALL diffusr
+        
     - name: Build site
       run: |
         devtools::document()
