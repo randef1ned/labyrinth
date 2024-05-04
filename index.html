@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">labyrinth</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="labyrinth">Labyrinth<a class="anchor" aria-label="anchor" href="#labyrinth"></a>
 </h1></div>
-<p><a href="https://github.com/randef1ned/labyrinth" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.2.3-blue.svg" alt="Current devel version: 0.2.3"></a> <a href="https://www.repostatus.org/#wip" class="external-link"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a> <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL_v2-blue.svg" alt="License: GPL v2"></a> <a href="https://app.codacy.com/gh/randef1ned/labyrinth/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade" class="external-link"><img src="https://app.codacy.com/project/badge/Grade/09b138b2fa9242229f081cd180f6fc91" alt="Codacy Badge"></a> <a href="https://makeapullrequest.com" class="external-link"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a> <a href="https://github.com/randef1ned/labyrinth/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/randef1ned/labyrinth.svg" alt="Last commit"></a> <a href="https://github.com/randef1ned/labyrinth" class="external-link"><img src="https://img.shields.io/github/languages/code-size/randef1ned/labyrinth.svg" alt="Code size"></a></p>
+<p><a href="https://github.com/randef1ned/labyrinth" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.3.0-blue.svg" alt="Current devel version: 0.3.0"></a> <a href="https://www.repostatus.org/#wip" class="external-link"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a> <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" class="external-link"><img src="https://img.shields.io/badge/License-GPL_v2-blue.svg" alt="License: GPL v2"></a> <a href="https://app.codacy.com/gh/randef1ned/labyrinth/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade" class="external-link"><img src="https://app.codacy.com/project/badge/Grade/09b138b2fa9242229f081cd180f6fc91" alt="Codacy Badge"></a> <a href="https://makeapullrequest.com" class="external-link"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a> <a href="https://github.com/randef1ned/labyrinth/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/randef1ned/labyrinth.svg" alt="Last commit"></a> <a href="https://github.com/randef1ned/labyrinth" class="external-link"><img src="https://img.shields.io/github/languages/code-size/randef1ned/labyrinth.svg" alt="Code size"></a></p>
 <p>Labyrinth is a human-inspired computational framework for personalized drug prioritization.</p>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
@@ -98,7 +98,7 @@
 <p>We recommended these dependencies to be installed:</p>
 <ul>
 <li>
-<strong>R (≥ 4.3.0)</strong>: We developed this R package using R version 4.3.3.</li>
+<strong>R (≥ 4.3.0)</strong>: We developed this R package using R version 4.3.x.</li>
 <li>
 <strong>Python</strong>: Python is required for drawing plots in demos. It is recommended to have Python and <code>seaborn</code> installed, as the <code>reticulate</code> package will use the system’s Python installation.</li>
 <li>
@@ -106,7 +106,7 @@
 <li>
 <strong>Intel oneAPI Math Kernel Library (oneMKL)</strong>: This library can further enhance mathematical performance, especially on Intel processors. oneMKL is not required but highly recommended.</li>
 </ul>
-<p>If you encounter any issues while running this package on other operating system, please open an <a href="https://github.com/randef1ned/labyrinth/issues" class="external-link">issue</a>.</p>
+<p>It would takes less than ten minutes to install this package. If you encounter any issues while running this package on other operating system, please open an issue.</p>
 </div>
 <div class="section level2">
 <h2 id="before-installation">Before installation<a class="anchor" aria-label="anchor" href="#before-installation"></a>
@@ -152,7 +152,7 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Load the package using <code><a href="https://github.com/randef1ned/labyrinth" class="external-link">library(labyrinth)</a></code>. We provide a vignette for the package that can be called using: <code><a href="articles/labyrinth.html">vignette("labyrinth")</a></code>. Alternatively, you can view the online version on <a href="https://labyrinth.yinchun.su/articles/labyrinth">website</a> or <a href="doc/labyrinth_knit.html">GitHub</a>. Basically that is all you have to know.</p>
+<p>Load the package using <code><a href="https://github.com/randef1ned/labyrinth" class="external-link">library(labyrinth)</a></code>. We provide a vignette for the package that can be called using: <code><a href="articles/labyrinth.html">vignette("labyrinth")</a></code>. Alternatively, you can view the online version on <a href="doc/labyrinth_knit.html">GitHub</a>, or <a href="https://labyrinth.yinchun.su/articles/labyrinth"><code>pkgdown</code> documentation</a>. The examples I provided would take several minutes to run on a normal desktop computer. Basically that is all you have to know.</p>
 <p><a href="doc/training_knit.html">This documentation</a> contains information about the contents and the necessary information for training the model used in this project. The <code>tools/</code> folder contains all the code and scripts required for constructing your own model, so that you can understand the technical details. Besides, you can refer to <a href="doc/preface_knit.html">this documentation</a> for the background and inspirations behind the overall workflow of `labyrinth.</p>
 </div>
 <div class="section level2">
@@ -199,8 +199,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Yinchun Su <br><small class="roles"> Author, maintainer </small>  </li>
-<li><a href="authors.html">More about authors...</a></li>
+<li>Junwei Han <br><small class="roles"> Author, maintainer, contributor </small>  </li>
+<li>Yinchun Su <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -211,7 +211,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Yinchun Su.</p>
+  <p>Developed by Junwei Han, Yinchun Su.</p>
 </div>
 
 <div class="pkgdown-footer-right">

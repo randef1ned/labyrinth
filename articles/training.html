@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">labyrinth</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,28 +112,28 @@ repository, it is sufficient to download and install the appropriate
 <code>epel-release</code> RPM. Then R can be installed as described in
 the <strong>Fedora</strong> section.</p>
 <ol style="list-style-type: decimal">
-<li>CentOS Stream 9</li>
-</ol>
+<li>
+<p>CentOS Stream 9</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">sudo</span> dnf config-manager <span class="at">--set-enabled</span> crb</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">sudo</span> dnf install epel-release epel-next-release <span class="at">-y</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Rocky Linux 9, AlmaLinux 9, and RHEL 9</li>
-</ol>
+</li>
+<li>
+<p>Rocky Linux 9, AlmaLinux 9, and RHEL 9</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> dnf config-manager <span class="at">--set-enabled</span> crb</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sudo</span> dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm <span class="at">-y</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>CentOS Stream 8</li>
-</ol>
+</li>
+<li>
+<p>CentOS Stream 8</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> dnf config-manager <span class="at">--set-enabled</span> powertools</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">sudo</span> dnf install epel-release epel-next-release <span class="at">-y</span></span></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li>Rocky Linux 8, AlmaLinux 8, and RHEL 8</li>
-</ol>
+</li>
+<li>
+<p>Rocky Linux 8, AlmaLinux 8, and RHEL 8</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> dnf config-manager <span class="at">--set-enabled</span> powertools</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sudo</span> dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm <span class="at">-y</span></span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>CentOS 7 and RHEL 7</li>
-</ol>
+</li>
+<li>
+<p>CentOS 7 and RHEL 7</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> yum-config-manager <span class="at">--enable</span> extras</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">sudo</span> yum install dnf <span class="at">-y</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">sudo</span> dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm <span class="at">-y</span></span>
@@ -146,7 +146,7 @@ the <strong>Fedora</strong> section.</p>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="st">[puias_computational]</span></span>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="st">name=PUIAS computational Base </span><span class="va">$releasever</span><span class="st"> - </span><span class="va">$basearch</span></span>
 <span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="st">mirrorlist=http://puias.math.ias.edu/data/puias/computational/</span><span class="va">$releasever</span><span class="st">/</span><span class="va">$basearch</span><span class="st">/mirrorlist</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="st">#baseurl=http://puias.math.ias.edu/data/puias/computational/</span><span class="va">$releasever</span><span class="st">/</span><span class="va">$basearch</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="st"># baseurl=http://puias.math.ias.edu/data/puias/computational/</span><span class="va">$releasever</span><span class="st">/</span><span class="va">$basearch</span></span>
 <span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="st">enabled=1</span></span>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="st">gpgcheck=1</span></span>
 <span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="st">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puias</span></span>
@@ -154,6 +154,8 @@ the <strong>Fedora</strong> section.</p>
 <span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="fu">sudo</span> mv /tmp/puias_computational.repo /etc/yum.repos.d</span>
 <span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a></span>
 <span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="fu">sudo</span> dnf update <span class="at">-y</span></span></code></pre></div>
+</li>
+</ol>
 </div>
 <div class="section level3">
 <h3 id="fedora">Fedora<a class="anchor" aria-label="anchor" href="#fedora"></a>
@@ -171,24 +173,26 @@ the <strong>Fedora</strong> section.</p>
 <p>This R package relies on several Python packages. Users can install
 these packages using one of the following methods:</p>
 <ol style="list-style-type: decimal">
-<li>System package manager on Linux</li>
-</ol>
+<li>
+<p>System package manager on Linux</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># On Fedora, you can run:</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">sudo</span> dnf install python3-numpy python3-sklearn python3-scipy python3-seaborn python3-tqdm python3-beautifulsoup4 python3-selenium python3-lxml </span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># On Debian, you can run:</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">sudo</span> apt install python3-numpy python3-sklearn-pandas python3-scipy python3-seaborn python3-tqdm python3-bs4 python3-selenium python3-lxml</span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Python pip</li>
-</ol>
+</li>
+<li>
+<p>Python pip</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">pip3</span> install numpy scikit-learn scipy seaborn tqdm beautifulsoup4 selenium lxml</span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Anaconda / Miniconda</li>
-</ol>
+</li>
+<li>
+<p>Anaconda / Miniconda</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> labyrinth numpy scikit-learn scipy seaborn tqdm beautifulsoup4 selenium lxml r-tidyverse r-devtools r-rcppeigen r-rcppprogress r-fastmatch r-rpca r-future.apply r-pbapply r-dbi r-rsqlite r-bursts r-patchwork r-furrr r-datapreparation r-tokenizers r-reticulate r-knitr r-progressr r-future.callr r-hrbrthemes r-proc r-ggthemes r-meta r-ggally r-matrixtests r-corrplot r-statix bioconductor-tcgabiolinks bioconductor-clusterprofiler bioconductor-fgsea bioconductor-deseq2 bioconductor-m3c <span class="at">-c</span> bioconda <span class="at">-c</span> conda-forge</span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">conda</span> activate labyrinth</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"devtools::install_version('dbparser', version = '1.2.0')"</span></span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"remotes::install_github('randef1ned/word2vec')"</span></span></code></pre></div>
+</li>
+</ol>
 </div>
 <div class="section level3">
 <h3 id="r">R<a class="anchor" aria-label="anchor" href="#r"></a>
@@ -198,6 +202,11 @@ these packages using one of the following methods:</p>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_version.html" class="external-link">install_version</a></span><span class="op">(</span><span class="st">'dbparser'</span>, version <span class="op">=</span> <span class="st">'1.2.0'</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'randef1ned/word2vec'</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'randef1ned/diffusr'</span><span class="op">)</span></span></code></pre></div>
+<p>This project uses a <a href="https://github.com/randef1ned/diffusr" class="external-link">custom fork</a> of the
+diffusr package, which is maintained by <span class="citation">@randef1ned</span>. This fork optimizes the
+computational execution of the package, providing improved performance
+compared to the original version. <a href="https://diffusr.yinchun.su/" class="external-link">View the documentation
+online</a>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -210,16 +219,16 @@ code and scripts required for the pre-processing and processing steps of
 <h3 id="preprocessing-steps">Preprocessing steps<a class="anchor" aria-label="anchor" href="#preprocessing-steps"></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li>Parse the drug names:</li>
-</ol>
+<li>
+<p>Parse the drug names:</p>
 <ul>
 <li>
 <code>extract_names.Rmd</code>: This R Markdown file is used for
 parsing and extracting names from the data.</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Download and read the data:</li>
-</ol>
+</li>
+<li>
+<p>Download and read the data:</p>
 <ul>
 <li>
 <code>parse_wos.py</code>: This Python script reads and parses the
@@ -237,9 +246,9 @@ the clinical trials data.</li>
 <code>clean_wos.py</code>: This Python script cleans and
 preprocesses the WoS data.</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Identify stopwords and run word2vec:</li>
-</ol>
+</li>
+<li>
+<p>Identify stopwords and run word2vec:</p>
 <ul>
 <li>
 <code>identify_stopwords.Rmd</code>: This R Markdown file is used to
@@ -251,63 +260,107 @@ algorithm on the tokenized data.</li>
 <code>compute_distance.R</code>: This R script computes the
 distances between the word2vec embeddings for each drug.</li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Construct large knowledge network:</li>
-</ol>
+</li>
+<li>
+<p>Construct large knowledge network:</p>
 <ul>
 <li>
 <code>build_network.R</code>: This R script builds the large network
 by linking the clinical trials IDs and paper IDs.</li>
 </ul>
-<ol start="5" style="list-style-type: decimal">
-<li>Extract the stages of the drugs:</li>
-</ol>
+</li>
+<li>
+<p>Extract the stages of the drugs:</p>
 <ul>
 <li>
 <code>drug_status.R</code>: This R script extracts the stages of the
 drugs from the data.</li>
 </ul>
+</li>
+</ol>
 </div>
 <div class="section level3">
 <h3 id="construct-the-model-of-labyrinth-and-validate">Construct the model of <code>labyrinth</code> and validate<a class="anchor" aria-label="anchor" href="#construct-the-model-of-labyrinth-and-validate"></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li>Construct the main knowledge network:</li>
-</ol>
+<li>
+<p>Construct the main knowledge network:</p>
 <ul>
 <li>
 <code>main_network.R</code>: This R script constructs the main
 network for the project.</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Compute the details in the citation network:</li>
-</ol>
+</li>
+<li>
+<p>Compute the details in the citation network:</p>
 <ul>
 <li>
 <code>citation_metric.R</code>: This R script computes various
 metrics and details in the citation network.</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Download MeSH structures for validation:</li>
-</ol>
+</li>
+<li>
+<p>Download MeSH structures for validation:</p>
 <ul>
 <li>
 <code>download_mesh_structure.py</code>: This Python script
 downloads the MeSH structure data for validation purposes.</li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Download TCGA and process the data for validation:</li>
-</ol>
+</li>
+<li>
+<p>Download TCGA and process the data for validation:</p>
 <ul>
 <li>
 <code>download_tcga.R</code>: This R script downloads and processes
 the TCGA (The Cancer Genome Atlas) data for validation.</li>
 </ul>
+</li>
+</ol>
 </div>
 </div>
 <div class="section level2">
 <h2 id="data-preparation">Data preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
 </h2>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th>Data</th>
+<th>Link</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>ChEMBL</td>
+<td><a href="http://doi.org/10.6019/CHEMBL.database.32" class="external-link uri">http://doi.org/10.6019/CHEMBL.database.32</a></td>
+</tr>
+<tr class="even">
+<td>UniChEM</td>
+<td><a href="https://ftp.ebi.ac.uk/pub/databases/chembl/UniChem/data/table_dumps/" class="external-link uri">https://ftp.ebi.ac.uk/pub/databases/chembl/UniChem/data/table_dumps/</a></td>
+</tr>
+<tr class="odd">
+<td>DrugBank</td>
+<td><a href="https://go.drugbank.com/releases/5-1-10" class="external-link uri">https://go.drugbank.com/releases/5-1-10</a></td>
+</tr>
+<tr class="even">
+<td>Comparative Toxicogenomic Database</td>
+<td><a href="https://ctdbase.org/downloads/" class="external-link uri">https://ctdbase.org/downloads/</a></td>
+</tr>
+<tr class="odd">
+<td>Cochrane Library</td>
+<td><a href="https://www.cochranelibrary.com/central" class="external-link uri">https://www.cochranelibrary.com/central</a></td>
+</tr>
+<tr class="even">
+<td>GSE65185</td>
+<td><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65185" class="external-link uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65185</a></td>
+</tr>
+<tr class="odd">
+<td>DisGENET</td>
+<td><a href="https://www.disgenet.org/download/sqlite/current/2020" class="external-link uri">https://www.disgenet.org/download/sqlite/current/2020</a></td>
+</tr>
+</tbody>
+</table>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -316,7 +369,7 @@ the TCGA (The Cancer Genome Atlas) data for validation.</li>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Yinchun Su.</p>
+  <p>Developed by Junwei Han, Yinchun Su.</p>
 </div>
 
 <div class="pkgdown-footer-right">
