@@ -165,7 +165,7 @@ load_data <- function(required_file) {
   user_dir <- R_user_dir("labyrinth", which = "data")
   model_path <- file.path(user_dir, required_file)
   data_path <- system.file("extdata", required_file, package = "labyrinth")
-  
+
   e <- new.env()
   if (file.exists(data_path)) {
     load(data_path, envir = e)
@@ -189,7 +189,7 @@ load_data <- function(required_file) {
       }
     }
   }
-  
+
   variable_name <- ls(envir = e)
   return(e[[variable_name[1]]])
 }

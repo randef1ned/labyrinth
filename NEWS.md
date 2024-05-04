@@ -1,3 +1,7 @@
+## labyrinth v0.3.0
+
+* Updated docs
+
 ## labyrinth v0.2.3
 
 * Added `predict()` function
@@ -51,4 +55,3 @@
 ## labyrinth v0.0.1
 
 * Initial submission
-

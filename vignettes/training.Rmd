@@ -2,11 +2,11 @@
 title: "Training the model"
 author: "Yinchun Su"
 output:
-  html_document:
-    toc: true
-    standalone: true
   md_document:
     variant: gfm
+    toc: true
+    standalone: true
+  html_document:
     toc: true
     standalone: true
 vignette: >
@@ -73,7 +73,7 @@ To use the EPEL repository, it is sufficient to download and install the appropr
    [puias_computational]
    name=PUIAS computational Base $releasever - $basearch
    mirrorlist=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch/mirrorlist
-   #baseurl=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch
+   # baseurl=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch
    enabled=1
    gpgcheck=1
    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puias
@@ -132,6 +132,7 @@ devtools::install_version('dbparser', version = '1.2.0')
 remotes::install_github('randef1ned/word2vec')
 remotes::install_github('randef1ned/diffusr')
 ```
+This project uses a [custom fork](https://github.com/randef1ned/diffusr) of the diffusr package, which is maintained by @randef1ned. This fork optimizes the computational execution of the package, providing improved performance compared to the original version. [View the documentation online](https://diffusr.yinchun.su/).
 
 
 ## Folder structure

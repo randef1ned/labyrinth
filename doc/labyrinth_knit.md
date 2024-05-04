@@ -15,11 +15,11 @@ WSL](https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL).
 
 To get started, you will need to prepare the following dependencies.
 
-1.  **Fedora** or **Red Hat Enterprise Linux** with or without WSL.
+1. **Fedora** or **Red Hat Enterprise Linux** with or without WSL.
 
-2.  **R 4.3**.
+2. **R 4.3**.
 
-3.  **Required libraries**.
+3. **Required libraries**.
 
 ``` r
 # pROC ggthemes 
@@ -225,11 +225,7 @@ p1 + p2 + plot_layout(guides = 'collect') +
   theme(legend.position = 'bottom')
 ```
 
-<div class="figure">
-
-<img src="img/unnamed-chunk-5-1.png" />
-</div>
-![](img/unnamed-chunk-5-1.png)
+![Figure 3](../vignettes/img/unnamed-chunk-5-1.png)
 
 ### Reproducibility statement
 

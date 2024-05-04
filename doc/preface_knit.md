@@ -530,7 +530,7 @@ fields, which is defined as the number of articles retrieved using
 
 <div class="figure">
 
-<img src="img/banana.png" alt="\label{fig:banana}**Bibliometric analysis for drug repurposing. **Drug repurposing gains significant attention since 2010. We adopted banana scale to depict this trend." width="100%" />
+<img src="../vignettes/img/banana.png" alt="\label{fig:banana}**Bibliometric analysis for drug repurposing. **Drug repurposing gains significant attention since 2010. We adopted banana scale to depict this trend." width="100%" />
 <p class="caption">
 **Bibliometric analysis for drug repurposing. **Drug repurposing gains
 significant attention since 2010. We adopted banana scale to depict this

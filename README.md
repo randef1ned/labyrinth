@@ -31,12 +31,12 @@ I developed and tested `labyrinth` on Fedora Linux version 38 and 39. While this
 
 We recommended these dependencies to be installed:
 
-- **R (≥ 4.3.0)**: We developed this R package using R version 4.3.3.
+- **R (≥ 4.3.0)**: We developed this R package using R version 4.3.x.
 - **Python**: Python is required for drawing plots in demos. It is recommended to have Python and `seaborn` installed, as the `reticulate` package will use the system's Python installation.
 - **OpenMP**: This package uses OpenMP for parallelization and multithreading if OpenMP exists. Having OpenMP installed can significantly improve performance.
 - **Intel oneAPI Math Kernel Library (oneMKL)**: This library can further enhance mathematical performance, especially on Intel processors. oneMKL is not required but highly recommended.
 
-It would takes less than ten minutes to install this package. If you encounter any issues while running this package on other operating system, please open an [issue](https://github.com/randef1ned/labyrinth/issues).
+It would takes less than ten minutes to install this package. If you encounter any issues while running this package on other operating system, please open an issue.
 
 
 ## Before installation
@@ -98,7 +98,7 @@ Or you can download the pre-built binary packages from [Releases](https://github
 
 ## Usage
 
-Load the package using `library(labyrinth)`. We provide a vignette for the package that can be called using: `vignette("labyrinth")`. Alternatively, you can view the online version on [website](https://labyrinth.yinchun.su/articles/labyrinth) or [GitHub](doc/labyrinth_knit.md). The examples I provided would take several minutes to run on a normal desktop computer. Basically that is all you have to know.
+Load the package using `library(labyrinth)`. We provide a vignette for the package that can be called using: `vignette("labyrinth")`. Alternatively, you can view the online version on [GitHub](doc/labyrinth_knit.md), or [`pkgdown` documentation](https://labyrinth.yinchun.su/articles/labyrinth). The examples I provided would take several minutes to run on a normal desktop computer. Basically that is all you have to know.
 
 [This documentation](doc/training_knit.md) contains information about the contents and the necessary information for training the model used in this project. The `tools/` folder contains all the code and scripts required for constructing your own model, so that you can understand the technical details. Besides, you can refer to [this documentation](doc/preface_knit.md) for the background and inspirations behind the overall workflow of `labyrinth.
 

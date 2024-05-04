@@ -12,7 +12,7 @@ on:
 name: pkgdown
 
 jobs:
-  distribution-check:
+  pkgdown:
     runs-on: ubuntu-latest
     container:
       image: fedora:latest
@@ -48,7 +48,7 @@ jobs:
       run: |
         devtools::document()
         devtools::load_all()
-        pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        pkgdown::build_site_github_pages(new_process = FALSE, install = TRUE)
         pkgdown::build_reference(topics = 'random_walk')
       shell: Rscript {0}
 

@@ -358,4 +358,3 @@
 #' drug_id <- drug_annot$drug_id
 #' hist(table(drug_id))
 "drug_annot"
-
