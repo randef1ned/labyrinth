@@ -2,11 +2,11 @@
 title: "Training the model"
 author: "Yinchun Su"
 output:
-  md_document:
-    variant: gfm
+  html_document:
     toc: true
     standalone: true
-  html_document:
+  md_document:
+    variant: gfm
     toc: true
     standalone: true
 vignette: >

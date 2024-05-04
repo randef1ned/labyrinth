@@ -6,7 +6,7 @@ Date: 2023-12-31
 Authors@R: c(
     person("Junwei","Han", role = c("aut", "cre", "ctb"),
       email = "hanjunwei1981@163.com"),
-    person("Yinchun", "Su", role = "aut")
+    person("Yinchun", "Su", role = "aut"))
 Maintainer: Junwei Han <hanjunwei1981@163.com>
 Description: One paragraph description of what the package does
        as one or more full sentences. I can use Config/testthat/parallel as 
@@ -38,6 +38,7 @@ Suggests:
     knitr,
     magrittr,
     purrr,
+    tidyverse,
     rmarkdown,
     patchwork,
     testthat (>= 3.0.0),
