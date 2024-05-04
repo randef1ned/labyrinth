@@ -1,6 +1,6 @@
 # Labyrinth
 
-[![Current devel version: 0.2.3](https://img.shields.io/badge/devel%20version-0.2.3-blue.svg)](https://github.com/randef1ned/labyrinth)
+[![Current devel version: 0.3.0](https://img.shields.io/badge/devel%20version-0.3.0-blue.svg)](https://github.com/randef1ned/labyrinth)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/09b138b2fa9242229f081cd180f6fc91)](https://app.codacy.com/gh/randef1ned/labyrinth/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
@@ -36,7 +36,7 @@ We recommended these dependencies to be installed:
 - **OpenMP**: This package uses OpenMP for parallelization and multithreading if OpenMP exists. Having OpenMP installed can significantly improve performance.
 - **Intel oneAPI Math Kernel Library (oneMKL)**: This library can further enhance mathematical performance, especially on Intel processors. oneMKL is not required but highly recommended.
 
-If you encounter any issues while running this package on other operating system, please open an [issue](https://github.com/randef1ned/labyrinth/issues).
+It would takes less than ten minutes to install this package. If you encounter any issues while running this package on other operating system, please open an [issue](https://github.com/randef1ned/labyrinth/issues).
 
 
 ## Before installation
@@ -98,7 +98,7 @@ Or you can download the pre-built binary packages from [Releases](https://github
 
 ## Usage
 
-Load the package using `library(labyrinth)`. We provide a vignette for the package that can be called using: `vignette("labyrinth")`. Alternatively, you can view the online version on [website](https://labyrinth.yinchun.su/articles/labyrinth) or [GitHub](doc/labyrinth_knit.md). Basically that is all you have to know.
+Load the package using `library(labyrinth)`. We provide a vignette for the package that can be called using: `vignette("labyrinth")`. Alternatively, you can view the online version on [website](https://labyrinth.yinchun.su/articles/labyrinth) or [GitHub](doc/labyrinth_knit.md). The examples I provided would take several minutes to run on a normal desktop computer. Basically that is all you have to know.
 
 [This documentation](doc/training_knit.md) contains information about the contents and the necessary information for training the model used in this project. The `tools/` folder contains all the code and scripts required for constructing your own model, so that you can understand the technical details. Besides, you can refer to [this documentation](doc/preface_knit.md) for the background and inspirations behind the overall workflow of `labyrinth.
 

@@ -15,5 +15,153 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
-## Introduction
-ab
+## Setup
+
+The `labyrinth` framework was initially developed and tested on Fedora 39 with R 4.3, this vignette aims to demonstrate its ease of use on the Windows Subsystem for Linux (WSL) environment. Specifically, we will be presenting the results using [Fedora Remix for WSL](https://github.com/WhitewaterFoundry/Fedora-Remix-for-WSL).
+
+To get started, you will need to prepare the following dependencies.
+
+1. **Fedora** or **Red Hat Enterprise Linux** with or without WSL.
+
+2. **R 4.3**.
+
+3. **Required libraries**.
+```{r setup}
+# pROC ggthemes 
+library(tidyverse, igraph)
+library(patchwork)
+library(labyrinth)
+```
+
+With these installed and loaded, you will have a consistent environment for running the `labyrinth`.
+
+## Data preparation
+
+```{r}
+drug_disease_weight <- load_data('drug_disease_weight')
+```
+
+Load the pre-trained model.
+
+```{r}
+model <- load_data('model')
+dim(model)
+```
+
+The labyrinth model is trained by integrating knowledge from two major sources: text-based information from medical corpora and biological knowledge from functional interaction networks.
+
+For the text-based component, labyrinth:
+1. Extracts drug information (nomenclature, targets, and indications) from databases like DrugBank, CTD, and ChEMBL.
+2. Obtains clinical trial data from the Cochrane Library.
+3. Mines co-occurrence patterns in published literature from the Web of Science corpus.
+4. Preprocesses the text data from over 10 million publications, including stop word removal and term vectorization using Skip-gram models.
+5. Quantifies structured drug-disease relationships based on clinical trial phases, citation analysis, and network proximity between gene sets.
+
+For the biological component, labyrinth evaluates the network proximity between drug target modules and disease gene modules within a functional interactome network.
+
+The text-based and biological knowledge matrices are then integrated through probabilistic computations, simulating the process of storing relevant knowledge in long-term memory for decision-making.
+
+## Reproducibility example
+
+### Labyrinth learns mechanisms that mediate specific drug response
+
+To validate our approach, we initially evaluated the predictive accuracy across various diseases. This involved assessing the Spearman correlations between the priority scores assigned by labyrinth and the established weights in clinical trials, alongside proximity metrics for each drug-disease pair. Labyrinth exhibited moderate to high correlations, with coefficients of 0.60 for clinical trials and 0.80 for proximity, respectively.
+
+```{r}
+roc0 <- mutate(drug_disease_weight, weight = if_else(weight > 1, 1, 0)) %>%
+  pROC::roc(weight, score)
+roc1 <- mutate(drug_disease_weight, weight = if_else(weight > 1.8, 1, 0)) %>%
+  pROC::roc(weight, score)
+roc2 <- mutate(drug_disease_weight, weight = if_else(weight > 2, 1, 0)) %>%
+  pROC::roc(weight, score)
+roc3 <- mutate(drug_disease_weight, weight = if_else(weight > 3, 1, 0)) %>%
+  pROC::roc(weight, score)
+roc4 <- mutate(drug_disease_weight, weight = if_else(weight > 4, 1, 0)) %>%
+  pROC::roc(weight, score)
+p1 <- pROC::ggroc(list(
+  roc0, roc1, roc2, roc3, roc4
+)) +
+  scale_color_manual('Drug trials', labels = c(
+    paste('Stage 0:', round(roc0$auc, 3)),
+    paste('Stage 1:', round(roc1$auc, 3)),
+    paste('Stage 2:', round(roc2$auc, 3)),
+    paste('Stage 3:', round(roc3$auc, 3)),
+    paste('Stage 4:', round(roc4$auc, 3))
+  ), values = c('#cf4e9c', '#835921', '#8d59a3', '#368db9', '#302c2d')) +
+  ggthemes::theme_clean() +
+  theme(legend.position = 'left')
+rm(list = c('roc0', 'roc1', 'roc2', 'roc3', 'roc4'))
+```
+
+Subsequently, we extended our analysis to encompass all human diseases, aiming to assess the predictive performance across five clinical trial phases, including pre-clinical, phases 1 to 3, and approved treatments. We evaluated the prediction performance by Receiver Operating Characteristic Area Under the Curve (ROC-AUC). As illustrated in Figure 3A, the ROC-AUC values for all stages surpassed 0.90, indicating a predictive success rate of over 90% in distinguishing between drugs classified for clinical trial or non-clinical trial. 
+
+```{r}
+# We perform ROC analysis in every single disease
+disease_pred <- split(select(drug_disease_weight, weight, score), drug_disease_weight$mesh_id) %>%
+  map(~ arrange(.x, desc(weight)))
+disease_pred <- pbapply::pblapply(names(disease_pred), function(n) {
+  x <- disease_pred[[n]]
+  if (nth(x$weight, 2) > 1.5) {
+    ci <- suppressMessages({
+      x %>%
+        mutate(weight = if_else(weight > 1.5, 1, 0)) %>%
+        pROC::roc(weight, score, ci = TRUE) %>%
+        {as.numeric(.$ci)}
+    })
+    ret <- data.frame(mesh_id = n, ci_lower = ci[1], ci_upper = ci[3], auc = ci[2])
+  } else {
+    ret <- data.frame()
+  }
+  return(ret)
+}) %>% bind_rows()
+
+# Next, we divide the ROC and average them based on MeSH structures 
+mesh_ids <- unique(drug_disease_weight$mesh_id)
+
+data("mesh_annot")
+disease_cluster <- distinct(mesh_annot) %>%
+  mutate(parent_group = str_to_sentence(group_name)) %>%
+  select(!group_name) %>%
+  arrange(group_id) %>%
+  left_join(disease_pred, by = 'mesh_id') %>%
+  drop_na()
+
+disease_color <- group_by(disease_cluster, group_id) %>%
+  summarize(color = median(auc) > 0.911)
+p2 <- mutate(disease_cluster, parent_group = fct_reorder(parent_group, -group_id)) %>%
+  left_join(disease_color, by = 'group_id') %>%
+ggplot(aes(x = parent_group, y = auc, fill = color)) +
+  geom_boxplot(alpha = 0.4) +
+  geom_hline(aes(yintercept = 0.911), linetype = 'dashed') +
+  labs(x = 'Disease categories',
+      y = 'Prediction AUCs') +
+  coord_flip() +
+  scale_fill_manual(values = c('#9fcdc9', '#d4bfe0')) +
+  ggthemes::theme_clean() +
+  theme(legend.position = 'none',
+        axis.text.y = element_text('Arial Narrow'))
+
+```
+
+Notably, labyrinth exhibited high predictive accuracy in determining drug usability for Stage 3 across all disease categories except for occupational and stomatognathic diseases (Figure 3B). Also, cardiovascular, endocrine system diseases, and neoplasms garnered the most significant benefits from labyrinth. Detailed ROC-AUC predictions for all diseases are provided in Additional File 1.
+
+```{r}
+design <- "
+  11#222
+  222222
+  222222
+"
+p1 + p2 + plot_layout(guides = 'collect') +
+  plot_annotation(tag_levels = 'A') &
+  theme(legend.position = 'bottom')
+```
+### Reproducibility statement
+
+All other results in the article can be reproduced using standard R code.
+
+## Session info
+
+```{r}
+devtools::session_info()
+```
+

@@ -15,3 +15,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^tools$
 ^vignettes/*\.md$
+_pkgdown.yml

@@ -550,7 +550,8 @@ walk approach to simulate human abilities.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-abbott_random_2015" class="csl-entry">
 

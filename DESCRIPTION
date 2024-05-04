@@ -1,7 +1,7 @@
 Package: labyrinth
 Type: Package
 Title: Labyrinth: A Simulation of Knowledge Networks
-Version: 0.2.3
+Version: 0.3.0
 Date: 2023-12-31
 Authors@R: c(
     person("Yinchun","Su", role = c("aut", "cre"),
@@ -40,9 +40,14 @@ Suggests:
     magrittr,
     purrr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    patchwork,
+    testthat (>= 3.0.0),
+    devtools,
+    ggthemes,
+    pROC,
+    pbapply
 Config/testthat/edition: 3
 Depends: 
-    R (>= 4.0.0)
+    R (>= 4.1.0)
 LazyData: true
 VignetteBuilder: knitr

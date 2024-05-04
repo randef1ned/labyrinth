@@ -36,7 +36,7 @@ jobs:
         # Install the latest oneMKL (version 2024.1)
         sudo dnf update -y
         sudo dnf install pandoc ghostscript intel-oneapi-mkl R R-flexiblas flexiblas-* R-CoprManager make automake gcc rsync -y
-        sudo dnf install R-CRAN-devtools R-CRAN-checkmate R-CRAN-RcppEigen R-CRAN-fastmatch R-CRAN-tidyverse R-CRAN-pkgdown R-CRAN-data.table R-CRAN-igraph R-CRAN-knitr R-CRAN-magrittr R-CRAN-markdown R-CRAN-testthat R-CRAN-memuse R-CRAN-pryr -y
+        sudo dnf install R-CRAN-devtools R-CRAN-checkmate R-CRAN-RcppEigen R-CRAN-fastmatch R-CRAN-tidyverse R-CRAN-pkgdown R-CRAN-data.table R-CRAN-igraph R-CRAN-knitr R-CRAN-magrittr R-CRAN-markdown R-CRAN-testthat R-CRAN-ggthemes R-CRAN-pROC R-CRAN-pbapply R-CRAN-patchwork R-CRAN-memuse R-CRAN-pryr -y
         # Install other packages
         Rscript -e "install.packages(c('matrixStats', 'RcppProgress', 'rpca', 'BiocManager'), repo = 'https://cloud.r-project.org/')"
         Rscript -e "BiocManager::install('sparseMatrixStats', ask = FALSE, update = TRUE)"

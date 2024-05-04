@@ -162,34 +162,34 @@ load_data <- function(required_file) {
   required_file <- paste0(required_file, ".rda")
 
   # dirs
-  user_dir <- R_user_dir("labyrinth")
+  user_dir <- R_user_dir("labyrinth", which = "data")
   model_path <- file.path(user_dir, required_file)
   data_path <- system.file("extdata", required_file, package = "labyrinth")
-  ext_data <- FALSE
-  for (retry in 1:5) {
-    if (retry == 5) {
-      stop("Download failed.")
-    } else if (nchar(data_path)[1]) {
-      break
-    } else if (file.exists(model_path)) {
-      ext_data <- TRUE
-      break
-    } else {
-      if (!dir.exists(user_dir)) {
-        dir.create(user_dir, recursive = TRUE)
-      }
-      warning("No cached model file. Downloading...")
-      download.file(paste0("https://raw.githubusercontent.com/",
-                           "randef1ned/labyrinth/master/extdata/",
-                           required_file), model_path)
-    }
-  }
-
+  
   e <- new.env()
-  if (ext_data) {
+  if (file.exists(data_path)) {
+    load(data_path, envir = e)
+  } else if (file.exists(model_path)) {
     load(model_path, envir = e)
   } else {
-    load(data_path, envir = e)
+    if (!dir.exists(user_dir)) {
+      dir.create(user_dir, recursive = TRUE)
+    }
+    for (retry in 1:5) {
+      if (retry == 5) {
+        stop("Download failed.")
+      } else {
+        if (!dir.exists(user_dir)) {
+          dir.create(user_dir, recursive = TRUE)
+        }
+        warning("No cached model file. Downloading...")
+        download.file(paste0("https://raw.githubusercontent.com/",
+                             "randef1ned/labyrinth/master/inst/extdata/",
+                             required_file), model_path)
+      }
+    }
   }
-  return(e$model)
+  
+  variable_name <- ls(envir = e)
+  return(e[[variable_name[1]]])
 }
