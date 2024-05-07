@@ -1,0 +1,107 @@
+---
+title: Identify stopwords
+---
+
+## Read data count and randomize series of rows
+```{r}
+# information rows: 18030189
+library(tidyverse)
+library(tokenizers)
+library(reticulate)
+library(pbapply)
+compiler::enableJIT(3)
+con <- DBI::dbConnect(RMariaDB::MariaDB(), dbname = 'wos', host = 'localhost', 
+                      user = 'root', password = 'root')
+information_rows <- tbl(con, 'info_id') %>%
+  summarize(n = n()) %>%
+  collect() %>%
+  pull(n) %>% as.integer()
+
+selected_counts <- round(information_rows * 0.01)
+
+set.seed(42)
+selected_rows_id <- runif(selected_counts, min = 1, max = information_rows) %>%
+  round()
+
+selected_rows <- tbl(con, 'info') %>%
+  filter(row_id %in% selected_rows_id) %>%
+  select(title, abstract, keywords) %>%
+  collect()
+
+save(selected_rows, file = '../output/stopwords/selected_rows.Rdata')
+```
+
+## paste the words into lists, and tokenize them
+
+```{r}
+# read the mesh terms and drug name
+# in this situation, these names should considered as "stopwords"
+mesh_terms <- read.csv('../data/mesh/mesh.csv') %>%
+  pull(term) %>%
+  tokenize_word_stems()
+  # str_replace_all('[[:punct:][:blank:]]+', ' ')
+drug_names <- read_lines('../output/query_words.txt') %>%
+  str_replace_all('[[:punct:][:blank:]]+', ' ') %>%
+  as.list() %>%
+  str_split(' OR ') %>%
+  map(~ str_replace_all(.x, '"', '')) %>%
+  unlist()
+stop_names <- c(drug_names, mesh_terms) %>%
+  trimws() %>%
+  str_to_lower() %>%
+  unique() %>%
+  tokenize_word_stems()
+rm(list = c('mesh_terms', 'drug_names'))
+
+# search the stop names
+library(future)
+plan(multisession)
+text_split <- pblapply(seq_len(selected_counts), function(id) {
+  row <- as.list(unlist(selected_rows[id, ])) %>%
+    tokenize_word_stems()
+  # i am going to hand write a searching algorithm!
+  # holy fuck
+  row <- lapply(row, function(text) {
+    holy_id <- c()
+    for (stopname in stop_names) {
+      text_match <- match(text, stopname)
+      text_match <- text_match[!is.na(text_match)]
+      if (sum(text_match %in% seq_along(stopname)) == length(stopname) && text_match[1] == 1)
+      {
+        text_match <- match(stopname, text)
+        holy_id <- c(holy_id, text_match[!is.na(text_match)])
+      }
+    }
+    if (length(holy_id)) {
+      return(text[-holy_id])
+    } else {
+      return(text)
+    }
+  })
+  return(unlist(unname(row)))
+}, cl = 'future', future.seed = TRUE)
+
+# Remove NA and digits
+text_split <- lapply(text_split, function(text) {
+  digits <- grepl('[[:digit:]]', text)
+  return(na.omit(text[!digits]))
+})
+
+save(text_split, file = '../output/stopwords/text_split.Rdata')
+```
+
+## Identify stopwords using **stopwords**
+
+```{python}
+from stopwords.filter_words import run_stopword_statistics
+stop_words = run_stopword_statistics(r.list_texts, N_s = 100)
+```
+
+```{r}
+word_entropy <- data.table::fread('../output/stopwords/entropy.csv') %>%
+  rename(token = 1)
+stop_words <- word_entropy %>%
+  arrange(I) %>% 
+  filter(I < 0.2)
+write_lines(stop_words$token, file = '../data/stopwords/stopword_list.txt')
+

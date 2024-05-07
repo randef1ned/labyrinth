@@ -1,0 +1,293 @@
+---
+title: "Step 1. Extract names"
+# output: html_notebook
+---
+
+Load packages
+```{r setup}
+library(tidyverse)
+library(reticulate)
+knitr::opts_knit$set(root.dir = getwd())
+```
+
+## Get ChEMBL ID and other names
+
+```{r}
+id_cols <- data.table::fread('original_data/chembl/source.tsv.gz', na.strings = '') %>%
+  filter(NAME %in% c('chembl', 'drugbank', 'atlas', 'dailymed', 'clinicaltrials', 'rxnorm')) %>%
+  pull(SRC_ID)
+
+# Read reference table and extract the names in ChEMBL
+# The data is released on April 9, 2023
+compound_names <- data.table::fread('original_data/chembl/reference.tsv', na.strings = '') %>%
+  filter(ASSIGNMENT == 1, SRC_ID %in% id_cols) %>%
+  select(-ASSIGNMENT)
+gc(verbose = FALSE)
+
+# Save the data to disk, then reload RStudio
+# The data is released on April 9, 2023
+save(compound_names, file = 'data/chembl/compound_names.Rdata', compress = 'xz')
+
+```
+
+Load data directly
+```{r}
+load('../data/chembl/compound_names.Rdata')
+
+# Then convert the data frame to edge list
+chembl_names <- compound_names %>%
+  right_join((filter(., SRC_ID == 1) %>% 
+                select(-SRC_ID) %>% 
+                rename(from = 'SRC_COMPOUND_ID')), by = 'UCI') %>%
+  filter(SRC_ID != 1) %>%
+  select(-c(UCI:SRC_ID)) %>%
+  rename(to = 'SRC_COMPOUND_ID') %>%
+  relocate(from) %>%
+  mutate(to = str_to_upper(to)) %>%
+  arrange(from) %>%
+  distinct()
+```
+
+
+## Parse CTD data
+
+```{r}
+# Read CTD data and integrated them to edge list
+# https://ctdbase.org/downloads/, released on May 24, 2023
+# There is a warning, but not error
+ctd_compounds <- read_tsv('../original_data/ctd/CTD_chemicals.tsv.gz', 
+                          comment = '#', 
+                          col_names = FALSE,
+                          col_types = list(
+                            col_character(), col_character(), col_character(), 
+                            col_character(), col_character(), col_character(), 
+                            col_character(), col_character())) %>%
+  rename_with(~ c('ChemicalName', 'ChemicalID', 'CasRN', 'Definition', 'ParentIDs', 'TreeNumbers', 'ParentTreeNumbers', 'Synonyms'))
+save(ctd_compounds, file = '../data/ctd/ctd_compounds.Rdata', compress = 'xz')
+
+#load('../data/ctd/ctd_compounds.Rdata')
+ctd_compounds <- ctd_compounds %>%
+  select(ChemicalName, Synonyms) %>%
+  drop_na()
+
+ctd_compounds <- ctd_compounds %>%
+  select(ChemicalName, Synonyms) %>%
+  drop_na()
+# Iterate the dataframe and remove the delim
+library(future.apply)
+plan(multisession, workers = 8)
+ctd_names <- progressr::with_progress({
+  p <- progressr::progressor(along = 1:nrow(ctd_compounds))
+  ctd_names <- lapply(1:nrow(ctd_compounds), function(i) {
+    compound <- ctd_compounds$ChemicalName[i]
+    synonyms <- str_split(ctd_compounds$Synonyms[i], '[|]')[[1]]
+    p(sprintf("x=%g", i))
+    tibble(from = compound, to = synonyms)
+  }) %>%
+    bind_rows()
+}) %>%
+  mutate(across(everything(), str_to_upper))
+
+save(ctd_names, file = '../data/ctd/ctd_names.Rdata', compress = 'xz')
+```
+
+Load CTD data directly
+```{r}
+load('../data/ctd/ctd_names.Rdata')
+```
+
+## Parse drugbank database
+```{r}
+# Parse drugbank database using ropensci/dbparser v1.0.4
+# 2023-01-04
+devtools::install_version('dbparser', version = '1.2.0')
+library(dbparser)
+# dbdata <- get_xml_db_rows('../data/drugbank/full database.xml')
+read_drugbank_xml_db('../original_data/drugbank/full database.xml')
+# parse_drug_all(save_csv = TRUE, csv_path = 'data/drugbank', override_csv = TRUE)
+run_all_parsers(save_csv = TRUE, csv_path = '../original_data/drugbank', override_csv = TRUE)
+
+# parse targets data
+drug_targets <- data.table::fread('../original_data/drugbank/targets.csv') %>%
+  filter(organism == 'Humans') %>%
+  left_join((data.table::fread('../original_data/drugbank/targets_polypeptides_ext_id.csv') %>%
+  filter(resource == 'GenAtlas') %>%
+  rename(id = parent_key, target = identifier)), by = 'id') %>%
+  select(parent_key, target) %>%
+  rename(drug_id = 1) %>% 
+  drop_na()
+
+# Read drugbank data
+db_names <- data.table::fread('../original_data/drugbank/drug.csv', na.strings = '') %>%
+  select(primary_key, name) %>%
+  rename(from = 1, to = 2) %>%
+  bind_rows(data.table::fread('../original_data/drugbank/drug_international_brands.csv', na.strings = '') %>%
+              rename(to = 1, from = 3) %>%
+              select(from, to)) %>%
+  mutate(across(everything(), str_to_upper)) %>%
+  distinct()
+save(db_names, file = '../data/drugbank/db_brands.Rdata', compress = 'xz')
+```
+
+Load data directly
+```{r}
+load('../data/drugbank/db_brands.Rdata')
+```
+
+## Read drugbank external identifiers to ChEMBL
+```{r}
+db_externals <- data.table::fread('../original_data/drugbank/drug_external_identifiers.csv', na.strings = '') %>%
+  filter(resource %in% c('ChEMBL', 'KEGG Drug')) %>%
+  select(-resource) %>%
+  rename(from = 2, to = 1) %>%
+  drop_na()
+save(db_externals, file = '../data/drugbank/db_externals.Rdata', compress = 'xz')
+```
+
+Load data directly
+```{r}
+load('../data/drugbank/db_externals.Rdata')
+```
+
+## Read KEGG drug
+```{python}
+from pathlib import Path
+from re import split
+
+def read_kegg():
+
+    data_file = open(Path('../original_data/kegg_drug/drug.txt').absolute(), 'r')
+    data_lines = data_file.readlines()
+
+    # config
+    skip_compound = False
+    drug_name = ''
+    kegg_name = {}
+
+    for line in data_lines:
+        line = line.replace('\n', '').replace('\r', '')
+        if len(line):
+            line = split(r'\s{2,}', line)
+            # check if the first element is "///"
+            # "///": start a new compound
+            if line[0] == '///':
+                skip_compound = False
+                continue
+            # check if the first element is "ENTRY"
+            if line[0] == 'ENTRY':
+                if line[2] in ['Mixture', 'Formula']:
+                    skip_compound = True
+                    continue
+                drug_name = line[1]
+                kegg_name[drug_name] = []
+            elif line[0] not in ['NAME', '']:
+                skip_compound = True
+                continue
+            if not skip_compound:
+                kegg_name[drug_name].append(line[1] + ';')
+
+    for key, value in kegg_name.items():
+        # concatenate the names list and then split by ";"
+        name_list = ''.join(value).split(';')
+        new_list = []
+        for n in name_list:
+            if len(n):
+                new_list.append((n.split('(')[0]).strip())
+        kegg_name[key] = new_list
+
+        # kegg_name[key] = value
+    return kegg_name
+
+kegg_name = read_kegg()
+```
+
+```{r}
+kegg_name <- py$read_kegg()
+kegg_name <- lapply(names(kegg_name), function(x) {
+  data.frame(from = x, to = kegg_name[[x]])
+}) %>% bind_rows() %>%
+  filter(from != to) %>%
+  mutate(across(everything(), str_to_upper))
+```
+
+## Combine them all
+```{r}
+# Combine them all
+# Treat the same drug as a component in the network
+library(igraph)
+library(magrittr)
+chemical_graph <- bind_rows(chembl_names, ctd_names, db_names, db_externals) %>%
+  distinct() %>%
+  unique() %>%
+  graph_from_data_frame(directed = FALSE)
+graph_components <- components(chemical_graph)$membership
+```
+
+## Extract names
+```{r}
+# prevent a bug that may lead to system crash
+extracted_names <- split(names(V(chemical_graph)), components(chemical_graph)$membership) %>%
+  lapply(function(x) {
+# extracted_names <- lapply(chemical_names, function(x) {
+    x <- unique(x)
+    chembl_num <- add(str_starts(x, 'CHEMBL') %>% sum(),
+                      (str_starts(x, 'DB') & (str_length(x) == 7)) %>% sum()) %>%
+      add((str_starts(x, 'D') & (str_length(x) == 6)) %>% sum())
+    if (chembl_num) {
+      return(na.omit(x))
+    } else if (chembl_num == length(x)) {
+      return(NA)
+    } else {
+      return(NA)
+    }
+  }) %>%
+  keep(\(x) sum(is.na(x)) == 0)
+
+# Construct query words
+query_words <- lapply(extracted_names, function(x) {
+  omit <- str_starts(x, 'CHEMBL') | (str_starts(x, 'DB') & (str_length(x) == 7) | str_starts(x, 'D') & (str_length(x) == 6))
+  x <- x[!omit]
+  x <- sapply(x, function(y) {paste0('"', y, '"')})
+  return(paste(x, collapse = ' OR '))
+}) %>% unlist()
+
+# Save the mapping status
+map_chembl_to_id <- lapply(names(extracted_names), function(x) {
+  chembl_ids <- extracted_names[[x]]
+  chembl_ids <- chembl_ids[str_starts(chembl_ids, 'CHEMBL')]
+  ret <- data.frame(drug_id = x, chembl_id = NA)
+  if (length(chembl_ids)) {
+    data.frame(drug_id = x, chembl_id = chembl_ids)
+  }
+}) %>% bind_rows() %>%
+  drop_na() %>%
+  mutate(drug_id = str_replace_all(drug_id, 'drugdrug', ''))
+save(map_chembl_to_id, file = 'data/combined_names/map_chembl_to_id.Rdata')
+
+write_lines(query_words, file = '../output/query_words.txt', append = FALSE)
+```
+
+## Draw an information plot
+```{r}
+tribble(~dataset, ~compound_count, ~name_count,
+        'ChEMBL', length(unique(chembl_names$from)), nrow(chembl_names) - sum(str_starts(chembl_names$to, 'DB') & (str_length(chembl_names$to) == 7)),
+        'CTD', length(unique(ctd_names$from)), nrow(ctd_names),
+        'DrugBank', length(unique(db_names$from)), nrow(db_names),
+        'KEGG Drug', length(unique(kegg_name$from)), nrow(kegg_name),
+        'Total', length(query_words), sum(sapply(extracted_names, function(x) {
+          omit <- str_starts(x, 'CHEMBL') | (str_starts(x, 'DB') & (str_length(x) == 7))
+          return(length(x[!omit]))
+        })))
+
+```
+
+# Parse clinical trials csv
+```{r}
+# updated as current as on May 22, 2023
+trials_info <- data.table::fread('original_data/clinicaltrials/trials_info.csv', na.strings = '')
+trials_info <- trials_info %>%
+  mutate(across(phase:study_masking, as.factor))
+intervention <- data.table::fread('original_data/clinicaltrials/intervention.csv', na.strings = '')
+
+```
+
