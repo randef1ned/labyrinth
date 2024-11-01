@@ -79,8 +79,8 @@ repo_gpgcheck=1
 gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
 EOF
 sudo mv /tmp/oneAPI.repo /etc/yum.repos.d
-# Install the latest oneMKL (version 2024.0)
-sudo dnf install intel-oneapi-mkl
+# Install the latest oneMKL (version 2025.0)
+sudo dnf install intel-oneapi-mkl intel-oneapi-mkl-devel intel-oneapi-mkl-core
 ```
 
 
@@ -90,7 +90,7 @@ Install `labyrinth` using:
 
 ``` r
 install.packages(c('devtools', 'BiocManager'))
-remotes::install_github("randef1ned/labyrinth")
+remotes::install_github("randef1ned/labyrinth", upgrade = "always", build_vignettes = TRUE, build_manual = TRUE)
 ```
 
 Or you can download the pre-built binary packages from [Releases](https://github.com/randef1ned/labyrinth/releases).
